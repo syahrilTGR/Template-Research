@@ -1,0 +1,11 @@
+---
+name: context-summary
+description: Load full thesis context at start of every session
+---
+
+1. Read `supportFiles/handoff.md` — note the current stage, what is already written, and what is currently being worked on.
+2. Read `supportFiles/decisions_log.md` — note the latest technical decisions made.
+3. Confirm the technical stack and project constraints defined in the active skills.
+4. Read `papers/index.md` to understand which source materials are indexed and available.
+5. Report back to the user with a concise onboarding message: "Here is what I know about your project context... [Summarize Stage, Next Actions]".
+6. Ask the user: "What would you like to work on today?"
