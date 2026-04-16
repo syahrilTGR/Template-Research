@@ -44,20 +44,25 @@ Ketika user **TIDAK menyebut nama file tujuan secara eksplisit**, AI **wajib** m
 
 ### Intent-to-File Routing Table
 
-| Jika user meminta... | Kata kunci / Trigger | Tulis ke file ini | Aksi setelah menulis |
+| Jika user meminta/terdeteksi... | Intent / Sifat Konten | Tulis ke file ini | Aksi setelah menulis |
 |---|---|---|---|
-| Latar belakang / Background | "buat latar belakang", "tulis background", "rumusan masalah" | `supportFiles/handoff.md` | Tulis draf ke section Bab 1 di handoff |
-| Tinjauan pustaka / Landasan teori | "landasan teori", "kajian pustaka", "tulis bab 2" | `supportFiles/handoff.md` | Tulis draf ke section Bab 2 di handoff |
-| Metodologi / Metode penelitian | "metodologi", "tulis metode", "bab 3" | `supportFiles/handoff.md` | Tulis draf ke section Bab 3 di handoff |
-| Hasil & Pembahasan | "hasil", "pembahasan", "bab 4" | `supportFiles/handoff.md` | Tulis draf ke section Bab 4 di handoff |
-| Kesimpulan & Saran | "kesimpulan", "saran", "bab 5" | `supportFiles/handoff.md` | Tulis draf ke section Bab 5 di handoff |
-| Definisi istilah baru | "X adalah", "apa itu Y", "catat istilah Z" | `intelligence/glosarium.md` | Tambahkan baris di glosarium |
-| Ringkasan paper mendalam | "ringkas paper ini secara detail", "ekstrak insight" | `intelligence/ringkasan_paper/` | Buat file `.md` baru & update `_INDEX_PAPER.md` |
-| Deep dive konsep / teori | "jelaskan teori X", "buat catatan konsep Y" | `intelligence/konsep/` | Buat file `.md` baru & update `_INDEX_KONSEP.md` |
-| Catatan hasil browsing | "catat hasil search", "simpan snippet web ini" | `intelligence/catatan_web/` | Buat file `.md` baru & update `_INDEX_WEB.md` |
-| Keputusan teknis baru | "kita pakai X", "saya putuskan", "ganti metode", "gunakan Y" | `supportFiles/decisions_log.md` | Konfirmasi ke user |
-| Ringkasan sesi / Progres hari ini | "rangkum sesi", "update progres", "simpan ingatan" | `supportFiles/handoff.md` | Konfirmasi ke user |
-| Pertanyaan teknis terbuka | "belum tahu cara X", "perlu cari tahu", "masih ragu" | `supportFiles/open_questions.md` | Catat sebagai item open question |
+| Menjelaskan Teori/Ide | Konseptual, Definisi, "Bagaimana cara kerja X?" | `intelligence/konsep/` | Buat file `.md` & link ke `[[_INDEX_KONSEP]]` |
+| Mengekstrak Paper | Literatur, "Apa kata paper A?", Metrik | `intelligence/ringkasan_paper/` | Buat file `.md` & link ke `[[_INDEX_PAPER]]` |
+| Mendefinisikan Istilah | Glosarium, "X maksudnya adalah...", Singkatan | `intelligence/glosarium.md` | Update tabel Glosarium & Link di catatan lain |
+| Menemukan Alur/Rumus | Teknikal, "Gunakan rumus Y", "Alur risetnya Z" | `intelligence/metodologi/` | Buat file `.md` & link ke `[[_INDEX_METODE]]` |
+| Mencari Info Bersama | Riset web, "Tolong cari X", Snippet eksternal | `intelligence/catatan_web/` | Simpan sebagai "Web Clipping" di folder web |
+| Merubah Strategi | Keputusan, "Ganti ke metode B", "Ubah dataset" | `supportFiles/decisions_log.md` | Catat tanggal & alasan perubahan |
+
+### 🧠 Proactive Knowledge Detection (SANGAT PENTING)
+
+Asisten tidak boleh pasif menunggu keyword. Asisten **WAJIB** menawarkan diri untuk menulis ke Wiki jika mendeteksi kondisi berikut:
+
+1. **"New Knowledge Nugget"**: Jika ada penjelasan teknis atau konseptual yang panjang di chat yang belum ada di Wiki.
+   - *Prompt:* "Penjelasan mengenai [Konsep X] tadi cukup mendalam. Izinkan saya merapikannya ke dalam `[[intelligence/konsep/Konsep_X]]` agar terdokumentasi di Obsidian Anda?"
+2. **"Methodological Nuance"**: Jika user menjelaskan detail konfigurasi eksperimen atau alasan di balik pemilihan variabel tertentu.
+   - *Prompt:* "Logika pemilihan [Metode Y] yang Anda jelaskan sangat krusial. Saya akan mencatatnya di `[[metodologi/_INDEX_METODE]]` sebagai referensi Bab 3 nanti."
+3. **"Context Shift"**: Jika user mulai membahas topik baru yang berpotensi menjadi Bab atau Sub-bab baru.
+   - *Prompt:* "Sepertinya kita mulai masuk ke ranah [Topik Baru]. Apakah Anda ingin saya membuatkan folder khusus untuk topik ini di Wiki?"
 
 ### 🛠️ Obsidian Vault Maintenance (WAJIB DIIKUTI)
 
@@ -133,6 +138,9 @@ graph TD
     - **Anti-AI Signature**: Avoid overused AI transitions like "Furthermore", "In conclusion", "Moreover".
     - **Citations**: Strictly use **`[Name_Year]`** format during drafting (e.g., `[Smith_2023]`). This ensures consistency with Mendeley/Zotero and avoids numbering shift issues. Use `[CITATION NEEDED]` if a source is missing.
     - **Styling**: Use *italic* only for foreign non-English terms (e.g., *et al.*).
+- **Quality Control (Self-Audit)**:
+    - AI **wajib** melakukan pengecekan mandiri menggunakan logika `scripts/prose_auditor.py` sebelum menyerahkan draf akhir bab kepada user.
+    - Pastikan tidak ada karakter terlarang (`—`) dan semua sitasi sudah terdaftar di `ANTI_HALLUCINATION.md`.
 
 ---
 
@@ -196,6 +204,15 @@ Berikut adalah daftar skrip alat bantu yang sudah tertanam di `scripts/`. AI **w
 | `scripts/extract_docx.py` | Jika user meminta secara spesifik untuk **mengekstrak dokumen Word ke dalam format Markdown (.md)**. | `python scripts/extract_docx.py [file.docx] [file.md]` |
 | `scripts/sync_word.ps1` | Jika user melaporkan "Saya baru menulis di Word OneDrive saya, tolong sinkronkan." Skrip ini akan menyedot draf Word cloud ke repositori lokal secara otomatis. | `powershell scripts/sync_word.ps1` |
 | `scripts/convert_citations.py` | Jika user ingin merapikan draf `handoff.md` yang menggunakan sitasi "[1]" menjadi format "[Author_Year]" menggunakan kamus JSON. Format wajib sebelum dipublish! | `python scripts/convert_citations.py` |
+| `scripts/prose_auditor.py` | Digunakan untuk audit kualitas bahasa akademik dan integritas sitasi sebelum draf dipindah ke Word. | `python scripts/prose_auditor.py` |
+
+### 🐍 Venv Awareness Protocol (Seamless Execution)
+
+Untuk menjalankan skrip Python di atas, asisten **wajib** menggunakan executable Python dari virtual environment yang sudah dicatat:
+
+1. **Check Config**: Selalu baca file `supportFiles/.venv_config.txt` untuk mendapatkan path absolut ke `python.exe`.
+2. **Execution**: Gunakan path tersebut secara eksplisit saat menjalankan perintah melalui `run_command` (misalnya: `& "C:\Users\Syahril\thesis_venv\Scripts\python.exe" scripts/prose_auditor.py`).
+3. **Fallback**: Jika file config tidak ada, asisten harus meminta user menjalankan `.\scripts\setup_env.ps1` terlebih dahulu.
 
 ---
 
