@@ -4,6 +4,21 @@ Selamat datang di workspace proyek ini! Directory ini telah disiapkan sebagai te
 
 ---
 
+## 🚀 Quick Start (Windows)
+Siapkan lingkungan riset Anda dalam satu klik:
+```powershell
+.\scripts\setup_env.ps1
+```
+
+## ✨ Fitur Unggulan
+- **📝 Handoff-Centric Drafting**: Seluruh draf terkonsentrasi di satu titik (`supportFiles/handoff.md`) untuk meminimalkan halusinasi AI.
+- **💉 Docx Surgery**: Bedah file Word yang rusak atau edit XML penomoran secara langsung via `scripts/docx_surgery.py`.
+- **🧪 Sterile Word Templates**: Menghasilkan file Word akademik (BAB I, 1.1, dst) tanpa jejak data pribadi di repositori.
+- **📄 AI-Driven Extraction**: Ekstraksi metrik dari jurnal PDF & gaya bahasa dari proposal lama secara otomatis.
+- **🔄 Sync Power**: Sinkronisasi draf antara Markdown (AI) dan Word (OneDrive) dengan satu klik.
+
+---
+
 ## 📂 Struktur Folder & Fungsi
 
 **Last updated:** 2026-04-07
@@ -18,7 +33,6 @@ Berikut adalah penjelasan fungsi untuk tiap directory agar pengerjaan tetap rapi
 | `results/` | Output evaluasi, metrik performa, grafik visualisasi, dan file log. | `.csv`, `.png`, `.log` |
 | `papers/` | Koleksi literatur utama (jurnal/prosiding) yang menjadi dasar riset. | `artikel.pdf` |
 | `reference/` | Materi pendukung seperti dokumentasi library, tutorial, atau potongan kode referensi. | `.pdf`, `.md`, `.txt` |
-| `thesis_bureau/` | Ruang kerja penulisan laporan/skripsi (Drafting area). | `.docx`, `.md`, `.tex` |
 | `dataset/` | Data mentah (raw) atau data yang sudah diproses untuk training/testing. | `data/`, `images/`, `labels/` |
 | `example/` | Demo singkat atau skrip "Hello World" untuk memastikan sistem berjalan. | `demo.py`, `test_env.py` |
 | `image/` | Aset gambar untuk dokumentasi README, flowchart, atau diagram laporan. | `.jpg`, `.svg` |

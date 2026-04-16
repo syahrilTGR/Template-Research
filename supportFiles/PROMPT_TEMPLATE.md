@@ -3,7 +3,13 @@
 Gunakan template ini saat memulai atau mereset sesi AI agar asisten kembali ke konteks proyek.
 
 ```markdown
-Hai, jalankan `/context-summary`. Baca file `supportFiles/handoff.md` dan pastikan kamu tahu stage mana yang sedang berjalan saat ini. Jangan lakukan koding sebelum kamu merangkum apa langkah kita selanjutnya.
+Hai, jalankan `/context-summary`. 
+
+**Audit Wajib Sebelum Mulai:**
+1. Cek `ACTION_PLAN.md`: Apakah Phase 0 sudah [x]? 
+2. Cek `gemini.md` & `SKILL.md`: Apakah masih ada placeholder [TBD]?
+
+Jangan lakukan tugas akademik sebelum status audit di atas 'CLEAN'.
 ```
 
 ### 🆕 Sesi Pertama (Bootstrap)

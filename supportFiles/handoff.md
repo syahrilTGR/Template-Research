@@ -1,8 +1,8 @@
 # Handoff Document & Active Context
 
-> **Last updated:** [Date]
-> **Current Stage:** [e.g., Literature Review / Data Collection]
-> **Next action:** [e.g., Draft Chapter 2 / Run baseline model]
+> **Last updated:** 2026-04-16
+> **Current Stage:** Phase 0: Infrastructure Finalized & Verified
+> **Next action:** Start Research / Chapter 1 Drafting
 
 ---
 
@@ -10,14 +10,29 @@
 
 | Chapter | Status | Notes |
 |---|---|---|
-| Chapter 1 | [e.g., PENDING] | Needs problem statement |
-| Chapter 2 | [e.g., IN PROGRESS] | Missing literature comparison table |
+| Chapter 1 | [PENDING] | Needs problem statement |
+| Chapter 2 | [PENDING] | Missing literature comparison table |
 
 ---
 
 ## Current Text Drafts
 
-*(Paste your current drafted text or key bullet points here so the AI has immediate context of what you are writing)*
+<!-- AI MANDATORY: Paste the latest drafted prose snippets here. This is the SINGLE muara for all active writing. -->
+
+### [BAB 1: PENDAHULUAN]
+*(Draf latar belakang, rumusan masalah, dll)*
+
+### [BAB 2: TINJAUAN PUSTAKA]
+*(Draf landasan teori & state of the art)*
+
+### [BAB 3: METODOLOGI]
+*(Draf alur penelitian & arsitektur)*
+
+### [BAB 4: HASIL & PEMBAHASAN]
+*(Draf analisis & metrik)*
+
+### [BAB 5: KESIMPULAN]
+*(Draf kesimpulan & saran)*
 
 ---
 

@@ -1,7 +1,7 @@
 # WARNING: UPDATE THESE PATHS BEFORE RUNNING
-$sourcePath = '[PASTE_YOUR_ONEDRIVE_DOCX_PATH_HERE]'  # e.g., C:\Users\Name\OneDrive\Thesis.docx
-$destPath   = '[PASTE_YOUR_LOCAL_DOCX_DESTINATION_HERE]' # e.g., f:\Project\thesis_bureau\Draft.docx
-$txtPath    = '[PASTE_YOUR_LOCAL_MD_DESTINATION_HERE]'   # e.g., f:\Project\thesis_bureau\Draft.md
+$sourcePath = '[PASTE_YOUR_ONEDRIVE_DOCX_PATH_HERE]'        # e.g., C:\Users\Name\OneDrive\Thesis.docx
+$destPath   = '[PASTE_YOUR_LOCAL_FOLDER_HERE]\Thesis.docx' # e.g., f:\Project\example\Thesis.docx
+$txtPath    = '[PASTE_YOUR_LOCAL_FOLDER_HERE]\Thesis.md'   # e.g., f:\Project\example\Thesis.md
 
 # Check if source exists
 if (Test-Path -Path $sourcePath) {
