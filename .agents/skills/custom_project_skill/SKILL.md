@@ -28,7 +28,7 @@ Failure to load these files will result in context drift and potential hallucina
 ## ⚠️ Onboarding Logic Check
 **Setiap kali sesi dimulai, periksa apakah file ini atau `gemini.md` masih mengandung placeholder (seperti `[Nama Anda]`, `[Judul Proyek Anda]`, `[Hardware dev]`, dll).**
 
-Jika ya, segera sapa pengguna dengan: *"Halo! Saya mendeteksi proyek ini masih menggunakan data template (bootstrap). Mohon isi informasi berikut agar saya bisa bekerja lebih akurat:"* lalu berikan daftar field yang perlu diisi.
+Jika ya, segera sapa pengguna dengan: *"Halo! Saya mendeteksi proyek ini masih menggunakan data template (bootstrap). Mohon isi informasi berikut (Identitas, Judul, & Link OneDrive di scripts/sync_word.ps1) agar saya bisa bekerja lebih akurat:"* lalu berikan daftar field yang perlu diisi.
 
 ---
 

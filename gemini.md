@@ -10,7 +10,8 @@
 
 1.  List semua field yang masih kosong/placeholder kepada pengguna.
 2.  Minta pengguna untuk mengisi informasi tersebut agar konteks proyek menjadi akurat.
-3.  Ingatkan pengguna bahwa informasi ini krusial agar gaya penulisan dan sitasi menjadi benar.
+3.  Pastikan `scripts/sync_word.ps1` sudah dikonfigurasi dengan path OneDrive asli pengguna.
+4.  Ingatkan pengguna bahwa informasi ini krusial agar gaya penulisan dan sitasi menjadi benar.
 
 ---
 
