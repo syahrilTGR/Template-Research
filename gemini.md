@@ -5,6 +5,15 @@
 
 ---
 
+## 🚀 Bootstrap / Onboarding Protocol (MANDATORY)
+**Jika kamu mendeteksi field informasi yang masih berisi placeholder (seperti `[Your Name]`, `[TBD]`, atau `[Your University]`), kamu WAJIB melakukan hal berikut sebelum mengerjakan tugas teknis:**
+
+1.  List semua field yang masih kosong/placeholder kepada pengguna.
+2.  Minta pengguna untuk mengisi informasi tersebut agar konteks proyek menjadi akurat.
+3.  Ingatkan pengguna bahwa informasi ini krusial agar gaya penulisan dan sitasi menjadi benar.
+
+---
+
 ## 🎯 Project Identity
 
 **Thesis Title:** [Your Title Here]
@@ -16,7 +25,6 @@
 ## 💻 Environment Setup
 - **OS Focus:** [e.g., Windows/macOS/Linux]
 - **Key Tools/Languages:** [e.g., Python, MATLAB, C++]
-- **Optimasi Token (RTK):** Selalu gunakan awalan `rtk` untuk perintah terminal (contoh: `rtk git status`) untuk menghemat penggunaan token hingga 90% (jika script RTK terpasang di OS).
 
 ---
 

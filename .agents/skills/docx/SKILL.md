@@ -14,7 +14,7 @@ A .docx file is a ZIP archive containing XML files.
 
 | Task | Approach |
 |------|----------|
-| **Python Execution** | **MANDATORY**: Prefix all python commands with `rtk python` (or use your project's venv) |
+| **Python Execution** | **MANDATORY**: Use `python` (or use your project's venv) |
 | Read/analyze content | `unpack` for raw XML (Pandoc is [OPTIONAL]) |
 | Create new document | Use `docx-js` - see Creating New Documents below |
 | Edit existing document | Unpack → edit XML → repack - see Editing Existing Documents below |
@@ -24,7 +24,7 @@ A .docx file is a ZIP archive containing XML files.
 Legacy `.doc` files must be converted before editing (requires LibreOffice):
 
 ```bash
-rtk python scripts/office/soffice.py --headless --convert-to docx document.doc
+python scripts/office/soffice.py --headless --convert-to docx document.doc
 ```
 
 ### Reading Content
@@ -35,13 +35,13 @@ rtk python scripts/office/soffice.py --headless --convert-to docx document.doc
 
 ```bash
 # Raw XML access
-rtk python scripts/office/unpack.py document.docx unpacked/
+python scripts/office/unpack.py document.docx unpacked/
 ```
 
 ### Converting to Images [OPTIONAL - REQUIRES LIBREOFFICE/POPPLER]
 
 ```bash
-rtk python scripts/office/soffice.py --headless --convert-to pdf document.docx
+python scripts/office/soffice.py --headless --convert-to pdf document.docx
 pdftoppm -jpeg -r 150 document.pdf page
 ```
 
@@ -50,7 +50,7 @@ pdftoppm -jpeg -r 150 document.pdf page
 To produce a clean document with all tracked changes accepted (requires LibreOffice):
 
 ```bash
-rtk python scripts/accept_changes.py input.docx output.docx
+python scripts/accept_changes.py input.docx output.docx
 ```
 
 ---

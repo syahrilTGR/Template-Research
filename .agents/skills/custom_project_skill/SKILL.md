@@ -25,6 +25,13 @@ Failure to load these files will result in context drift and potential hallucina
 
 ---
 
+## ⚠️ Onboarding Logic Check
+**Setiap kali sesi dimulai, periksa apakah file ini atau `gemini.md` masih mengandung placeholder (seperti `[Nama Anda]`, `[Judul Proyek Anda]`, `[Hardware dev]`, dll).**
+
+Jika ya, segera sapa pengguna dengan: *"Halo! Saya mendeteksi proyek ini masih menggunakan data template (bootstrap). Mohon isi informasi berikut agar saya bisa bekerja lebih akurat:"* lalu berikan daftar field yang perlu diisi.
+
+---
+
 ## 🗺️ Smart Auto-Routing System (WAJIB DIIKUTI)
 
 Ketika user **TIDAK menyebut nama file tujuan secara eksplisit**, AI **wajib** menggunakan tabel routing di bawah ini untuk menentukan ke mana konten harus ditulis atau disimpan. Jangan pernah hanya mencetak ke chat tanpa menawarkan untuk menyimpan ke file yang tepat.
@@ -139,10 +146,11 @@ Berikut adalah daftar skrip alat bantu yang sudah tertanam di `scripts/`. AI **w
 
 | Nama Skrip | Kapan AI harus menggunakannya? | Perintah Terminasi (Gunakan `rtc` atau `python`) |
 |---|---|---|
-| `scripts/extract_pdfs.py` | Saat user punya file `.pdf` baru di folder `papers/` dan meminta AI membacanya. Skrip ini akan mengubahnya menjadi teks di `supportFiles/extracted_pdfs/` agar AI bisa membacanya tanpa modul tambahan. | `rtk python scripts/extract_pdfs.py` |
+| `scripts/extract_pdfs.py` | Saat user punya file `.pdf` baru di folder `papers/` dan meminta AI membacanya. Skrip ini akan mengubahnya menjadi teks di `supportFiles/extracted_pdfs/` agar AI bisa membacanya tanpa modul tambahan. | `python scripts/extract_pdfs.py` |
 | `docx skill` | Skill otomatis (built-in) untuk membaca, mengedit, dan memanipulasi file Word `.docx` secara profesional. | Otomatis aktif saat membahas file `.docx` |
+| `scripts/extract_docx.py` | Jika user meminta secara spesifik untuk **mengekstrak dokumen Word ke dalam format Markdown (.md)**. | `python scripts/extract_docx.py [file.docx] [file.md]` |
 | `scripts/sync_word.ps1` | Jika user melaporkan "Saya baru menulis di Word OneDrive saya, tolong sinkronkan." Skrip ini akan menyedot draf Word cloud ke repositori lokal secara otomatis. | `powershell scripts/sync_word.ps1` |
-| `scripts/convert_citations.py` | Jika user ingin merapikan draf `handoff.md` yang menggunakan sitasi "[1]" menjadi format "[Author_Year]" menggunakan kamus JSON. Format wajib sebelum dipublish! | `rtk python scripts/convert_citations.py` |
+| `scripts/convert_citations.py` | Jika user ingin merapikan draf `handoff.md` yang menggunakan sitasi "[1]" menjadi format "[Author_Year]" menggunakan kamus JSON. Format wajib sebelum dipublish! | `python scripts/convert_citations.py` |
 
 ---
 

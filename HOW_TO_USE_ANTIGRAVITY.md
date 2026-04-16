@@ -29,7 +29,6 @@ Ketik perintah berikut di chat untuk memicu asisten melakukan tugas spesifik:
 
 ## 💡 Tips Berkolaborasi
 
-- **Gunakan Awalan RTK**: Di project ini, wajib gunakan perintah `rtk <command>` (contoh: `rtk git status`) untuk menghemat konsumsi token AI hingga 90%.
 - **Keep it Focused**: Berikan satu instruksi spesifik per pesan (misal: "Tulis subbab Metodologi bagian pengumpulan data").
 - **Gunakan File .md**: AI paling lancar membaca dan mengedit file markdown. Ubah file PDF riset menjadi teks/markdown jika ingin AI menganalisisnya secara mendalam.
 
