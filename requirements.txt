@@ -7,6 +7,7 @@ pymupdf
 # Word Documentation (.docx)
 python-docx
 lxml
+defusedxml
 
 # Data Analysis & Research
 pandas
