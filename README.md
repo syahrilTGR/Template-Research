@@ -1,5 +1,9 @@
 # 🎓 Project Template: Collaborative Research & Coding
 
+<div align="center">
+  <img src="image/hero_poster.png" alt="Academic AI Hero Poster" width="400">
+</div>
+
 Selamat datang di workspace proyek ini! Directory ini telah disiapkan sebagai template standar untuk pengerjaan penelitian, skripsi (TA), atau proyek coding kolaboratif dengan bantuan AI Agent.
 
 ---
@@ -10,11 +14,16 @@ Siapkan lingkungan riset Anda dalam satu klik:
 .\scripts\setup_env.ps1
 ```
 
+**Penting:** Setelah setup selesai, silakan ikuti panduan **[GETTING_STARTED.md](./GETTING_STARTED.md)** untuk mulai melakukan riset dengan bantuan AI.
+
 ## ✨ Fitur Unggulan
 - **📝 Handoff-Centric Drafting**: Seluruh draf terkonsentrasi di satu titik (`supportFiles/handoff.md`) untuk meminimalkan halusinasi AI.
 - **💉 Docx Surgery**: Bedah file Word yang rusak atau edit XML penomoran secara langsung via `scripts/docx_surgery.py`.
 - **🧪 Sterile Word Templates**: Menghasilkan file Word akademik (BAB I, 1.1, dst) tanpa jejak data pribadi di repositori.
 - **📄 AI-Driven Extraction**: Ekstraksi metrik dari jurnal PDF & gaya bahasa dari proposal lama secara otomatis.
+- **🧠 Intelligence Vault (Obsidian)**: Pusat pengetahuan interaktif dengan grafik hubungan antar konsep (`intelligence/`).
+- **☁️ NotebookLM Hybrid Workflow**: Sinkronisasi pencarian literatur tingkat tinggi (Deep Research) antara Google NotebookLM dan repositori lokal.
+- **⚖️ Prose Auditor**: Skrip detektif (`scripts/prose_auditor.py`) untuk membasmi karakter "robot" AI dan memverifikasi integritas sitasi.
 - **🔄 Sync Power**: Sinkronisasi draf antara Markdown (AI) dan Word (OneDrive) dengan satu klik.
 
 ---
