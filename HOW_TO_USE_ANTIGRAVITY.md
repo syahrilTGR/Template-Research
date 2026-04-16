@@ -22,8 +22,19 @@ Ketik perintah berikut di chat untuk memicu asisten melakukan tugas spesifik:
 
 1.  **Konteks Global**: AI membaca aturan inti kamu (identitas, aturan optimasi) dari `gemini.md`.
 2.  **Konteks Lokal**: AI membaca file di folder `.agents/` untuk memahami keahlian tambahan yang harus ia gunakan (Skills dan Workflows).
-3.  **Handoff**: AI menyimpan progres kerja dan seluruh draf tulisan dalam `supportFiles/handoff.md`. Pastikan file ini diperbarui setiap akhir sesi dengan `/update-handoff`.
-4.  **Riset**: AI bisa membaca file-file di folder `papers/` untuk membantu Anda membuat tinjauan pustaka.
+3.  **Intelligence (Wiki)**: AI menyimpan seluruh pemahaman konseptual, ringkasan paper, dan glosarium di folder `intelligence/`. Folder ini dioptimalkan untuk dibuka menggunakan **Obsidian**.
+4.  **Handoff**: AI menyimpan progres kerja dan draf draf bab aktif di `supportFiles/handoff.md`. Pastikan file ini diperbarui setiap akhir sesi dengan `/update-handoff`.
+
+---
+
+## 🧠 Menggunakan LLM Wiki (Obsidian Vault)
+
+Gunakan folder `intelligence/` sebagai "Otak Eksternal" proyek Anda yang bisa diakses via **Obsidian**:
+
+- **Mencatat Konsep**: Katakan, *"Tolong jelaskan konsep X dan simpan ke Wiki."* AI akan membuat catatan baru dengan `[[Wikilinks]]`.
+- **Glosarium**: Katakan, *"Catat bahwa istilah Y dalam proyek ini berarti Z."* AI akan memperbarui `glosarium.md`.
+- **Ringkasan Paper**: Setiap hasil `/extract-metrics` akan otomatis tersimpan sebagai catatan permanen agar bisa di-link ke Bab yang sedang Anda tulis.
+- **Catatan Web**: Jika AI melakukan pencarian internet, Anda bisa meminta, *"Simpan poin penting dari pencarian tadi ke catatan web."*
 
 ---
 

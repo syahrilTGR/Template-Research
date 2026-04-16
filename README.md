@@ -21,7 +21,7 @@ Siapkan lingkungan riset Anda dalam satu klik:
 
 ## 📂 Struktur Folder & Fungsi
 
-**Last updated:** 2026-04-07
+**Last updated:** 2026-04-16
 
 Berikut adalah penjelasan fungsi untuk tiap directory agar pengerjaan tetap rapi dan terorganisir:
 
@@ -29,14 +29,15 @@ Berikut adalah penjelasan fungsi untuk tiap directory agar pengerjaan tetap rapi
 |---|---|---|
 | `notebooks/` | Eksperimen, eksplorasi data, dan riset interaktif. | `.ipynb` file |
 | `scripts/` | Kode sumber utama, automation, dan utilitas (termasuk skrip sinkronisasi Word ke Markdown). | `.py`, `.ps1`, `.bat` |
-| `models/` | Penyimpanan model hasil training/finetuning atau pre-trained weights. | `.pth`, `.pt`, `.onnx` |
-| `results/` | Output evaluasi, metrik performa, grafik visualisasi, dan file log. | `.csv`, `.png`, `.log` |
+| `models/` | Penyimpanan artefak hasil perhitungan, model, atau bobot utama. | `.pth`, `.pt`, `.onnx`, `.bin` |
+| `results/` | Output evaluasi, metrik hasil, grafik visualisasi, dan file log. | `.csv`, `.png`, `.log` |
 | `papers/` | Koleksi literatur utama (jurnal/prosiding) yang menjadi dasar riset. | `artikel.pdf` |
-| `reference/` | Materi pendukung seperti dokumentasi library, tutorial, atau potongan kode referensi. | `.pdf`, `.md`, `.txt` |
-| `dataset/` | Data mentah (raw) atau data yang sudah diproses untuk training/testing. | `data/`, `images/`, `labels/` |
+| `reference/` | Materi pendukung seperti dokumentasi, tutorial, atau potongan kode referensi. | `.pdf`, `.md`, `.txt` |
+| `dataset/` | Data mentah (raw) atau data yang sudah diproses untuk riset. | `data/`, `images/`, `tables/` |
 | `example/` | Demo singkat atau skrip "Hello World" untuk memastikan sistem berjalan. | `demo.py`, `test_env.py` |
 | `image/` | Aset gambar untuk dokumentasi README, flowchart, atau diagram laporan. | `.jpg`, `.svg` |
-| `supportFiles/` | Konfigurasi pendukung, database referensi, dan file sinkronisasi asisten AI. | `handoff.md`, `db.json` |
+| `intelligence/` | **LLM Wiki (Obsidian Vault)**: Pusat memori AI, glosarium, dan konsep. | `_INDEX.md`, `konsep/` |
+| `supportFiles/` | Konfigurasi pendukung, database referensi, dan file draf aktif asisten AI. | `handoff.md`, `ACTION_PLAN.md` |
 | `.agents/` | Pusat kontrol AI Antigravity (Aturan, Skill, dan Workflow otomatis). | `skills/`, `workflows/` |
 
 ---
