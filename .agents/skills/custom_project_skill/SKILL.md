@@ -9,9 +9,7 @@ description: >
 
 ## Deskripsi Proyek
 
-Proyek skripsi: **[Judul Proyek Anda]**
-
-Mahasiswa: **[Nama Anda]** | Program Studi: [Prodi Anda], [Universitas Anda]
+Referensikan file `gemini.md` untuk identitas mahasiswa, judul skripsi, dan institusi.
 
 ---
 
@@ -25,10 +23,18 @@ Failure to load these files will result in context drift and potential hallucina
 
 ---
 
-## ⚠️ Onboarding Logic Check
-**Setiap kali sesi dimulai, periksa apakah file ini atau `gemini.md` masih mengandung placeholder (seperti `[Nama Anda]`, `[Judul Proyek Anda]`, `[Hardware dev]`, dll).**
+## ⚠️ Mandatory Integrity & Onboarding Check
+**Setiap kali sesi dimulai, AI WAJIB melakukan pengecekan integritas berikut sebelum melakukan tugas teknis apa pun:**
 
-Jika ya, segera sapa pengguna dengan: *"Halo! Saya mendeteksi proyek ini masih menggunakan data template (bootstrap). Mohon isi informasi berikut (Identitas, Judul, & Link OneDrive di scripts/sync_word.ps1) agar saya bisa bekerja lebih akurat:"* lalu berikan daftar field yang perlu diisi.
+1.  **Placeholder Check**: Periksa apakah `gemini.md` masih mengandung `[Nama Anda]`, atau `scripts/sync_word.ps1` masih mengandung `[PASTE_...]`.
+2.  **Infrastructure Check**: Baca **`supportFiles/ACTION_PLAN.md`**. Periksa apakah semua item di **"Phase 0: Infrastructure"** (termasuk poin 0.5 dan 0.6) sudah terceklis `[x]`.
+3.  **Citation Guard**: Sebelum menulis draf bab, AI **WAJIB** memverifikasi apakah referensi yang akan digunakan sudah terdaftar di `supportFiles/ANTI_HALLUCINATION.md`.
+
+**Protokol Pemblokiran:**
+- Jika poin 1 atau 2 belum terpenuhi secara nyata (cek isi filenya!), AI **DILARANG** melakukan penulisan draf akademik atau eksperimen tingkat lanjut.
+- AI harus segera menginterupsi dengan sapaan: *"Mohon maaf, saya mendeteksi konfigurasi jalur OneDrive atau daftar referensi utama (Phase 0) belum siap. Mari kita tuntaskan konfigurasi di `sync_word.ps1` dan `ANTI_HALLUCINATION.md` terlebih dahulu."*
+
+**Otomasi Onboarding:** Jika AI mendeteksi file `.docx` atau `.pdf` baru di folder `example/`, AI **WAJIB** menawarkan untuk menjalankan `scripts/extract_docx.py` atau `scripts/extract_pdfs.py` untuk mempelajari gaya bahasa user.
 
 ---
 
@@ -40,11 +46,11 @@ Ketika user **TIDAK menyebut nama file tujuan secara eksplisit**, AI **wajib** m
 
 | Jika user meminta... | Kata kunci / Trigger | Tulis ke file ini | Aksi setelah menulis |
 |---|---|---|---|
-| Latar belakang / Background | "buat latar belakang", "tulis background", "rumusan masalah", "tujuan penelitian" | `thesis_bureau/bab1_pendahuluan.md` | Update status di `supportFiles/handoff.md` |
-| Tinjauan pustaka / Landasan teori | "landasan teori", "kajian pustaka", "tulis bab 2", "previous research" | `thesis_bureau/bab2_tinjauan_pustaka.md` | Update status di `supportFiles/handoff.md` |
-| Metodologi / Metode penelitian | "metodologi", "tulis metode", "diagram alir sistem", "bab 3" | `thesis_bureau/bab3_metodologi.md` | Update status di `supportFiles/handoff.md` |
-| Hasil & Pembahasan | "hasil", "pembahasan", "analisis hasil", "bab 4" | `thesis_bureau/bab4_hasil.md` | Update status di `supportFiles/handoff.md` |
-| Kesimpulan & Saran | "kesimpulan", "saran", "bab 5" | `thesis_bureau/bab5_kesimpulan.md` | Update status di `supportFiles/handoff.md` |
+| Latar belakang / Background | "buat latar belakang", "tulis background", "rumusan masalah" | `supportFiles/handoff.md` | Tulis draf ke section Bab 1 di handoff |
+| Tinjauan pustaka / Landasan teori | "landasan teori", "kajian pustaka", "tulis bab 2" | `supportFiles/handoff.md` | Tulis draf ke section Bab 2 di handoff |
+| Metodologi / Metode penelitian | "metodologi", "tulis metode", "bab 3" | `supportFiles/handoff.md` | Tulis draf ke section Bab 3 di handoff |
+| Hasil & Pembahasan | "hasil", "pembahasan", "bab 4" | `supportFiles/handoff.md` | Tulis draf ke section Bab 4 di handoff |
+| Kesimpulan & Saran | "kesimpulan", "saran", "bab 5" | `supportFiles/handoff.md` | Tulis draf ke section Bab 5 di handoff |
 | Keputusan teknis baru | "kita pakai X", "saya putuskan", "ganti metode", "gunakan Y" | `supportFiles/decisions_log.md` | Konfirmasi ke user |
 | Ringkasan sesi / Progres hari ini | "rangkum sesi", "update progres", "simpan ingatan" | `supportFiles/handoff.md` | Konfirmasi ke user |
 | Paper / Referensi baru | "cek paper ini", "tambah referensi", "paper tentang X" | `papers/index.md` + `supportFiles/ANTI_HALLUCINATION.md` | Assign REF-ID sementara |
@@ -56,9 +62,10 @@ Ketika user **TIDAK menyebut nama file tujuan secara eksplisit**, AI **wajib** m
 
 1. **Sebelum menulis**, konfirmasi dengan cepat: _"Saya akan menyimpan ini ke `[nama file]`. Lanjut?"_
 2. **Jika file belum ada**, buat file baru sesuai tabel di atas — jangan tulis di chat saja.
-3. **Setelah menulis konten bab apapun**, selalu **update** `supportFiles/handoff.md` bagian status bab.
-4. **Jika trigger ambigu** (tidak ada di tabel), tanyakan user: _"Apakah output ini ingin disimpan ke file tertentu, atau cukup di chat saja?"_
-5. **TIDAK BOLEH** hanya mencetak prose akademik di chat tanpa menawarkan untuk menyimpan ke file.
+3. **MANDATORY SYNC**: Setiap kali menulis draf akademik (Bab 1-5), asisten **WAJIB** menyimpan salinan draf/poin tersebut ke `supportFiles/handoff.md` di bawah section `## Current Text Drafts`. Ini krusial agar memori aktif tetap terjaga antar sesi.
+4. **Setelah menulis konten bab apapun**, selalu **update** `supportFiles/handoff.md` bagian status bab.
+5. **TIDAK BOLEH** hanya mencetak draf di chat. Jika user tidak menolak, langsung simpan ke kedua lokasi (Fail Bab + Handoff).
+6. **Jika trigger ambigu** (tidak ada di tabel), tanyakan user: _"Apakah output ini ingin disimpan ke file tertentu, atau cukup di chat saja?"_
 
 ---
 
@@ -71,11 +78,11 @@ Pipeline Utama:
 
 | Komponen | Detail |
 |---|---|
-| Algoritma / Model Utama | [Isi model Anda, misalnya: YOLO, ResNet, dsb] |
-| Dataset baseline | [Deskripsi dataset awal] |
-| Metode / Pendekatan | [Metode yang diusulkan] |
-| Framework | **[Misal: PyTorch / TensorFlow]** |
-| Hardware target | [Misal: Laptop / Colab / Edge Device] |
+| Algoritma / Model Utama | Lihat `gemini.md` |
+| Dataset baseline | Lihat `gemini.md` |
+| Metode / Pendekatan | Lihat `gemini.md` |
+| Framework | Lihat `gemini.md` |
+| Hardware target | Lihat `gemini.md` |
 
 ---
 
@@ -138,6 +145,18 @@ Setelah menyelesaikan pekerjaan signifikan, AI **wajib** memperbarui:
 - [File yang dibuat/dimodifikasi]
 ```
 
+### ✨ Academic Document Standards (MANDATORY)
+
+Setiap kali melakukan ekspor ke format Word (.docx), asisten **WAJIB** menggunakan file template berikut sebagai basis (Seed Document) untuk menjaga konsistensi penomoran BAB dan Sub-bab:
+
+- **Template Path**: `.agents/resources/academic_template.docx`
+- **Aturan Pemetaan Gaya**:
+    - **BAB / Judul Bab** ➔ Gunakan gaya `Heading 1` (Format otomatis: BAB I, BAB II, dst).
+    - **Sub-bab (Level 1)** ➔ Gunakan gaya `Heading 2` (Format otomatis: 1.1, 1.2, dst).
+    - **Sub-bab (Level 2)** ➔ Gunakan gaya `Heading 3` (Format otomatis: 1.1.1, dst).
+    - **Isi Draf** ➔ Gunakan gaya `Normal`.
+    - **Tabel** ➔ Gunakan gaya tabel `Table Grid`.
+
 ---
 
 ## 🛠️ Script Helper & Utilities (WAJIB TAHU)
@@ -148,6 +167,7 @@ Berikut adalah daftar skrip alat bantu yang sudah tertanam di `scripts/`. AI **w
 |---|---|---|
 | `scripts/extract_pdfs.py` | Saat user punya file `.pdf` baru di folder `papers/` dan meminta AI membacanya. Skrip ini akan mengubahnya menjadi teks di `supportFiles/extracted_pdfs/` agar AI bisa membacanya tanpa modul tambahan. | `python scripts/extract_pdfs.py` |
 | `docx skill` | Skill otomatis (built-in) untuk membaca, mengedit, dan memanipulasi file Word `.docx` secara profesional. | Otomatis aktif saat membahas file `.docx` |
+| `scripts/docx_surgery.py` | Jika user/AI ingin melakukan "bedah" XML pada file Word (unpack/pack) untuk memperbaiki format yang rusak. | `python scripts/docx_surgery.py` |
 | `scripts/extract_docx.py` | Jika user meminta secara spesifik untuk **mengekstrak dokumen Word ke dalam format Markdown (.md)**. | `python scripts/extract_docx.py [file.docx] [file.md]` |
 | `scripts/sync_word.ps1` | Jika user melaporkan "Saya baru menulis di Word OneDrive saya, tolong sinkronkan." Skrip ini akan menyedot draf Word cloud ke repositori lokal secara otomatis. | `powershell scripts/sync_word.ps1` |
 | `scripts/convert_citations.py` | Jika user ingin merapikan draf `handoff.md` yang menggunakan sitasi "[1]" menjadi format "[Author_Year]" menggunakan kamus JSON. Format wajib sebelum dipublish! | `python scripts/convert_citations.py` |
@@ -155,7 +175,4 @@ Berikut adalah daftar skrip alat bantu yang sudah tertanam di `scripts/`. AI **w
 ---
 
 ## Kontak & Konteks
-
-- **Mahasiswa:** [Nama Anda]
-- **Hardware utama:** [Hardware dev]
-- **Bahasa komunikasi:** Bahasa Indonesia (percakapan), Python + matematika (kode/formula)
+- Lihat `gemini.md` untuk detail identitas mahasiswa, hardware, dan bahasa komunikasi.

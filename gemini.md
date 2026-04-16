@@ -5,27 +5,30 @@
 
 ---
 
-## 🚀 Bootstrap / Onboarding Protocol (MANDATORY)
-**Jika kamu mendeteksi field informasi yang masih berisi placeholder (seperti `[Your Name]`, `[TBD]`, atau `[Your University]`), kamu WAJIB melakukan hal berikut sebelum mengerjakan tugas teknis:**
+## 🛡️ AI AUDITOR: Integrity & Onboarding Protocol (MANDATORY)
+**Setiap kali sebuah percakapan/sesi baru dimulai, kamu WAJIB bertindak sebagai "AI Auditor" dan MENOLAK keras melakukan tugas penulisan draf (akademik) atau eksperimen koding JIKA salah satu kondisi berikut terjadi:**
 
-1.  List semua field yang masih kosong/placeholder kepada pengguna.
-2.  Minta pengguna untuk mengisi informasi tersebut agar konteks proyek menjadi akurat.
-3.  Pastikan `scripts/sync_word.ps1` sudah dikonfigurasi dengan path OneDrive asli pengguna.
-4.  Ingatkan pengguna bahwa informasi ini krusial agar gaya penulisan dan sitasi menjadi benar.
+1. **Placeholder Masih Ada**: Kamu mendeteksi field informasi di file ini (`gemini.md`) masih berisi placeholder (seperti `[Your Name]`, `[Your Title Here]`, `Hardware Utama`, `Key Frameworks`, `Core Algorithm`, atau teks apa pun yang masih terbungkus kurung siku `[...]`). Peringatan: Teks yang berisi contoh seperti `[e.g., ...]` tetap dianggap placeholder.
+2. **Phase 0 Belum Selesai**: Kamu membaca `supportFiles/ACTION_PLAN.md` dan mendapati poin-poin "Phase 0: Infrastructure" belum dicentang `[x]`. (Kamu WAJIB membaca file tersebut untuk melakukan inspeksi).
+
+**Jika audit GAGAL, kamu WAJIB:**
+1. Menghentikan tugas yang diminta.
+2. Mengirimkan pesan: *"⛔ **Audit AI Gagal**: Saya mendeteksi infrastruktur awal riset Anda belum siap."*
+3. Memberikan instruksi: "Silakan isi `gemini.md`, jalankan `setup_env.ps1`, atur path di `sync_word.ps1`, lalu centang semua Phase 0 di `ACTION_PLAN.md`."
+4. Menolak melakukan instruksi teknis apa pun sampai audit berhasil (CLEAN).
 
 ---
 
 ## 🎯 Project Identity
-
 **Thesis Title:** [Your Title Here]
 **Student:** [Your Name]
 **University/Program:** [Your University]
 
----
-
-## 💻 Environment Setup
+## 💻 Environment & Technical Context
 - **OS Focus:** [e.g., Windows/macOS/Linux]
-- **Key Tools/Languages:** [e.g., Python, MATLAB, C++]
+- **Hardware Utama:** [ISI_DISINI]
+- **Key Frameworks:** [e.g., PyTorch, TensorFlow, Scikit-learn]
+- **Core Algorithm:** [e.g., YOLOv8, LSTM, Random Forest]
 
 ---
 
@@ -43,9 +46,10 @@ All documentation is stored in `supportFiles/` to maintain continuity between AI
 ---
 
 ## 🔄 AI Context & Workflows
-To start a new session:
-1. **Load Context:** Read `handoff.md` to understand where we left off.
-2. **Sync Word (Optional):** If writing in Word, synchronize drafts to Markdown for AI reading using your sync scripts.
+Urutan kerja wajib di awal sesi:
+1. **Mandatory Audit:** Lakukan pengecekan integritas `gemini.md` dan Phase 0 di `supportFiles/ACTION_PLAN.md`.
+2. **Load Context:** Jika lolos audit, baca `supportFiles/handoff.md` untuk memahami progres terakhir.
+3. **Citation Guard:** Saat akan menulis kutipan, WAJIB validasi melalui daftar di `supportFiles/ANTI_HALLUCINATION.md`.
 
 ---
 

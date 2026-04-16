@@ -1,6 +1,12 @@
 # PROPOSAL/THESIS ACTION PLAN
 
-> Track your chapter-by-chapter progression here.
+## Phase 0: Infrastructure & Environment Setup
+- [x] 0.1 Handoff-Centric Workflow Configuration
+- [x] 0.2 Automated Setup Script (`scripts/setup_env.ps1`)
+- [x] 0.3 Sterile Style Template Implementation
+- [x] 0.4 Advanced Docx Surgery Tools (`scripts/docx_surgery.py`)
+- [ ] 0.5 Configure OneDrive Paths in `scripts/sync_word.ps1`
+- [ ] 0.6 Define Initial Citation Map in `supportFiles/ANTI_HALLUCINATION.md`
 
 ## Chapter 1: Introduction
 - [ ] 1.1 Background of the Study
