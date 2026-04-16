@@ -1,4 +1,4 @@
-# Handoff Document & Active Context
+# 🎯 PROJECT HANDOFF & MASTER CONTEXT
 
 > **Last updated:** 2026-04-16
 > **Current Stage:** Phase 0: Infrastructure Finalized & Verified
@@ -6,18 +6,22 @@
 
 ---
 
-## Project Status Overview
+## 📊 PROGRESS TRACKING
+*(Pantau sejauh mana draf Anda sudah berjalan)*
 
+### Chapter Status
 | Chapter | Status | Notes |
 |---|---|---|
-| Chapter 1 | [PENDING] | Needs problem statement |
-| Chapter 2 | [PENDING] | Missing literature comparison table |
+| Chapter 1 | [PENDING] | [Target Pengerjaan] |
+| Chapter 2 | [PENDING] | [Target Pengerjaan] |
+| Chapter 3 | [PENDING] | [Target Pengerjaan] |
+| Chapter 4 | [PENDING] | [Target Pengerjaan] |
+| Chapter 5 | [PENDING] | [Target Pengerjaan] |
 
 ---
 
-## Current Text Drafts
-
-<!-- AI MANDATORY: Paste the latest drafted prose snippets here. This is the SINGLE muara for all active writing. -->
+## ✍️ ACTIVE DRAFTS (MUARA UTAMA)
+*(Seluruh draf akademik harus terpusat di bawah heading ini agar Outline IDE terlihat rapi)*
 
 ### [BAB 1: PENDAHULUAN]
 *(Draf latar belakang, rumusan masalah, dll)*
@@ -36,20 +40,28 @@
 
 ---
 
-## Experimental Results Log
+## 🧠 RESEARCH MEMORY
 
-*(Keep your metrics here so the AI doesn't forget your model's performance)*
+### Experimental Results Log
+*(Simpan metrik atau hasil eksperimen utama Anda di sini)*
 
-| Model | Hyperparameters | Accuracy |
+| [Variable/Method] | [Metric A] | [Metric B] |
 |---|---|---|
-| Baseline v1 | Lr=0.01, Batch=32 | 85.2% |
+| [Data 1] | [Result A] | [Result B] |
+
+### Reference Map (Author-Year)
+*(Daftar paper yang sudah kita gunakan di draf di atas)*
+
+| Mendeley ID / Tag | Title | Year | Used In |
+|---|---|---|---|
+| `[Smith_2023]` | The Science of AI | 2023 | Chapter 1 |
 
 ---
 
-## Reference Map
+## 📝 SESSION LOGS (HISTORY)
 
-*(Track your citations so the AI knows exactly what paper corresponds to what number/author)*
-
-| ID/Author | Title | Year | Used In |
-|---|---|---|---|
-| [Smith_2023] | The Science of AI | 2023 | Chapter 1 |
+### Last Session Summary (2026-04-16)
+- **Infrastructure:** Completed "Universal Research Template" setup.
+- **Tools:** Integrated Docx Surgery, setup_env.ps1, and AI Auditor.
+- **Integrity:** Centralized identity in `gemini.md` and standard citations to `[Name_Year]`.
+- **Status:** **RESOURCES CLEAN & READY.**

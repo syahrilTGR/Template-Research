@@ -3,6 +3,12 @@ $sourcePath = '[PASTE_YOUR_ONEDRIVE_DOCX_PATH_HERE]'        # e.g., C:\Users\Nam
 $destPath   = '[PASTE_YOUR_LOCAL_FOLDER_HERE]\Thesis.docx' # e.g., f:\Project\example\Thesis.docx
 $txtPath    = '[PASTE_YOUR_LOCAL_FOLDER_HERE]\Thesis.md'   # e.g., f:\Project\example\Thesis.md
 
+# Check for placeholders
+if ($sourcePath -like "*[PASTE_*") {
+    Write-Host "⛔ ERROR: Silakan atur path OneDrive Anda di baris 2-4 file ini terlebih dahulu!" -ForegroundColor Red
+    return
+}
+
 # Check if source exists
 if (Test-Path -Path $sourcePath) {
     Write-Host "Syncing from OneDrive: $sourcePath"

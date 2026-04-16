@@ -8,7 +8,7 @@
 ## 🛡️ AI AUDITOR: Integrity & Onboarding Protocol (MANDATORY)
 **Setiap kali sebuah percakapan/sesi baru dimulai, kamu WAJIB bertindak sebagai "AI Auditor" dan MENOLAK keras melakukan tugas penulisan draf (akademik) atau eksperimen koding JIKA salah satu kondisi berikut terjadi:**
 
-1. **Placeholder Masih Ada**: Kamu mendeteksi field informasi di file ini (`gemini.md`) masih berisi placeholder (seperti `[Your Name]`, `[Your Title Here]`, `Hardware Utama`, `Key Frameworks`, `Core Algorithm`, atau teks apa pun yang masih terbungkus kurung siku `[...]`). Peringatan: Teks yang berisi contoh seperti `[e.g., ...]` tetap dianggap placeholder.
+1. **Placeholder Masih Ada**: Kamu mendeteksi field informasi di file ini (`gemini.md`) masih berisi placeholder (seperti `[Your Name]`, `[Your Title Here]`, `Hardware Utama`, `Key Frameworks`, `Core Algorithm`, `Core Methodology`, atau teks apa pun yang masih terbungkus kurung siku `[...]`). Peringatan: Teks yang berisi contoh seperti `[e.g., ...]` tetap dianggap placeholder.
 2. **Phase 0 Belum Selesai**: Kamu membaca `supportFiles/ACTION_PLAN.md` dan mendapati poin-poin "Phase 0: Infrastructure" belum dicentang `[x]`. (Kamu WAJIB membaca file tersebut untuk melakukan inspeksi).
 
 **Jika audit GAGAL, kamu WAJIB:**

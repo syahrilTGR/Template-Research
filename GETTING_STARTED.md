@@ -26,42 +26,45 @@ Setelah selesai, aktifkan environment dengan menjalankan path yang muncul di lay
 ---
 
 ## ⚡ Langkah 2: Sesi Pertama (Audit & Bootstrap)
-Buka chat asisten AI kamu dan tempelkan kalimat "sakti" dari **[PROMPT_TEMPLATE.md](file:///f:/ML_Project/Template/supportFiles/PROMPT_TEMPLATE.md)** bagian Sesi Pertama.
+Pastikan AI siap bekerja dengan prosedur yang benar:
+
+1.  Buka chat asisten AI kamu.
+2.  **Ketik Prompt:** *"Halo, saya ingin mulai menggunakan Universal Research Template. Tolong lakukan audit wajib terhadap file `gemini.md` dan `ACTION_PLAN.md` saya sebelum kita mulai bekerja."*
 
 > [!IMPORTANT]
-> **AI Auditor Aktif**: Segera setelah Anda menyapa, AI akan melakukan **Audit Wajib** terhadap file `gemini.md` dan `supportFiles/ACTION_PLAN.md`. 
-> Jika **Phase 0: Infrastructure** belum terceklis `[x]`, AI akan menolak tugas akademik dan meminta Anda melengkapi profil terlebih dahulu.
-
-**Aksi Kamu Agar Lolos Audit:** 
-- Isi identitas, hardware, dan teknologi di **`gemini.md`**. (Cukup edit file ini saja untuk semua profil proyek).
-- Jalankan setup environment (Langkah 1).
-- Pastikan semua poin di **Phase 0** pada `supportFiles/ACTION_PLAN.md` sudah Anda centang `[x]`.
+> **AI Auditor Aktif**: Jika **Phase 0: Infrastructure** belum terceklis `[x]`, AI akan menolak tugas akademik dan meminta Anda melengkapi profil terlebih dahulu.
 
 ---
 
 ## 📚 Langkah 3: Beri AI "Makan" (Knowledge Injection)
 Agar AI pintar dan tidak berhalusinasi, beri dia bahan bacaan:
 
-1.  **Draf Lama:** Jika kamu sudah punya draf proposal/skripsi lama, taruh filenya di folder `example/`. AI akan otomatis menawarkan diri untuk mengekstrak gaya bahasamu.
+1.  **Draf Lama:** Taruh file `.docx` proposal lama/contoh di folder `example/`.
+    *   **Ketik Prompt:** *"Pelajari draf lama saya di folder example agar kamu bisa meniru gaya penulisan akademik yang ada."*
 2.  **Jurnal/Paper:** Taruh PDF referensi di folder `papers/`.
-3.  **Jalankan Ekstraksi:** Katakan pada AI: *"Tolong ekstrak semua PDF di folder papers dan proposal di folder example."*
+    *   **Ketik Prompt:** *"Tolong ekstrak semua PDF di folder papers dan masukkan ke daftar referensi valid di `ANTI_HALLUCINATION.md`. Setelah itu, tolong ganti nama (rename) semua file tersebut menjadi format `PENULIS_TAHUN_JUDUL.pdf` agar rapi."*
+3.  **Tambah Paper Baru:** (Kapan pun Anda punya referensi baru nanti)
+    *   **Ketik Prompt:** *"Saya baru saja menambah paper baru ke folder papers. Tolong ulangi proses ekstraksi dan update daftar referensi saya."*
 
 ---
 
 ## ✍️ Langkah 4: Mulai Menulis & Riset
-Sekarang AI sudah kenal gayamu dan punya referensi. Kamu bisa mulai bekerja:
+Sekarang AI sudah kenal gayamu dan punya referensi. Pilih tugasmu:
 
-- **Menulis Bab:** `/write-subsection` (AI akan otomatis menyimpan draf langsung ke `supportFiles/handoff.md`).
-- **Analisis Paper:** `/extract-metrics` (Untuk membuat tabel perbandingan metode dari paper).
-- **Diskusi Bebas:** Tanyakan apa saja tentang metodologimu.
+- **Menulis Subbab:** 
+    *   **Ketik Prompt:** *"/write-subsection Bab 1 bagian Latar Belakang berdasarkan paper [Author_Year] yang sudah kita ekstrak."*
+- **Analisis Paper:** 
+    *   **Ketik Prompt:** *"/extract-metrics untuk membandingkan metode dari paper yang ada di folder papers."*
 
 ---
 
 ## 🔄 Langkah 5: Sinkronisasi & Simpan Ingatan
 Jangan biarkan kerja kerasmu hilang:
 
-1.  **Sinkron ke Word:** Jalankan skrip `scripts/sync_word.ps1` (setelah memasukkan path OneDrive) untuk memindahkan tulisan dari Word kembali ke Markdown agar bisa dipelajari AI.
-2.  **Update Handoff:** Di setiap akhir sesi, ketik `/update-handoff`. Ini krusial agar AI tidak "amnesia" saat kamu kembali besok.
+1.  **Sinkron dari Word:** (Setelah Anda mengedit file di Word OneDrive)
+    *   **Ketik Prompt:** *"Saya baru saja melakukan update di file Word OneDrive saya, tolong sinkronkan draf tersebut kembali ke Markdown (Handoff)."*
+2.  **Update Handoff Akhir Sesi:**
+    *   **Ketik Prompt:** *"/update-handoff. Rangkum progres kita hari ini dan catat apa saja yang perlu kita kerjakan besok."*
 
 ---
 
