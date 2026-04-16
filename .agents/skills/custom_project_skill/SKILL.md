@@ -140,7 +140,7 @@ Berikut adalah daftar skrip alat bantu yang sudah tertanam di `scripts/`. AI **w
 | Nama Skrip | Kapan AI harus menggunakannya? | Perintah Terminasi (Gunakan `rtc` atau `python`) |
 |---|---|---|
 | `scripts/extract_pdfs.py` | Saat user punya file `.pdf` baru di folder `papers/` dan meminta AI membacanya. Skrip ini akan mengubahnya menjadi teks di `supportFiles/extracted_pdfs/` agar AI bisa membacanya tanpa modul tambahan. | `rtk python scripts/extract_pdfs.py` |
-| `scripts/extract_docx.py` | Jika user ingin membedah file Word (`.docx`) menjadi susunan Markdown untuk dibaca AI atau diproses sebagai draf. | `rtk python scripts/extract_docx.py [file.docx] [file.md]` |
+| `docx skill` | Skill otomatis (built-in) untuk membaca, mengedit, dan memanipulasi file Word `.docx` secara profesional. | Otomatis aktif saat membahas file `.docx` |
 | `scripts/sync_word.ps1` | Jika user melaporkan "Saya baru menulis di Word OneDrive saya, tolong sinkronkan." Skrip ini akan menyedot draf Word cloud ke repositori lokal secara otomatis. | `powershell scripts/sync_word.ps1` |
 | `scripts/convert_citations.py` | Jika user ingin merapikan draf `handoff.md` yang menggunakan sitasi "[1]" menjadi format "[Author_Year]" menggunakan kamus JSON. Format wajib sebelum dipublish! | `rtk python scripts/convert_citations.py` |
 

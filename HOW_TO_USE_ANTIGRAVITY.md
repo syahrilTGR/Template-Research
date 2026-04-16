@@ -14,6 +14,7 @@ Ketik perintah berikut di chat untuk memicu asisten melakukan tugas spesifik:
 | `/write-subsection` | Meminta AI menulis draf subbab laporan/jurnal dengan gaya bahasa akademik formal. |
 | `/check-references` | Mengecek kualitas paper yang baru di-upload (tahun terbit, relevansi, dll). |
 | `/update-handoff` | Digunakan di akhir sesi kerja untuk menyimpan "ingatan" AI agar sesi berikutnya bisa nyambung. |
+| `/extract-metrics` | Mengekstrak metode utama dan metrik hasil dari paper jurnal ke dalam bentuk tabel komparasi. |
 
 ---
 
