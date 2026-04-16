@@ -38,6 +38,17 @@ Gunakan folder `intelligence/` sebagai "Otak Eksternal" proyek Anda yang bisa di
 
 ---
 
+## ☁️ Integrasi Deep Research (NotebookLM Hybrid)
+
+Jika asisten lokal (Antigravity) kehabisan referensi atau Anda butuh sintesis literatur skala besar, gunakan **Google NotebookLM** sebagai *partner* cloud Anda:
+
+1. **Panggil Workflow**: Ketik `/use-notebooklm` di chat.
+2. **Dapatkan Prompt**: Asisten akan merumuskan "Prompt Deep Research" tajam berdasarkan *gap* yang ada di draf Anda saat ini.
+3. **Ekspor & Download**: Paste prompt tersebut ke NotebookLM. Simpan sintesis teksnya, dan **download PDF sumbernya**.
+4. **Import Lokal**: Taruh PDF di folder `papers/`, dan paste sintesis naratifnya di `intelligence/catatan_notebooklm/`. Asisten siap mengolah data tersebut!
+
+---
+
 ## ✨ Kemampuan Canggih (Power User)
 
 Selain menulis teks, Anda bisa meminta asisten melakukan hal-hal kompleks berikut:

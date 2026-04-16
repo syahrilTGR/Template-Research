@@ -55,6 +55,8 @@ Sekarang AI sudah kenal gayamu dan punya referensi. Pilih tugasmu:
     *   **Ketik Prompt:** *"/write-subsection Bab 1 bagian Latar Belakang berdasarkan paper [Author_Year] yang sudah kita ekstrak."*
 - **Analisis Paper:** 
     *   **Ketik Prompt:** *"/extract-metrics untuk membandingkan metode dari paper yang ada di folder papers."*
+- **Deep Research:**
+    *   **Ketik Prompt:** *"Saya ingin melakukan riset mendalam soal topik X. Tolong gunakan `/use-notebooklm` untuk buatkan prompt-nya."*
 
 ---
 
@@ -65,6 +67,20 @@ Jangan biarkan kerja kerasmu hilang:
     *   **Ketik Prompt:** *"Saya baru saja melakukan update di file Word OneDrive saya, tolong sinkronkan draf tersebut kembali ke Markdown (Handoff)."*
 2.  **Update Handoff Akhir Sesi:**
     *   **Ketik Prompt:** *"/update-handoff. Rangkum progres kita hari ini dan catat apa saja yang perlu kita kerjakan besok."*
+
+---
+
+## 🚀 Command Cheat Sheet (Tabel Referensi Cepat)
+
+| Jenis Tugas | Perintah / Prompt | Deskripsi |
+|---|---|---|
+| **Onboarding** | *Audit infrastruktur* | Memeriksa apakah `gemini.md` dan `ACTION_PLAN.md` sudah siap. |
+| **Riset** | `/extract-metrics` | Mengekstrak metrik dari PDF di folder `papers/` ke Wiki. |
+| **Drafting** | `/write-subsection` | Menulis draf bab dengan format akademik formal. |
+| **Deep Research**| `/use-notebooklm` | Kolaborasi dengan NotebookLM untuk mencari gap literatur & import PDF. |
+| **Quality Audit** | `python scripts/prose_auditor.py` | Mengecek karakter "robot" AI (em-dash) dan keabsahan sitasi. |
+| **Syncing** | `powershell scripts/sync_word.ps1` | Menarik draf terbaru dari Word OneDrive ke Markdown. |
+| **Cleanup** | `.\scripts\clean_repo.ps1` | Membersihkan repositori untuk memulai proyek baru. |
 
 ---
 
