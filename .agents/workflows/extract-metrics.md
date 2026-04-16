@@ -11,5 +11,9 @@ description: Mengekstrak metode utama dan metrik hasil dari paper jurnal ke dala
    - Dataset yang Digunakan (jika disebutkan)
    - Metrik Kinerja/Hasil Eksperimen (Akurasi, F1-Score, BWT, dll.)
 4. Susun hasil ekstraksi ke dalam bentuk **Tabel Markdown** yang rapi.
-5. Jika pengguna meminta untuk memasukkannya ke file tertentu (misalnya `supportFiles/previous_research_table.md` atau `bab2_previous_research_table.md`), perbarui file tersebut dengan menambahkan baris baru ke tabel yang sudah ada.
+5. Jalankan protokol **Obsidian Vault Maintenance**:
+   - Simpan draf ringkasan detail ke file baru di `intelligence/ringkasan_paper/` dengan format penamaan `PENULIS_TAHUN_JUDUL.md`.
+   - Tambahkan YAML Frontmatter di bagian awal file.
+   - Perbarui `intelligence/ringkasan_paper/_INDEX_PAPER.md` dengan menambahkan link ke file baru tersebut menggunakan `[[Wikilinks]]`.
+   - Masukkan baris ringkasan tersebut ke dalam tabel komparasi di `supportFiles/handoff.md` jika diminta untuk keperluan draf Thesis.
 6. Pastikan tidak ada data yang difabrikasi; jika suatu metrik tidak disebutkan di paper, tulis "N/A" atau "Tidak Disebutkan".

@@ -51,12 +51,29 @@ Ketika user **TIDAK menyebut nama file tujuan secara eksplisit**, AI **wajib** m
 | Metodologi / Metode penelitian | "metodologi", "tulis metode", "bab 3" | `supportFiles/handoff.md` | Tulis draf ke section Bab 3 di handoff |
 | Hasil & Pembahasan | "hasil", "pembahasan", "bab 4" | `supportFiles/handoff.md` | Tulis draf ke section Bab 4 di handoff |
 | Kesimpulan & Saran | "kesimpulan", "saran", "bab 5" | `supportFiles/handoff.md` | Tulis draf ke section Bab 5 di handoff |
+| Definisi istilah baru | "X adalah", "apa itu Y", "catat istilah Z" | `intelligence/glosarium.md` | Tambahkan baris di glosarium |
+| Ringkasan paper mendalam | "ringkas paper ini secara detail", "ekstrak insight" | `intelligence/ringkasan_paper/` | Buat file `.md` baru & update `_INDEX_PAPER.md` |
+| Deep dive konsep / teori | "jelaskan teori X", "buat catatan konsep Y" | `intelligence/konsep/` | Buat file `.md` baru & update `_INDEX_KONSEP.md` |
+| Catatan hasil browsing | "catat hasil search", "simpan snippet web ini" | `intelligence/catatan_web/` | Buat file `.md` baru & update `_INDEX_WEB.md` |
 | Keputusan teknis baru | "kita pakai X", "saya putuskan", "ganti metode", "gunakan Y" | `supportFiles/decisions_log.md` | Konfirmasi ke user |
 | Ringkasan sesi / Progres hari ini | "rangkum sesi", "update progres", "simpan ingatan" | `supportFiles/handoff.md` | Konfirmasi ke user |
-| Paper / Referensi baru | "cek paper ini", "tambah referensi", "paper tentang X" | `papers/index.md` + `supportFiles/ANTI_HALLUCINATION.md` | Assign REF-ID sementara |
-| Kode / Script baru | "bikin script", "tulis kode untuk X", "buat fungsi" | `scripts/[nama_relevan].py` | Konfirmasi nama file ke user |
-| Notebook eksperimen | "bikin notebook", "coba eksperimen", "eksplorasi data" | `notebooks/[nama_relevan].ipynb` | Konfirmasi nama file ke user |
 | Pertanyaan teknis terbuka | "belum tahu cara X", "perlu cari tahu", "masih ragu" | `supportFiles/open_questions.md` | Catat sebagai item open question |
+
+### 🛠️ Obsidian Vault Maintenance (WAJIB DIIKUTI)
+
+Asisten **wajib** mengikuti kaidah Obsidian agar Wiki ini fungsional dan interaktif:
+
+1. **Gunakan Wikilinks**: Gunakan format `[[Nama File]]` untuk semua link internal antar catatan di folder `intelligence/`.
+2. **YAML Frontmatter**: Setiap file baru di folder `intelligence/` wajib memiliki header YAML:
+   ```yaml
+   ---
+   title: [Judul]
+   tags: [tag1, tag2]
+   last_updated: [YYYY-MM-DD]
+   ---
+   ```
+3. **Indexing Otomatis**: Setiap kali membuat catatan baru di salah satu sub-folder `intelligence/`, asisten **WAJIB** menambahkan link ke catatan tersebut di file `_INDEX.md` yang relevan.
+4. **Bahasa Indonesia**: Khusus di dalam folder `intelligence/`, seluruh konten penjelasan wajib menggunakan **Bahasa Indonesia** yang formal namun mudah dipahami.
 
 ### Aturan Routing
 
@@ -69,11 +86,13 @@ Ketika user **TIDAK menyebut nama file tujuan secara eksplisit**, AI **wajib** m
 
 ---
 
-## Arsitektur Proyek (Wajib Diingat)
+## Alur Penelitian (Research Workflow)
 
-```
-Pipeline Utama:
-[Modul A] ──→ [Modul B]
+```mermaid
+graph TD
+    A["[Tahap 1: Persiapan]"] --> B["[Tahap 2: Pengumpulan Data]"]
+    B --> C["[Tahap 3: Analisis/Eksperimen]"]
+    C --> D["[Tahap 4: Hasil & Pembahasan]"]
 ```
 
 | Komponen | Detail |
@@ -86,12 +105,12 @@ Pipeline Utama:
 
 ---
 
-## Core Project Logic
+## Core Research Logic
 
 | Feature | Mandatory Specification |
 |---|---|
-| **Task Focus** | [Fokus penelitian utama proyek ini] |
-| **Trigger Mechanism** | [Logika khusus jika ada] |
+| **Research Focus** | [Fokus penelitian utama proyek ini] |
+| **Primary Methodology** | [Metode yang digunakan untuk menjawab rumusan masalah] |
 
 ---
 
@@ -105,9 +124,15 @@ Pipeline Utama:
 - **Language Protocol**:
     - **English (🇬🇧)**: All AI-facing instructions, technical definitions, and thesis prose drafts.
     - **Indonesian (🇮🇩)**: Summary logs, user-facing guides, and general communication.
-- **Prose Standards**:
-    - **Citation**: Strict IEEE `[n]` at the end of sentences.
+- **Prose Standards (MANDATORY)**:
     - **Typography**: Strictly NO em-dash (`—`). Use LaTeX for math.
+    - **Paragraph Structure**: Follow the pattern [Topic Sentence ➔ Support ➔ Transition/Synthesis ➔ `[Citation]`].
+    - **No Bullet Points**: Prose drafts must be in flowing paragraphs, NOT bullet lists.
+    - **Focus**: Focus on findings/methodology, not authors (e.g., "AI is used [1]" instead of "According to Smith [1]").
+    - **Tone**: Formal academic tone. Dilarang menggunakan "I", "we", or "our".
+    - **Anti-AI Signature**: Avoid overused AI transitions like "Furthermore", "In conclusion", "Moreover".
+    - **Citations**: Strictly use **`[Name_Year]`** format during drafting (e.g., `[Smith_2023]`). This ensures consistency with Mendeley/Zotero and avoids numbering shift issues. Use `[CITATION NEEDED]` if a source is missing.
+    - **Styling**: Use *italic* only for foreign non-English terms (e.g., *et al.*).
 
 ---
 
