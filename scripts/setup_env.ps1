@@ -38,7 +38,13 @@ if ($LASTEXITCODE -eq 0) {
     exit 1
 }
 
-# 4. Success Message
+# 4. Record Venv Path for AI & Scripts
+Write-Host "[4/4] Recording Venv path for AI integration..." -ForegroundColor Yellow
+$CONFIG_PATH = "supportFiles/.venv_config.txt"
+$PYTHON_VENV_EXE | Out-File -FilePath $CONFIG_PATH -Encoding utf8
+Write-Host "Venv path recorded in $CONFIG_PATH" -ForegroundColor Green
+
+# 5. Success Message
 Write-Host "`n--- ✅ Setup Complete! ---" -ForegroundColor Green
 Write-Host "To activate the environment, run this command:" -ForegroundColor White
 $activatePath = Join-Path $VENV_PATH "Scripts\Activate.ps1"
