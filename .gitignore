@@ -22,6 +22,7 @@ sdist/
 var/
 venv/
 .venv
+thesis_venv/
 pyvenv.cfg
 .env
 pip-selfcheck.json
