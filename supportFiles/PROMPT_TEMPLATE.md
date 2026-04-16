@@ -1,38 +1,40 @@
-# Session Start Prompt Template
+# 📋 Prompt Templates & Cheat Sheet
 
-Gunakan template ini saat memulai atau mereset sesi AI agar asisten kembali ke konteks proyek.
-
-```markdown
-Hai, jalankan `/context-summary`. 
-
-**Audit Wajib Sebelum Mulai:**
-1. Cek `ACTION_PLAN.md`: Apakah Phase 0 sudah [x]? 
-2. Cek `gemini.md` & `SKILL.md`: Apakah masih ada placeholder [TBD]?
-
-Jangan lakukan tugas akademik sebelum status audit di atas 'CLEAN'.
-```
-
-## 🆕 Sesi Pertama (Bootstrap)
-Gunakan ini saat baru pertama kali melakukan clone repositori:
-```markdown
-Halo! Saya baru saja melakukan clone repositori template ini. Tolong jalankan protokol onboarding/bootstrap sesuai instruksi di `gemini.md` dan `custom_project_skill/SKILL.md`. Bantu saya mengisi profil riset saya.
-```
+Gunakan templat di bawah ini untuk berinteraksi dengan asisten AI secara efisien. Anda bisa menyalin kalimat di bawah ini atau merujuk pada tabel perintah cepat di bagian akhir.
 
 ---
 
-## 🛠️ Command Cheat Sheet (Siap Copy-Paste)
+## 1. Bootstrapping & Persiapan
+- **Audit Awal:** `"Halo, saya ingin mulai menggunakan Universal Research Template. Tolong lakukan audit wajib terhadap file gemini.md dan ACTION_PLAN.md saya sebelum kita mulai bekerja."`
+- **Injeksi Gaya Bahasa:** `"Pelajari draf lama saya di folder example agar kamu bisa meniru gaya penulisan akademik yang ada."`
+- **Ekstraksi Literatur:** `"Tolong ekstrak semua PDF di folder papers dan masukkan ke daftar referensi valid di ANTI_HALLUCINATION.md. Setelah itu, tolong ganti nama (rename) semua file tersebut menjadi format PENULIS_TAHUN_JUDUL.pdf agar rapi."`
 
-### 1. Knowledge Injection (Beri AI "Makan")
-*   **Belajar Gaya Bahasa:** `"Pelajari draf lama saya di folder example agar kamu bisa meniru gaya penulisan akademik saya."`
-*   **Ekstrak & Rapikan Paper:** `"Tolong ekstrak semua PDF di folder papers dan masukkan ke daftar referensi valid di supportFiles/ANTI_HALLUCINATION.md. Setelah itu, tolong ganti nama (rename) semua file tersebut menjadi format PENULIS_TAHUN_JUDUL.pdf agar rapi."`
-*   **Tambah Paper Baru:** `"Saya baru saja menambah paper baru ke folder papers. Tolong ulangi proses ekstraksi dan update daftar referensi saya."`
+## 2. Research & Drafting
+- **Tulis Subbab:** `"/write-subsection Bab 1 bagian Latar Belakang berdasarkan paper [Author_Year] yang sudah kita ekstrak."`
+- **Analisis Mendalam:** `"/extract-metrics untuk membandingkan metode dari paper-paper yang ada di folder papers."`
+- **Sintesis Konsep:** `"Tolong bantu ringkas temuan utama dari paper [Author_Year] dan hubungkan dengan metodologi penelitian saya."`
+- **Deep Research:** `"Saya ingin melakukan riset mendalam soal topik X. Tolong gunakan /use-notebooklm untuk buatkan prompt-nya."`
 
-### 2. Drafting & Riset (Mulailah Menulis)
-*   **Tulis Subbab:** `"/write-subsection Bab 1 bagian Latar Belakang berdasarkan paper [Author_Year] yang sudah kita ekstrak."`
-*   **Tabel Komparasi:** `"/extract-metrics untuk membandingkan metode dari paper-paper yang ada di folder papers."`
-*   **Analisis Cepat:** `"Tolong bantu ringkas temuan utama dari paper [Author_Year] dan hubungkan dengan metodologi penelitian saya."`
+## 3. Sinkronisasi & Penanganan Word
+- **Tarik dari Word:** `"Saya baru saja melakukan update di file Word OneDrive saya, tolong sinkronkan draf tersebut kembali ke Markdown (Handoff)."`
+- **Audit Kualitas:** `"Audit tulisan saya di handoff menggunakan prose_auditor apakah sudah sesuai standar akademik?"`
+- **Update Progres:** `"/update-handoff. Rangkum progres kita hari ini dan catat apa saja yang perlu kita kerjakan besok."`
 
-### 3. Synchronization (Simpan & Sinkron)
-*   **Tarik dari Word:** `"Saya baru saja melakukan update di file Word OneDrive saya, tolong sinkronkan draf tersebut kembali ke Markdown (Handoff)."`
-*   **Update Progres:** `"/context-summary. Berikan rangkuman status draf saya saat ini."`
-*   **Tutup Sesi:** `"/update-handoff. Rangkum progres kita hari ini dan catat apa saja yang perlu kita kerjakan besok."`
+---
+
+## 🚀 Command Cheat Sheet (Tabel Referensi Cepat)
+
+| Jenis Tugas | Perintah / Prompt | Deskripsi |
+|---|---|---|
+| **Onboarding** | *Audit infrastruktur* | Memeriksa apakah `gemini.md` dan `ACTION_PLAN.md` sudah siap. |
+| **Riset** | `/extract-metrics` | Mengekstrak metrik dari PDF di folder `papers/` ke Wiki. |
+| **Drafting** | `/write-subsection` | Menulis draf bab dengan format akademik formal. |
+| **Deep Research**| `/use-notebooklm` | Kolaborasi dengan NotebookLM untuk mencari gap literatur & import PDF. |
+| **Quality Audit** | `python scripts/prose_auditor.py` | Mengecek karakter "robot" AI (em-dash) dan keabsahan sitasi. |
+| **Syncing** | `powershell scripts/sync_word.ps1` | Menarik draf terbaru dari Word OneDrive ke Markdown. |
+| **Cleanup** | `.\scripts\clean_repo.ps1` | Membersihkan repositori untuk memulai proyek baru. |
+
+---
+
+> [!TIP]
+> **Selalu sertakan file [handoff.md](file:///f:/ML_Project/Template/supportFiles/handoff.md)** dalam setiap awal sesi baru agar AI mengingat draf terakhir Anda.

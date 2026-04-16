@@ -51,6 +51,7 @@ Ketika user **TIDAK menyebut nama file tujuan secara eksplisit**, AI **wajib** m
 | Mendefinisikan Istilah | Glosarium, "X maksudnya adalah...", Singkatan | `intelligence/glosarium.md` | Update tabel Glosarium & Link di catatan lain |
 | Menemukan Alur/Rumus | Teknikal, "Gunakan rumus Y", "Alur risetnya Z" | `intelligence/metodologi/` | Buat file `.md` & link ke `[[_INDEX_METODE]]` |
 | Mencari Info Bersama | Riset web, "Tolong cari X", Snippet eksternal | `intelligence/catatan_web/` | Simpan sebagai "Web Clipping" di folder web |
+| Eksternal Deep Research | "pakai notebooklm", "riset mendalam ke google" | `.agents/workflows/use-notebooklm.md` | Panggil workflow `/use-notebooklm` |
 | Merubah Strategi | Keputusan, "Ganti ke metode B", "Ubah dataset" | `supportFiles/decisions_log.md` | Catat tanggal & alasan perubahan |
 
 ### 🧠 Proactive Knowledge Detection (SANGAT PENTING)
@@ -63,6 +64,8 @@ Asisten tidak boleh pasif menunggu keyword. Asisten **WAJIB** menawarkan diri un
    - *Prompt:* "Logika pemilihan [Metode Y] yang Anda jelaskan sangat krusial. Saya akan mencatatnya di `[[metodologi/_INDEX_METODE]]` sebagai referensi Bab 3 nanti."
 3. **"Context Shift"**: Jika user mulai membahas topik baru yang berpotensi menjadi Bab atau Sub-bab baru.
    - *Prompt:* "Sepertinya kita mulai masuk ke ranah [Topik Baru]. Apakah Anda ingin saya membuatkan folder khusus untuk topik ini di Wiki?"
+4. **"Literature Gap"**: Jika asisten kehabisan referensi lokal saat drafting.
+   - *Prompt:* "Saya kekurangan literatur terkini soal ini. Anda ingin mencoba `/use-notebooklm`? Saya bisa buatkan prompt pencariannya sekarang."
 
 ### 🛠️ Obsidian Vault Maintenance (WAJIB DIIKUTI)
 
