@@ -1,0 +1,17 @@
+# Python Dependencies for AI Research Template
+# Install using: pip install -r requirements.txt
+
+# PDF Extraction (fitz)
+pymupdf
+
+# Word Documentation (.docx)
+python-docx
+lxml
+
+# Data Analysis & Research
+pandas
+numpy
+matplotlib
+
+# Markdown utilities
+markdown

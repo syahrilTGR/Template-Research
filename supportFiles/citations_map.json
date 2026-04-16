@@ -1,4 +1,6 @@
 {
+    "//": "Cara pakai: Masukkan rujukan [n] dan ganti dengan [Author_Year]",
+    "//": "Lalu jalankan scripts/convert_citations.py",
     "[1]": "[AuthorA_2024]",
     "[2]": "[AuthorB_2023]",
     "[3]": "[AuthorC_2025]"

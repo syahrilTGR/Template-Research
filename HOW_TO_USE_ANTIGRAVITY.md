@@ -27,6 +27,16 @@ Ketik perintah berikut di chat untuk memicu asisten melakukan tugas spesifik:
 
 ---
 
+## ✨ Kemampuan Canggih (Power User)
+
+Selain menulis teks, Anda bisa meminta asisten melakukan hal-hal kompleks berikut:
+
+- **Professional Word Formatting**: Meminta AI membuat dokumen Word `.docx` dengan Table of Contents, Page Numbers, dan gaya Heading yang benar.
+- **Track Changes Audit**: Meminta AI menganalisis perubahan (tracked changes) dalam dokumen Word dan memberikan ringkasan revisi.
+- **Image Extraction**: Mengekstrak gambar dari dokumen Word secara otomatis ke folder `media/` untuk digunakan kembali.
+
+---
+
 ## 💡 Tips Berkolaborasi
 
 - **Keep it Focused**: Berikan satu instruksi spesifik per pesan (misal: "Tulis subbab Metodologi bagian pengumpulan data").
