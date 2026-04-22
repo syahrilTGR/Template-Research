@@ -1,0 +1,30 @@
+{
+  "name": "Research Bureau",
+  "version": "1.1.0",
+  "description": "Multi-agent persona system for specialized academic research tasks, universalized from IL_Ecobin.",
+  "author": "Antigravity Research",
+  "persona_path": ".agents/plugins/research_bureau/personas",
+  "personas": [
+    {
+      "id": "A_Peneliti",
+      "name": "Dr. Aulia (Peneliti)",
+      "instruction_file": "A_Peneliti.md"
+    },
+    {
+      "id": "B_Arsitek",
+      "name": "Ir. Baskoro (Arsitek)",
+      "instruction_file": "B_Arsitek.md"
+    },
+    {
+      "id": "C_Penulis",
+      "name": "Citra, M.A. (Penulis)",
+      "instruction_file": "C_Penulis.md"
+    },
+    {
+      "id": "D_Koordinator",
+      "name": "Deni (Koordinator)",
+      "instruction_file": "D_Koordinator.md"
+    }
+  ],
+  "usage_instructions": "Ketik 'ID: [ID_PERSONA]' di awal pesan untuk mengaktifkan spesialis tertentu. Contoh: 'ID: C_Penulis, bantu saya menulis Bab 1'."
+}
