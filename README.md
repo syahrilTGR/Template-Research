@@ -18,36 +18,35 @@ Siapkan lingkungan riset Anda dalam satu klik:
 
 ## ✨ Fitur Unggulan
 - **📝 Handoff-Centric Drafting**: Seluruh draf terkonsentrasi di satu titik (`supportFiles/handoff.md`) untuk meminimalkan halusinasi AI.
-- **💉 Docx Surgery**: Bedah file Word yang rusak atau edit XML penomoran secara langsung via `scripts/docx_surgery.py`.
-- **🧪 Sterile Word Templates**: Menghasilkan file Word akademik (BAB I, 1.1, dst) tanpa jejak data pribadi di repositori.
-- **📄 AI-Driven Extraction**: Ekstraksi metrik dari jurnal PDF & gaya bahasa dari proposal lama secara otomatis.
+- **👥 Research Bureau**: Sistem multi-agent (Dr. Aulia, Baskoro, Citra, Deni) dengan persona spesialis untuk setiap tahap riset.
 - **🧠 Intelligence Vault (Obsidian)**: Pusat pengetahuan interaktif dengan grafik hubungan antar konsep (`intelligence/`).
 - **☁️ NotebookLM Hybrid Workflow**: Sinkronisasi pencarian literatur tingkat tinggi (Deep Research) antara Google NotebookLM dan repositori lokal.
+- **🗺️ Optional Graphify**: Knowledge Graph visual untuk memetakan arsitektur riset (Via Node.js).
 - **⚖️ Prose Auditor**: Skrip detektif (`scripts/prose_auditor.py`) untuk membasmi karakter "robot" AI dan memverifikasi integritas sitasi.
-- **🔄 Sync Power**: Sinkronisasi draf antara Markdown (AI) dan Word (OneDrive) dengan satu klik.
+- **🔄 Global Brain Sync**: Sinkronisasi draf cerdas antara Markdown, Word, dan Obsidian via OneDrive.
 
 ---
 
 ## 📂 Struktur Folder & Fungsi
 
-**Last updated:** 2026-04-16
-
-Berikut adalah penjelasan fungsi untuk tiap directory agar pengerjaan tetap rapi dan terorganisir:
-
-| Directory | Fungsi | Contoh Isi |
-|---|---|---|
-| `notebooks/` | Eksperimen, eksplorasi data, dan riset interaktif. | `.ipynb` file |
-| `scripts/` | Kode sumber utama, automation, dan utilitas (termasuk skrip sinkronisasi Word ke Markdown). | `.py`, `.ps1`, `.bat` |
-| `models/` | Penyimpanan artefak hasil perhitungan, model, atau bobot utama. | `.pth`, `.pt`, `.onnx`, `.bin` |
-| `results/` | Output evaluasi, metrik hasil, grafik visualisasi, dan file log. | `.csv`, `.png`, `.log` |
-| `papers/` | Koleksi literatur utama (jurnal/prosiding) yang menjadi dasar riset. | `artikel.pdf` |
-| `reference/` | Materi pendukung seperti dokumentasi, tutorial, atau potongan kode referensi. | `.pdf`, `.md`, `.txt` |
-| `dataset/` | Data mentah (raw) atau data yang sudah diproses untuk riset. | `data/`, `images/`, `tables/` |
-| `example/` | Demo singkat atau skrip "Hello World" untuk memastikan sistem berjalan. | `demo.py`, `test_env.py` |
-| `image/` | Aset gambar untuk dokumentasi README, flowchart, atau diagram laporan. | `.jpg`, `.svg` |
-| `intelligence/` | **LLM Wiki (Obsidian Vault)**: Pusat memori AI, glosarium, dan konsep. | `_INDEX.md`, `konsep/` |
-| `supportFiles/` | Konfigurasi pendukung, database referensi, dan file draf aktif asisten AI. | `handoff.md`, `ACTION_PLAN.md` |
-| `.agents/` | Pusat kontrol AI Antigravity (Aturan, Skill, dan Workflow otomatis). | `skills/`, `workflows/` |
+**Last updated:** 2026-04-23
+ 
+ Berikut adalah penjelasan fungsi untuk tiap directory agar pengerjaan tetap rapi dan terorganisir:
+ 
+ | Directory | Fungsi | Contoh Isi |
+ |---|---|---|
+ | `notebooks/` | Eksperimen, eksplorasi data, dan riset interaktif. | `.ipynb` file |
+ | `scripts/` | Automation, sync OneDrive (`sync_global_brain.ps1`), dan audit. | `.py`, `.ps1`, `.bat` |
+ | `models/` | Penyimpanan artefak hasil perhitungan, model, atau bobot utama. | `.pth`, `.pt`, `.onnx`, `.bin` |
+ | `results/` | Output evaluasi, metrik hasil, grafik visualisasi, dan file log. | `.csv`, `.png`, `.log` |
+ | `papers/` | Koleksi literatur utama (jurnal/prosiding) yang menjadi dasar riset. | `artikel.pdf` |
+ | `reference/` | Materi pendukung seperti dokumentasi atau potongan kode referensi. | `.pdf`, `.md`, `.txt` |
+ | `dataset/` | Data mentah (raw) atau data yang sudah diproses untuk riset. | `data/`, `images/`, `tables/` |
+ | `example/` | Demo singkat untuk memastikan sistem berjalan. | `demo.py`, `test_env.py` |
+ | `image/` | Aset gambar untuk dokumentasi README dan hero poster. | `.jpg`, `.svg` |
+ | `intelligence/` | **LLM Wiki (Obsidian Vault)**: Pusat memori AI, konsep, & sintesis. | `_INDEX.md`, `konsep/` |
+ | `supportFiles/` | Konfigurasi pendukung, tracker revisi, dan draf aktif (`handoff.md`). | `open_questions.md`, `revision_progress_tracker.md` |
+ | `.agents/` | Pusat kontrol AI (Aturan, Skill, Workflow, & **Research Bureau**). | `skills/`, `workflows/`, `plugins/` |
 
 ---
 

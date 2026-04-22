@@ -15,6 +15,8 @@ Ketik perintah berikut di chat untuk memicu asisten melakukan tugas spesifik:
 | `/check-references` | Mengecek kualitas paper yang baru di-upload (tahun terbit, relevansi, dll). |
 | `/update-handoff` | Digunakan di akhir sesi kerja untuk menyimpan "ingatan" AI agar sesi berikutnya bisa nyambung. |
 | `/extract-metrics` | Mengekstrak metode utama dan metrik hasil dari paper jurnal ke dalam bentuk tabel komparasi. |
+| `/sync-global-brain`| Sinkronisasi draf cerdas antara repositori lokal, OneDrive, dan Obsidian Wiki. |
+| `/graphify` | (Opsional) Query hubungan antar komponen riset menggunakan Knowledge Graph. |
 
 ---
 
@@ -46,6 +48,30 @@ Jika asisten lokal (Antigravity) kehabisan referensi atau Anda butuh sintesis li
 2. **Dapatkan Prompt**: Asisten akan merumuskan "Prompt Deep Research" tajam berdasarkan *gap* yang ada di draf Anda saat ini.
 3. **Ekspor & Download**: Paste prompt tersebut ke NotebookLM. Simpan sintesis teksnya, dan **download PDF sumbernya**.
 4. **Import Lokal**: Taruh PDF di folder `papers/`, dan paste sintesis naratifnya di `intelligence/catatan_notebooklm/`. Asisten siap mengolah data tersebut!
+
+---
+
+## 👥 Kolaborasi Multi-Agent (Research Bureau)
+
+Proyek ini memiliki sistem **Research Bureau** yang terdiri dari 4 spesialis. Anda dapat memanggil mereka untuk hasil yang lebih spesifik:
+
+1. **ID: A_Peneliti (Dr. Aulia)**: Gunakan untuk meninjau metodologi, mencari gap riset, atau validasi data jurnal.
+2. **ID: B_Arsitek (Ir. Baskoro)**: Gunakan untuk urusan koding, desain sistem, alur logika program, atau optimasi hardware.
+3. **ID: C_Penulis (Citra, M.A.)**: Gunakan untuk membersihkan gaya bahasa AI, merapikan draf akademik, dan memastikan alur narasi (flow) yang elegan.
+4. **ID: D_Koordinator (Deni)**: Gunakan untuk manajemen file, update progres harian, dan sinkronisasi antar folder.
+
+*Contoh: "ID: C_Penulis, tolong bantu audit bagian Latar Belakang di handoff.md agar tidak terdengar seperti tulisan AI."*
+
+---
+
+## 🌩️ Sinkronisasi Global (Global Brain Sync)
+
+Gunakan perintah `/sync-global-brain` untuk memastikan "Otak" riset Anda tetap menyatu. Sistem ini menyelaraskan perubahan antara:
+- **Koding/Draft Lokal** (Folder proyek ini)
+- **Word Dokumen** (OneDrive/Cloud)
+- **Intelligence Vault** (Obsidian)
+
+Sangat disarankan menjalankan perintah ini secara berkala setelah Anda mengedit file Word di HP/Laptop lain atau setelah updating Wiki di Obsidian.
 
 ---
 
