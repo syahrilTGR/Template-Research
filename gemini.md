@@ -30,26 +30,24 @@
 - **Key Frameworks:** [e.g., PyTorch, TensorFlow, Scikit-learn]
 - **Core Algorithm:** [e.g., YOLOv8, LSTM, Random Forest]
 
----
+## 📁 Repository Ecosystem Map
 
-## 📁 Support Files Tracking
-
-All documentation is stored in `supportFiles/` to maintain continuity between AI sessions.
-
-| File | Purpose |
-|---|---|
-| `handoff.md` | **READ THIS FIRST** — Current status, pending actions, and active context |
-| `ACTION_PLAN.md` | Chapter-by-chapter progression checklist |
-| `decisions_log.md` | Record of technical/architectural decisions |
-| `pending_references.md` | List of citations that need to be found/verified |
+| Component | Path | Description |
+|---|---|---|
+| **Modular Handoff** | `supportFiles/handoff/` | Lokasi draf aktif. **BACA `00_metadata.md` TERLEBIH DAHULU.** |
+| **Research Bureau** | `.agents/plugins/` | Sistem multi-agent (Dr. Aulia, Baskoro, Citra, Deni). |
+| **Academic Sources**| `references/` | Folder tunggal untuk PDF jurnal & BibTeX. |
+| **Smart Extractor**| `scripts/extract_pdfs.py`| Tool wajib untuk ekstraksi teks/tabel ke `supportFiles/extracted_*/`. |
+| **Intelligence** | `intelligence/` | Wiki konseptual & Glosarium (Obsidian Vault). |
 
 ---
 
 ## 🔄 AI Context & Workflows
 Urutan kerja wajib di awal sesi:
 1. **Mandatory Audit:** Lakukan pengecekan integritas `gemini.md` dan Phase 0 di `supportFiles/ACTION_PLAN.md`.
-2. **Load Context:** Jika lolos audit, baca `supportFiles/handoff.md` untuk memahami progres terakhir.
-3. **Citation Guard:** Saat akan menulis kutipan, WAJIB validasi melalui daftar di `supportFiles/ANTI_HALLUCINATION.md`.
+2. **Load Context:** Jika lolos audit, baca **`supportFiles/handoff/00_metadata.md`** untuk memahami status riset terbaru.
+3. **Data Integrity:** Gunakan data dari `supportFiles/extracted_tables/` untuk klaim metrik numerik.
+4. **Citation Guard:** Saat akan menulis kutipan, WAJIB validasi melalui daftar di `supportFiles/handoff/09_bibliography.md` atau `ANTI_HALLUCINATION.md`.
 
 ---
 
