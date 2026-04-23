@@ -39,7 +39,7 @@ Siapkan lingkungan riset Anda dalam satu klik:
  | `scripts/` | Automation, sync OneDrive (`sync_global_brain.ps1`), dan audit. | `.py`, `.ps1`, `.bat` |
  | `models/` | Penyimpanan artefak hasil perhitungan, model, atau bobot utama. | `.pth`, `.pt`, `.onnx`, `.bin` |
  | `results/` | Output evaluasi, metrik hasil, grafik visualisasi, dan file log. | `.csv`, `.png`, `.log` |
- | `papers/` | Koleksi literatur utama (jurnal/prosiding) yang menjadi dasar riset. | `artikel.pdf` |
+ | `references/` | Koleksi literatur utama (jurnal/prosiding) yang menjadi dasar riset. | `artikel.pdf` |
  | `reference/` | Materi pendukung seperti dokumentasi atau potongan kode referensi. | `.pdf`, `.md`, `.txt` |
  | `dataset/` | Data mentah (raw) atau data yang sudah diproses untuk riset. | `data/`, `images/`, `tables/` |
  | `example/` | Demo singkat untuk memastikan sistem berjalan. | `demo.py`, `test_env.py` |

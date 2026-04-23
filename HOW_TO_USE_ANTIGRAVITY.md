@@ -47,7 +47,7 @@ Jika asisten lokal (Antigravity) kehabisan referensi atau Anda butuh sintesis li
 1. **Panggil Workflow**: Ketik `/use-notebooklm` di chat.
 2. **Dapatkan Prompt**: Asisten akan merumuskan "Prompt Deep Research" tajam berdasarkan *gap* yang ada di draf Anda saat ini.
 3. **Ekspor & Pemanenan PDF**: Paste prompt tersebut ke NotebookLM. Simpan sintesis teksnya, dan **download (harvest) seluruh file PDF sumber** yang ditemukan oleh NotebookLM.
-4. **Import Lokal**: Pindahkan PDF ke folder `papers/`, dan paste sintesis naratifnya di `intelligence/catat_notebooklm/`. Antigravity kemudian akan mengekstrak metrik dari PDF-PDF tersebut secara masal untuk memperkuat Bab 2 Anda.
+4. **Import Lokal**: Pindahkan PDF ke folder `references/`, dan paste sintesis naratifnya di `intelligence/catat_notebooklm/`. Antigravity kemudian akan mengekstrak metrik dari PDF-PDF tersebut secara masal untuk memperkuat Bab 2 Anda.
 
 ---
 

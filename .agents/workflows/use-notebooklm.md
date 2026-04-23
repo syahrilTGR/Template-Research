@@ -15,6 +15,6 @@ Workflow ini digunakan untuk memperluas pencarian literatur menggunakan fitur **
    - Buka bagian **"Sources"** di NotebookLM, lalu **Download file PDF referensinya** ke komputer lokal Anda.
    - **Copy teks Sintesis/Rangkuman** berformat markdown yang dihasilkan oleh chat NotebookLM.
 4. **[USER ACTION] Import Lokal ke Workspace Ini**:
-   - Pindahkan file PDF yang sudah didownload ke dalam folder `papers/` di repositori ini.
+   - Pindahkan file PDF yang sudah didownload ke dalam folder `references/` di repositori ini.
    - Buat file `.md` baru di folder `intelligence/catatan_notebooklm/` dan tempelkan (paste) teks sintesis dari NotebookLM ke sana.
 5. **[AI ACTION] Eksekusi & Integrasi**: Anda cukup memberi tahu asisten: *"Saya sudah memasukkan bahan dari NotebookLM."* Asisten akan otomatis melahap catatan tersebut, mengekstrak metrik dari PDF baru (`/extract-metrics`), dan merajut pengetahuan baru tersebut ke dalam `handoff.md` dan Wiki.
