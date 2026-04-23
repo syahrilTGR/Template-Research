@@ -11,7 +11,7 @@ Selamat datang di pusat pengetahuan riset Anda. Gunakan panel **Outline** atau *
 ## 🗂️ Kategori Pengetahuan
 - **[[glosarium|📚 Glosarium]]**: Kamus istilah dan singkatan khusus proyek.
 - **[[konsep/_INDEX_KONSEP|💡 Konsep & Teori]]**: Deep-dive ke dalam teori dan ide-ide besar.
-- **[[ringkasan_paper/_INDEX_PAPER|📄 Ringkasan Paper]]**: Hasil sintesis dari literatur di folder `papers/`.
+- **[[ringkasan_paper/_INDEX_PAPER|📄 Ringkasan Paper]]**: Hasil sintesis dari literatur di folder `references/`.
 - **[[metodologi/_INDEX_METODE|⚙️ Metodologi]]**: Detail teknis alur penelitian dan rumus.
 - **[[catatan_web/_INDEX_WEB|🌐 Catatan Web]]**: Snippet dan hasil pencarian internet yang dikurasi.
 

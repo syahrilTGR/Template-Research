@@ -12,7 +12,7 @@ import re
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MAP_PATH = os.path.join(BASE_DIR, "supportFiles", "citations_map.json")
-HANDOFF_PATH = os.path.join(BASE_DIR, "supportFiles", "handoff.md")
+HANDOFF_PATH = os.path.join(BASE_DIR, "supportFiles", "handoff/01_introduction.md")
 
 def load_citation_map():
     if not os.path.exists(MAP_PATH):

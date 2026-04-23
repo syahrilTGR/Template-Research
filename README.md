@@ -17,7 +17,7 @@ Siapkan lingkungan riset Anda dalam satu klik:
 **Penting:** Setelah setup selesai, silakan ikuti panduan **[GETTING_STARTED.md](./GETTING_STARTED.md)** untuk mulai melakukan riset dengan bantuan AI.
 
 ## ✨ Fitur Unggulan
-- **📝 Handoff-Centric Drafting**: Seluruh draf terkonsentrasi di satu titik (`supportFiles/handoff.md`) untuk meminimalkan halusinasi AI.
+- **📝 Handoff-Centric Drafting**: Seluruh draf terkonsentrasi di satu titik (`supportFiles/handoff/00_metadata.md`) untuk meminimalkan halusinasi AI.
 - **👥 Research Bureau**: Sistem multi-agent (Dr. Aulia, Baskoro, Citra, Deni) dengan persona spesialis untuk setiap tahap riset.
 - **📄 Smart Academic Extractor**: Mesin otomatis (`scripts/extract_pdfs.py`) untuk ekstraksi teks & tabel (Excel) dari puluhan jurnal secara cerdas dengan sistem caching.
 - **🧠 Intelligence Vault (Obsidian)**: Pusat pengetahuan interaktif dengan grafik hubungan antar konsep (`intelligence/`).

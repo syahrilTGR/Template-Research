@@ -1,6 +1,6 @@
 # Literature Review Database (Index)
 
-Gunakan file ini untuk mencatat *index* dari semua paper PDF yang dimasukkan ke folder `papers/`.
+Gunakan file ini untuk mencatat *index* dari semua paper PDF yang dimasukkan ke folder `references/`.
 
 ### Kategori A: [Fokus Riset Utama]
 - `paper1.pdf` — [Ringkasan kontribusi paper ini]

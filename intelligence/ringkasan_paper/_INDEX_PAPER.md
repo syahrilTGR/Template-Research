@@ -5,7 +5,7 @@ tags: [papers, summaries, index]
 
 # 📄 INDEKS RINGKASAN PAPER
 
-Koleksi ringkasan Paper hasil ekstraksi dari folder `papers/`.
+Koleksi ringkasan Paper hasil ekstraksi dari folder `references/`.
 
 ## 📌 Daftar Paper
 - (Gunakan `/extract-metrics` untuk mulai mengisi daftar ini)

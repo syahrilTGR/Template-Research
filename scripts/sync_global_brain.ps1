@@ -13,7 +13,7 @@
 
 # --- KONFIGURASI USER ---
 $ONEDRIVE_PATH = "C:\Users\$env:USERNAME\OneDrive - YourUniversity\Thesis_Shared"
-$LOCAL_DRAFT_PATH = ".\supportFiles\handoff.md"
+$LOCAL_DRAFT_PATH = ".\supportFiles\handoff\00_metadata.md"
 # -----------------------
 
 Write-Host "--- 🧠 Global Brain Sync ---" -ForegroundColor Cyan

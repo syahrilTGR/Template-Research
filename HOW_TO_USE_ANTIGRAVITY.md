@@ -60,7 +60,7 @@ Proyek ini memiliki sistem **Research Bureau** yang terdiri dari 4 spesialis. An
 3. **ID: C_Penulis (Citra, M.A.)**: Gunakan untuk membersihkan gaya bahasa AI, merapikan draf akademik, dan memastikan alur narasi (flow) yang elegan.
 4. **ID: D_Koordinator (Deni)**: Gunakan untuk manajemen file, update progres harian, dan sinkronisasi antar folder.
 
-*Contoh: "ID: C_Penulis, tolong bantu audit bagian Latar Belakang di handoff.md agar tidak terdengar seperti tulisan AI."*
+*Contoh: "ID: C_Penulis, tolong bantu audit bagian Latar Belakang di handoff/00_metadata.md agar tidak terdengar seperti tulisan AI."*
 
 ---
 

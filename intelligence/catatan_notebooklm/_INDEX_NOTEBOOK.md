@@ -11,4 +11,4 @@ Koleksi teks sintesis dan ringkasan ekstensif yang dihasilkan oleh fitur **Deep 
 - (Belum ada catatan sintesis yang disimpan)
 
 ---
-*Panduan: Paste jawaban, rangkuman, atau sintesis naratif dari NotebookLM sebagai file `.md` baru di folder ini. Pastikan file PDF sumbernya dimasukkan ke folder `papers/`.*
+*Panduan: Paste jawaban, rangkuman, atau sintesis naratif dari NotebookLM sebagai file `.md` baru di folder ini. Pastikan file PDF sumbernya dimasukkan ke folder `references/`.*

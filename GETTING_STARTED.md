@@ -41,7 +41,7 @@ Agar AI pintar dan tidak berhalusinasi, beri dia bahan bacaan:
 
 1.  **Draf Lama:** Taruh file `.docx` proposal lama/contoh di folder `example/`.
     *   **Ketik Prompt:** *"Pelajari draf lama saya di folder example agar kamu bisa meniru gaya penulisan akademik yang ada."*
-2.  **Jurnal/Paper:** Taruh PDF referensi di folder `papers/`.
+2.  **Jurnal/Paper:** Taruh PDF referensi di folder `references/`.
     *   **Ketik Prompt:** *"Tolong ekstrak semua PDF di folder papers dan masukkan ke daftar referensi valid di `ANTI_HALLUCINATION.md`. Setelah itu, tolong ganti nama (rename) semua file tersebut menjadi format `PENULIS_TAHUN_JUDUL.pdf` agar rapi."*
 3.  **Tambah Paper Baru:** (Kapan pun Anda punya referensi baru nanti)
     *   **Ketik Prompt:** *"Saya baru saja menambah paper baru ke folder papers. Tolong ulangi proses ekstraksi dan update daftar referensi saya."*
@@ -75,7 +75,7 @@ Jangan biarkan kerja kerasmu hilang:
 | Jenis Tugas | Perintah / Prompt | Deskripsi |
 |---|---|---|
 | **Onboarding** | *Audit infrastruktur* | Memeriksa apakah `gemini.md` dan `ACTION_PLAN.md` sudah siap. |
-| **Riset** | `/extract-metrics` | Mengekstrak metrik dari PDF di folder `papers/` ke Wiki. |
+| **Riset** | `/extract-metrics` | Mengekstrak metrik dari PDF di folder `references/` ke Wiki. |
 | **Drafting** | `/write-subsection` | Menulis draf bab dengan format akademik formal. |
 | **Deep Research**| `/use-notebooklm` | Kolaborasi dengan NotebookLM untuk mencari gap literatur & import PDF. |
 | **Quality Audit** | `python scripts/prose_auditor.py` | Mengecek karakter "robot" AI (em-dash) dan keabsahan sitasi. |
@@ -85,7 +85,7 @@ Jangan biarkan kerja kerasmu hilang:
 ---
 
 ### 📌 Catatan Penting:
-- **`supportFiles/handoff.md`**: Ini adalah "Otak" sekaligus muara tunggal seluruh tulisanmu. AI akan selalu membaca draf di sini agar konteks tetap terjaga.
-- **`papers/`**: Tempat kamu menaruh PDF literatur.
+- **`supportFiles/handoff/00_metadata.md`**: Ini adalah "Otak" sekaligus muara tunggal seluruh tulisanmu. AI akan selalu membaca draf di sini agar konteks tetap terjaga.
+- **`references/`**: Tempat kamu menaruh PDF literatur.
 
 *Selamat meneliti, semoga skripsimu cepat selesai!* 🚀✨
