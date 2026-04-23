@@ -61,3 +61,8 @@ supportFiles/sessions/
 *.tmp
 *.bak
 ~$*.docx
+ 
+# Research & Extraction Assets
+supportFiles/extracted_pdfs/
+supportFiles/extracted_tables/
+scripts/__pycache__/

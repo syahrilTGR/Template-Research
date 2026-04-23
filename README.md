@@ -19,6 +19,7 @@ Siapkan lingkungan riset Anda dalam satu klik:
 ## ✨ Fitur Unggulan
 - **📝 Handoff-Centric Drafting**: Seluruh draf terkonsentrasi di satu titik (`supportFiles/handoff.md`) untuk meminimalkan halusinasi AI.
 - **👥 Research Bureau**: Sistem multi-agent (Dr. Aulia, Baskoro, Citra, Deni) dengan persona spesialis untuk setiap tahap riset.
+- **📄 Smart Academic Extractor**: Mesin otomatis (`scripts/extract_pdfs.py`) untuk ekstraksi teks & tabel (Excel) dari puluhan jurnal secara cerdas dengan sistem caching.
 - **🧠 Intelligence Vault (Obsidian)**: Pusat pengetahuan interaktif dengan grafik hubungan antar konsep (`intelligence/`).
 - **☁️ Automated Literature Ingestion**: Workflow sinkronisasi Google NotebookLM untuk "memanen" puluhan PDF jurnal hasil Deep Research secara masal dan mengekstrak metriknya otomatis.
 - **🗺️ Optional Graphify**: Knowledge Graph visual untuk memetakan arsitektur riset (Via Node.js).

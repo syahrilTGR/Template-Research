@@ -2,8 +2,9 @@
 description: Mengekstrak metode utama dan metrik hasil dari paper jurnal ke dalam bentuk tabel komparasi
 ---
 
-1. Identifikasi file paper (PDF/TXT) yang disebutkan oleh pengguna (biasanya di folder `references/`).
-2. Baca dan analisis bagian **Abstract**, **Methodology**, dan **Results/Conclusion** pada paper tersebut.
+1. Jalankan `python scripts/extract_pdfs.py` untuk mensinkronkan hasil ekstraksi terbaru dari folder `references/`.
+2. Identifikasi file hasil ekstraksi di folder `supportFiles/extracted_pdfs/` (TEKS) dan `supportFiles/extracted_tables/` (TABEL/EXCEL).
+3. Baca dan analisis bagian **Abstract**, **Methodology**, dan **Results/Conclusion** pada paper tersebut menggunakan file teks tersebut.
 3. Ekstrak informasi berikut untuk setiap paper:
    - Penulis & Tahun
    - Topik/Tujuan Penelitian
