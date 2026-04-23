@@ -20,7 +20,7 @@ Siapkan lingkungan riset Anda dalam satu klik:
 - **📝 Handoff-Centric Drafting**: Seluruh draf terkonsentrasi di satu titik (`supportFiles/handoff.md`) untuk meminimalkan halusinasi AI.
 - **👥 Research Bureau**: Sistem multi-agent (Dr. Aulia, Baskoro, Citra, Deni) dengan persona spesialis untuk setiap tahap riset.
 - **🧠 Intelligence Vault (Obsidian)**: Pusat pengetahuan interaktif dengan grafik hubungan antar konsep (`intelligence/`).
-- **☁️ NotebookLM Hybrid Workflow**: Sinkronisasi pencarian literatur tingkat tinggi (Deep Research) antara Google NotebookLM dan repositori lokal.
+- **☁️ Automated Literature Ingestion**: Workflow sinkronisasi Google NotebookLM untuk "memanen" puluhan PDF jurnal hasil Deep Research secara masal dan mengekstrak metriknya otomatis.
 - **🗺️ Optional Graphify**: Knowledge Graph visual untuk memetakan arsitektur riset (Via Node.js).
 - **⚖️ Prose Auditor**: Skrip detektif (`scripts/prose_auditor.py`) untuk membasmi karakter "robot" AI dan memverifikasi integritas sitasi.
 - **🔄 Global Brain Sync**: Sinkronisasi draf cerdas antara Markdown, Word, dan Obsidian via OneDrive.
@@ -45,7 +45,7 @@ Siapkan lingkungan riset Anda dalam satu klik:
  | `example/` | Demo singkat untuk memastikan sistem berjalan. | `demo.py`, `test_env.py` |
  | `image/` | Aset gambar untuk dokumentasi README dan hero poster. | `.jpg`, `.svg` |
  | `intelligence/` | **LLM Wiki (Obsidian Vault)**: Pusat memori AI, konsep, & sintesis. | `_INDEX.md`, `konsep/` |
- | `supportFiles/` | Konfigurasi pendukung, tracker revisi, dan draf aktif (`handoff.md`). | `open_questions.md`, `revision_progress_tracker.md` |
+ | `supportFiles/` | Konfigurasi pendukung, tracker revisi, dan draf modular (`handoff/`). | `handoff/`, `open_questions.md` |
  | `.agents/` | Pusat kontrol AI (Aturan, Skill, Workflow, & **Research Bureau**). | `skills/`, `workflows/`, `plugins/` |
 
 ---

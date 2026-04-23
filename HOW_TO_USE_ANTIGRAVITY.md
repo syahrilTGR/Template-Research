@@ -25,7 +25,7 @@ Ketik perintah berikut di chat untuk memicu asisten melakukan tugas spesifik:
 1.  **Konteks Global**: AI membaca aturan inti kamu (identitas, aturan optimasi) dari `gemini.md`.
 2.  **Konteks Lokal**: AI membaca file di folder `.agents/` untuk memahami keahlian tambahan yang harus ia gunakan (Skills dan Workflows).
 3.  **Intelligence (Wiki)**: AI menyimpan seluruh pemahaman konseptual, ringkasan paper, dan glosarium di folder `intelligence/`. Folder ini dioptimalkan untuk dibuka menggunakan **Obsidian**.
-4.  **Handoff**: AI menyimpan progres kerja dan draf draf bab aktif di `supportFiles/handoff.md`. Pastikan file ini diperbarui setiap akhir sesi dengan `/update-handoff`.
+4.  **Handoff**: AI menyimpan progres kerja dan draf modular di folder `supportFiles/handoff/`. File `00_metadata.md` di folder tersebut adalah pusat kendali konteks, aturan penulisan, dan tracker status bab Anda.
 
 ---
 
@@ -46,8 +46,8 @@ Jika asisten lokal (Antigravity) kehabisan referensi atau Anda butuh sintesis li
 
 1. **Panggil Workflow**: Ketik `/use-notebooklm` di chat.
 2. **Dapatkan Prompt**: Asisten akan merumuskan "Prompt Deep Research" tajam berdasarkan *gap* yang ada di draf Anda saat ini.
-3. **Ekspor & Download**: Paste prompt tersebut ke NotebookLM. Simpan sintesis teksnya, dan **download PDF sumbernya**.
-4. **Import Lokal**: Taruh PDF di folder `papers/`, dan paste sintesis naratifnya di `intelligence/catatan_notebooklm/`. Asisten siap mengolah data tersebut!
+3. **Ekspor & Pemanenan PDF**: Paste prompt tersebut ke NotebookLM. Simpan sintesis teksnya, dan **download (harvest) seluruh file PDF sumber** yang ditemukan oleh NotebookLM.
+4. **Import Lokal**: Pindahkan PDF ke folder `papers/`, dan paste sintesis naratifnya di `intelligence/catat_notebooklm/`. Antigravity kemudian akan mengekstrak metrik dari PDF-PDF tersebut secara masal untuk memperkuat Bab 2 Anda.
 
 ---
 

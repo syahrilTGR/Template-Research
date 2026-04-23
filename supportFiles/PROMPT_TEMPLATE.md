@@ -37,4 +37,4 @@ Gunakan templat di bawah ini untuk berinteraksi dengan asisten AI secara efisien
 ---
 
 > [!TIP]
-> **Selalu sertakan file [handoff.md](file:///f:/ML_Project/Template/supportFiles/handoff.md)** dalam setiap awal sesi baru agar AI mengingat draf terakhir Anda.
+> **Selalu periksa [00_metadata.md](file:///f:/ML_Project/Template/supportFiles/handoff/00_metadata.md)** dalam setiap awal sesi baru agar AI mengingat draf terakhir dan arah penelitian Anda.
