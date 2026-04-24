@@ -1,6 +1,12 @@
-# 🚀 PANDUAN MULAI CEPAT (GET STARTED)
+---
 
-Selamat! Kamu baru saja meng-clone **Universal AI Research Template**. Ikuti langkah-langkah di bawah ini untuk mengubah repositori ini menjadi asisten riset pribadimu dalam waktu kurang dari 5 menit.
+## 🗺️ Peta Mental: Memahami Struktur Folder
+Agar tidak tersesat, bayangkan folder di sini seperti sebuah kantor riset:
+- **`references/`**: Lemari arsip (Tempat kamu menaruh semua jurnal PDF).
+- **`supportFiles/handoff/`**: Meja tulis (Tempat draf bab 1, 2, dll dikerjakan).
+- **`intelligence/`**: Otak proyek (Wiki Obsidian yang mencatat semua hubungan teori).
+- **`.agents/`**: Tim asisten (Instruksi dan "otak" bagi asisten AI Antigravity).
+- **`scripts/`**: Alat bantu (Robot pembersih, mesin ekstraksi, dan pengaudit tulisan).
 
 ---
 
@@ -13,82 +19,59 @@ Buka PowerShell di folder ini dan jalankan perintah sakti ini:
 # Jalankan skrip ini untuk cek Python, buat venv, dan instal dependensi otomatis
 powershell -ExecutionPolicy Bypass -File .\scripts\setup_env.ps1
 ```
-*Jika muncul error "Permission Denied", silakan jalankan perintah ini terlebih dahulu:*  
-`Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process`
 
-Setelah selesai, aktifkan environment dengan menjalankan path yang muncul di layar (biasanya `~\thesis_venv\Scripts\Activate.ps1`).
-
-### Opsi B: Setup Manual (Linux/macOS atau Jaga-jaga)
-1. Buat venv di folder Home: `python -m venv ~/thesis_venv`
-2. Aktivasi: `~/thesis_venv/Scripts/Activate.ps1` (Windows) atau `source ~/thesis_venv/bin/activate` (UNIX)
-3. Instal library: `pip install -r requirements.txt`
-
-> [!NOTE]
-> Fitur penulisan Word profesional di repositori ini berbasis **Python Standalone**. Anda juga bisa melakukan "bedah" Word secara manual menggunakan `scripts/docx_surgery.py`.
+### 🆘 Pertolongan Pertama (Troubleshooting)
+| Masalah | Solusi |
+|---|---|
+| **Error: Permission Denied** | Jalankan `Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process` di PowerShell-mu, lalu coba lagi. |
+| **Python not found** | Pastikan Python sudah terinstal (download di python.org) dan centang **"Add Python to PATH"** saat instalasi. |
+| **Scripts cannot be loaded** | Ini biasanya karena Windows memblokir skrip. Gunakan perintah **Opsi A** di atas (pakai Bypass). |
 
 ---
 
 ## ⚡ Langkah 2: Sesi Pertama (Audit & Bootstrap)
-Pastikan AI siap bekerja dengan prosedur yang benar:
+Buka chat asisten AI kamu (Antigravity) dan pastikan dia tahu aturan mainnya:
 
-1.  Buka chat asisten AI kamu.
-2.  **Ketik Prompt:** *"Halo, saya ingin mulai menggunakan Universal Research Template. Tolong lakukan audit wajib terhadap file `gemini.md` dan `ACTION_PLAN.md` saya sebelum kita mulai bekerja."*
-
-> [!IMPORTANT]
-> **AI Auditor Aktif**: Jika **Phase 0: Infrastructure** belum terceklis `[x]`, AI akan menolak tugas akademik dan meminta Anda melengkapi profil terlebih dahulu.
+1.  **Audit Awal:** Ketik *"Halo, tolong lakukan audit wajib terhadap file `gemini.md` dan `ACTION_PLAN.md` saya."*
+2.  **Hasil Audit:** Jika AI bilang "Audit Bersih", tandanya kamu siap tempur. Jika tidak, ikuti instruksi perbaikan dari AI.
 
 ---
 
-## 📚 Langkah 3: Beri AI "Makan" (Knowledge Injection)
-Agar AI pintar dan tidak berhalusinasi, beri dia bahan bacaan:
+## 📚 Langkah 3: Ingest Literatur (Masukan Bahan Baku)
+AI hanya akan sepintar bahan baku yang kamu berikan.
 
-1.  **Draf Lama:** Taruh file `.docx` proposal lama/contoh di folder `example/`.
-    *   **Ketik Prompt:** *"Pelajari draf lama saya di folder example agar kamu bisa meniru gaya penulisan akademik yang ada."*
-2.  **Jurnal/Paper:** Taruh PDF referensi di folder `references/`.
-    *   **Ketik Prompt:** *"Tolong ekstrak semua PDF di folder papers dan masukkan ke daftar referensi valid di `ANTI_HALLUCINATION.md`. Setelah itu, tolong ganti nama (rename) semua file tersebut menjadi format `PENULIS_TAHUN_JUDUL.pdf` agar rapi."*
-3.  **Tambah Paper Baru:** (Kapan pun Anda punya referensi baru nanti)
-    *   **Ketik Prompt:** *"Saya baru saja menambah paper baru ke folder papers. Tolong ulangi proses ekstraksi dan update daftar referensi saya."*
+1.  **Taruh PDF:** Masukkan semua jurnal referensimu ke folder `references/`.
+2.  **Ekstraksi:** Ketik prompt: *"/extract-metrics untuk membedah semua PDF di folder references."*
+    - **Hasilnya:** AI akan membuatkan ringkasan di folder `intelligence/ringkasan_paper/` dan tabel metrik otomatis.
 
 ---
 
-## ✍️ Langkah 4: Mulai Menulis & Riset
-Sekarang AI sudah kenal gayamu dan punya referensi. Pilih tugasmu:
+## ✍️ Langkah 4: Siklus Kerja (Ingest -> Process -> Write)
+Selalu gunakan alur ini agar tulisanmu berkualitas tinggi:
 
-- **Menulis Subbab:** 
-    *   **Ketik Prompt:** *"/write-subsection Bab 1 bagian Latar Belakang berdasarkan paper [Author_Year] yang sudah kita ekstrak."*
-- **Analisis Paper:** 
-    *   **Ketik Prompt:** *"/extract-metrics untuk membandingkan metode dari paper yang ada di folder papers."*
-- **Deep Research:**
-    *   **Ketik Prompt:** *"Saya ingin melakukan riset mendalam soal topik X. Tolong gunakan `/use-notebooklm` untuk buatkan prompt-nya."*
+1.  **Ingest:** Pastikan referensi sudah diekstrak (Langkah 3).
+2.  **Process:** Minta AI melakukan brainstorming atau audit draf lama.
+3.  **Write:** Gunakan perintah `/write-subsection` untuk menulis draf baru.
+    *   *Tips:* Selalu sebutkan nama paper dalam kurung siku, misal: *"Tolong tulis Latar Belakang berdasarkan paper [Author_Year]."*
 
 ---
 
-## 🔄 Langkah 5: Sinkronisasi & Simpan Ingatan
-Jangan biarkan kerja kerasmu hilang:
+## 🔄 Langkah 5: Sinkronisasi & Penutup Sesi
+Agar progresmu aman dan bisa dilanjutkan di HP atau komputer lain (via cloud):
 
-1.  **Sinkron dari Word:** (Setelah Anda mengedit file di Word OneDrive)
-    *   **Ketik Prompt:** *"Saya baru saja melakukan update di file Word OneDrive saya, tolong sinkronkan draf tersebut kembali ke Markdown (Handoff)."*
-2.  **Update Handoff Akhir Sesi:**
-    *   **Ketik Prompt:** *"/update-handoff. Rangkum progres kita hari ini dan catat apa saja yang perlu kita kerjakan besok."*
+1.  **Sync Word:** Gunakan `scripts/sync_word.ps1` untuk menarik editan dari Word OneDrive ke repositori ini.
+2.  **Handoff:** Di akhir setiap sesi, **WAJIB** ketik `/update-handoff`. 
+    - Ini akan mengisi file `supportFiles/handoff/00_metadata.md` dengan status terbaru agar besok AI tidak lupa apa yang sudah dikerjakan.
 
 ---
 
 ## 🚀 Command Cheat Sheet (Tabel Referensi Cepat)
 
-| Jenis Tugas | Perintah / Prompt | Deskripsi |
+| Jenis Tugas | Perintah / Prompt | Kegunaan Utama |
 |---|---|---|
-| **Onboarding** | *Audit infrastruktur* | Memeriksa apakah `gemini.md` dan `ACTION_PLAN.md` sudah siap. |
-| **Riset** | `/extract-metrics` | Mengekstrak metrik dari PDF di folder `references/` ke Wiki. |
-| **Drafting** | `/write-subsection` | Menulis draf bab dengan format akademik formal. |
-| **Deep Research**| `/use-notebooklm` | Kolaborasi dengan NotebookLM untuk mencari gap literatur & import PDF. |
-| **Quality Audit** | `python scripts/prose_auditor.py` | Mengecek karakter "robot" AI (em-dash) dan keabsahan sitasi. |
-| **Syncing** | `powershell scripts/sync_word.ps1` | Menarik draf terbaru dari Word OneDrive ke Markdown. |
-| **Cleanup** | `.\scripts\clean_repo.ps1` | Membersihkan repositori untuk memulai proyek baru. |
+| **Ekstraksi PDF** | `/extract-metrics` | Mengubah PDF kaku jadi data tabel yang bisa diolah AI. |
+| **Tulis Bab** | `/write-subsection` | Menghasilkan paragraf akademik tanpa karakter "robot". |
+| **Audit Tulisan** | `scripts/prose_auditor.py` | Memastikan tulisanmu tidak mengandung tanda-tanda AI (seperti em-dash). |
+| **Koneksi Cloud** | `scripts/sync_global_brain.ps1` | Menjaga draf di komputer tetap sama dengan yang ada di cloud. |
 
----
-
-### 📌 Catatan Penting:
-- **`supportFiles/handoff/00_metadata.md`**: Ini adalah "Otak" sekaligus muara tunggal seluruh tulisanmu. AI akan selalu membaca draf di sini agar konteks tetap terjaga.
-- **`references/`**: Tempat kamu menaruh PDF literatur.
-
-*Selamat meneliti, semoga skripsimu cepat selesai!* 🚀✨
+*Selamat meneliti, semoga skripsimu cepat selesai dan mencerahkan dunia!* 🚀✨
