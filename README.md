@@ -11,8 +11,9 @@ Selamat datang di workspace proyek ini! Directory ini telah disiapkan sebagai te
 ## 🚀 Quick Start (Windows)
 Siapkan lingkungan riset Anda dalam satu klik:
 ```powershell
-.\scripts\setup_env.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\setup_env.ps1
 ```
+*(Jika error, lihat panduan detail di **[GETTING_STARTED.md](./GETTING_STARTED.md)**)*
 
 **Penting:** Setelah setup selesai, silakan ikuti panduan **[GETTING_STARTED.md](./GETTING_STARTED.md)** untuk mulai melakukan riset dengan bantuan AI.
 

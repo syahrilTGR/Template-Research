@@ -8,11 +8,14 @@ Selamat! Kamu baru saja meng-clone **Universal AI Research Template**. Ikuti lan
 Pilih salah satu cara untuk menyiapkan "nyawa" pendukung asisten AI di komputer Anda:
 
 ### Opsi A: One-Click Setup (Sangat Direkomendasikan - Windows)
-Buka PowerShell di folder ini dan jalankan skrip otomatis:
+Buka PowerShell di folder ini dan jalankan perintah sakti ini:
 ```powershell
-# Skrip ini akan cek Python, buat venv di folder Home, dan instal dependensi otomatis
-.\scripts\setup_env.ps1
+# Jalankan skrip ini untuk cek Python, buat venv, dan instal dependensi otomatis
+powershell -ExecutionPolicy Bypass -File .\scripts\setup_env.ps1
 ```
+*Jika muncul error "Permission Denied", silakan jalankan perintah ini terlebih dahulu:*  
+`Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process`
+
 Setelah selesai, aktifkan environment dengan menjalankan path yang muncul di layar (biasanya `~\thesis_venv\Scripts\Activate.ps1`).
 
 ### Opsi B: Setup Manual (Linux/macOS atau Jaga-jaga)
