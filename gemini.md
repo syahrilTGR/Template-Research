@@ -13,8 +13,8 @@
 
 **Jika audit GAGAL, kamu WAJIB:**
 1. Menghentikan tugas yang diminta.
-2. Mengirimkan pesan: *"⛔ **Audit AI Gagal**: Saya mendeteksi infrastruktur awal riset Anda belum siap."*
-3. Memberikan instruksi: "Silakan isi `gemini.md`, jalankan `setup_env.ps1`, atur path di `sync_word.ps1`, lalu centang semua Phase 0 di `ACTION_PLAN.md`."
+2. Mengirimkan pesan: *"⛔ **Audit AI Gagal**: Saya mendeteksi infrastruktur riset Anda belum siap/tidak sinkron."*
+3. Memberikan instruksi: "Silakan isi `gemini.md`, jalankan `scripts/setup_docx_infra.ps1` (lalu restart IDE), atur path di `sync_word.ps1`, lalu centang semua Phase 0 di `supportFiles/ACTION_PLAN.md`."
 4. Menolak melakukan instruksi teknis apa pun sampai audit berhasil (CLEAN).
 
 ---

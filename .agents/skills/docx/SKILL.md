@@ -57,7 +57,18 @@ python scripts/accept_changes.py input.docx output.docx
 
 ## Creating New Documents
 
-Generate .docx files with JavaScript, then validate. Install: `npm install -g docx`
+Generate .docx files with JavaScript, then validate. 
+
+### Global Installation & Environment
+To avoid local `node_modules` clutter, install `docx` globally and configure Windows to find it:
+
+1. **Install Global**: `npm install -g docx`
+2. **Set NODE_PATH**: 
+   ```powershell
+   [System.Environment]::SetEnvironmentVariable("NODE_PATH", "C:\Users\Syahril\AppData\Roaming\npm\node_modules", "User")
+   ```
+3. **Restart Antigravity**: For the new environment variables to take effect.
+
 
 ### Setup
 ```javascript
@@ -122,14 +133,18 @@ Use Arial as the default font (universally supported). Keep titles black for rea
 ```javascript
 const doc = new Document({
   styles: {
-    default: { document: { run: { font: "Arial", size: 24 } } }, // 12pt default
+    default: { 
+      document: { 
+        run: { font: "Times New Roman", size: 24 }, // 12pt (standard)
+        paragraph: { alignment: AlignmentType.JUSTIFIED } 
+      } 
+    },
     paragraphStyles: [
-      // IMPORTANT: Use exact IDs to override built-in styles
       { id: "Heading1", name: "Heading 1", basedOn: "Normal", next: "Normal", quickFormat: true,
-        run: { size: 32, bold: true, font: "Arial" },
-        paragraph: { spacing: { before: 240, after: 240 }, outlineLevel: 0 } }, // outlineLevel required for TOC
+        run: { size: 32, bold: true, font: "Times New Roman" },
+        paragraph: { spacing: { before: 240, after: 240 }, outlineLevel: 0 } },
       { id: "Heading2", name: "Heading 2", basedOn: "Normal", next: "Normal", quickFormat: true,
-        run: { size: 28, bold: true, font: "Arial" },
+        run: { size: 28, bold: true, font: "Times New Roman" },
         paragraph: { spacing: { before: 180, after: 180 }, outlineLevel: 1 } },
     ]
   },
@@ -377,9 +392,48 @@ sections: [{
 }]
 ```
 
+### Specialized Academic Components
+
+#### noteBox (Callout/Teori)
+Tabel dengan border tebal di sisi kiri untuk menonjolkan teori atau rumus penting.
+```javascript
+new Table({
+  width: { size: 9360, type: WidthType.DXA },
+  columnWidths: [9360],
+  rows: [
+    new TableRow({
+      children: [
+        new TableCell({
+          borders: {
+            left: { style: BorderStyle.SINGLE, size: 40, color: "000000" }, // Tebal kiri
+            top: { style: BorderStyle.NIL },
+            bottom: { style: BorderStyle.NIL },
+            right: { style: BorderStyle.NIL },
+          },
+          shading: { fill: "F3F3F3", type: ShadingType.CLEAR },
+          children: [new Paragraph({ children: [new TextRun({ text: "Teori Penting: ...", bold: true })] })]
+        })
+      ]
+    })
+  ]
+});
+```
+
+#### Iteration Table (Monospace Alignment)
+Gunakan `Courier New` agar angka desimal sejajar secara vertikal.
+```javascript
+new TableCell({
+  children: [new Paragraph({ 
+    alignment: AlignmentType.RIGHT,
+    children: [new TextRun({ text: "0.12345", font: "Courier New" })] 
+  })]
+});
+```
+
 ### Critical Rules for docx-js
 
-- **Set page size explicitly** - docx-js defaults to A4; use US Letter (12240 x 15840 DXA) for US documents
+- **Template First**: Always `unpack` the user's reference document to extract exact font names, sizing (`sz`), spacing (`line`), and margins.
+- **Set page size explicitly** - docx-js defaults to A4; use US Letter (12240 x 15840 DXA) only if explicitly requested.
 - **Landscape: pass portrait dimensions** - docx-js swaps width/height internally; pass short edge as `width`, long edge as `height`, and set `orientation: PageOrientation.LANDSCAPE`
 - **Never use `\n`** - use separate Paragraph elements
 - **Never use unicode bullets** - use `LevelFormat.BULLET` with numbering config

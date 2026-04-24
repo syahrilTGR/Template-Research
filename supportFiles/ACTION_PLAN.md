@@ -5,8 +5,9 @@
 - [x] 0.2 Automated Setup Script (`scripts/setup_env.ps1`)
 - [x] 0.3 Sterile Style Template Implementation
 - [x] 0.4 Advanced Docx Surgery Tools (`scripts/docx_surgery.py`)
-- [x] 0.5 Configure OneDrive Paths in `scripts/sync_word.ps1` (Template Ready)
-- [x] 0.6 Define Initial Citation Map in `supportFiles/ANTI_HALLUCINATION.md` (Template Ready)
+- [x] 0.5 Global Docx Infrastructure Setup (`scripts/setup_docx_infra.ps1`)
+- [x] 0.6 Configure OneDrive Paths in `scripts/sync_word.ps1` (Template Ready)
+- [x] 0.7 Define Initial Citation Map in `supportFiles/ANTI_HALLUCINATION.md` (Template Ready)
 
 ## Chapter 1: Introduction
 - [ ] 1.1 Background of the Study
