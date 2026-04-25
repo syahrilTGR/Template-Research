@@ -2,6 +2,14 @@
 
 Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 
+## [v1.0.1] — 2026-04-25
+
+### Added
+- **Heartbeat Protocol**: Prosedur pengecekan update otomatis yang proaktif setiap kali sesi dimulai.
+- **Agentic Initiative**: Implementasi semantic triggers pada seluruh skill/persona.
+- **Universal Sterilization**: Pembersihan total kode spesifik agar repo 100% template-agnostik.
+- **Draw.io Workflow**: Penomoran SOP Diagram baru (`supportFiles/SOP_DIAGRAMS.md`).
+
 ## [v1.0.0] — 2026-04-25
 
 ### Added

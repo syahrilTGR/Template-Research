@@ -35,20 +35,21 @@ Asisten WAJIB melakukan audit menyeluruh antara folder lokal dan folder `.agents
     - `intelligence/` (Catatan penelitian).
     - `example/` (Kecuali jika user meminta update template contoh).
 3.  **Identity Preservation**: 
-    - Pada `gemini.md`, hanya perbarui bagian **AI AUDITOR** ke atas. JANGAN menyentuh bagian **Project Identity** ke bawah.
+    - Pada `gemini.md`, hanya perbarui bagian **AI AUDITOR** (v1.0.x dll). 
+    - **JANGAN** menyentuh bagian `## 🎯 Project Identity` dan `## 💻 Environment & Technical Context`. Itu adalah data pribadi user.
 
 **Instruksi untuk Agent:**
-> *"Lakukan audit perbandingan folder (Side-by-side) antara proyek ini dan `.agents/_bridge_update_`. Cari semua file infrastruktur baru atau yang diperbarui. Terapkan pembaruan tersebut secara menyeluruh di semua sub-folder kecuali folder konten riset (handoff, references, intelligence). Laporkan daftar file yang diperbarui kepada Master."*
+> *"Lakukan audit perbandingan folder antara proyek ini dan `.agents/_bridge_update_`. Ganti/tambahkan file infrastruktur (Skills, Workflows, Scripts, Root Files) dengan versi terbaru. JANGAN hapus atau modifikasi folder draf/riset (handoff, references, intelligence). Laporkan ringkasan 'What's New' berdasarkan CHANGELOG.md terbaru."*
 
 ---
 
 ## Step 3: Cleanup & Setup
 
-Setelah file diperbarui, asisten wajib menghapus folder temporary dan menjalankan setup ulang.
+Setelah file diperbarui, asisten wajib menghapus folder temporary dan menjalankan setup ulang environment.
 
 // turbo
 ```powershell
-rtk powershell -c "Remove-Item -Path '.agents/_bridge_update_' -Recurse -Force ; scripts/setup_docx_infra.ps1"
+rtk powershell -c "Remove-Item -Path '.agents/_bridge_update_' -Recurse -Force ; scripts/setup_env.ps1 ; scripts/setup_docx_infra.ps1"
 ```
 
 ---

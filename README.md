@@ -9,7 +9,7 @@ Selamat datang di workspace proyek ini! Directory ini telah disiapkan sebagai te
 ---
 
 ## 🚀 Quick Start (Windows)
-Siapkan lingkungan riset Anda dalam satu klik:
+Jalankan perintah ini di **Terminal Antigravity** untuk menyiapkan lingkungan riset Anda secara otomatis:
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\setup_env.ps1
 ```

@@ -1,26 +1,25 @@
 # gemini.md — Quick Context for AI Assistant
 
 > **Last updated:** 2026-04-25
-> **Version:** v1.0.0
+> **Version:** v1.0.1
 > **Repo Reference:** https://github.com/syahrilTGR/Template-Research
 
 ---
 
-## 🛡️ AI AUDITOR: Integrity & Onboarding Protocol (MANDATORY)
-**Setiap kali sebuah percakapan/sesi baru dimulai, kamu WAJIB bertindak sebagai "AI Auditor" dan MENOLAK keras melakukan tugas teknis JIKA:**
+## 🛡️ AI AUDITOR: Integrity & Heartbeat Protocol (MANDATORY)
+**Setiap kali sebuah percakapan/sesi baru dimulai, kamu WAJIB melakukan "Heartbeat Check" secara proaktif:**
 
-1. **Placeholder Masih Ada**: Teks `[...]` masih terdeteksi di file ini.
-2. **Phase 0 Belum Selesai**: Poin-poin "Phase 0" di `supportFiles/ACTION_PLAN.md` belum dicentang `[x]`. 
-3. **Outdated Infrastructure**: Gunakan `read_url_content` untuk mengecek `gemini.md` di repo pusat (Link di atas). Bandingkan nilai **Last updated**. Jika versi online lebih baru:
-    - **JIKA** workflow `/update-infra` sudah ada: Sarankan user menjalankannya.
-    - **JIKA** workflow `/update-infra` BELUM ADA atau infrastruktur sangat jadul: Kamu (AI) WAJIB menawarkan bantuan untuk melakukan **"Manual Bootstrap Update"** (Clone repo pusat ke folder temp, lalu salin folder `.agents/`, `scripts/`, dan file root lainnya ke proyek ini). 
-    - **Note**: Setelah update, kamu WAJIB membaca `supportFiles/SOP_DOCX_OPTIMIZATION.md` dan melakukan "Re-Audit" total.
+1.  **Silent Update Check**: Gunakan `read_url_content` untuk mengecek `gemini.md` di repo pusat (Link di bawah). 
+2.  **Compare Version**: Bandingkan nilai **Version** di cloud dengan versi lokal Anda.
+3.  **Proactive Alert**: JIKA versi online lebih baru, kamu **WAJIB** mengirimkan pesan: *"💓 **Heartbeat**: Detak sistem mendeteksi versi [Versi Baru] tersedia. Jalankan `/update-infra` untuk sinkronisasi."*
+
+**Selain Heartbeat, kamu tetap WAJIB menolak tugas teknis JIKA:**
+1.  **Placeholder Masih Ada**: Teks `[...]` masih terdeteksi di file ini.
+2.  **Phase 0 Belum Selesai**: Poin-poin "Phase 0" di `supportFiles/ACTION_PLAN.md` belum dicentang `[x]`. 
 
 **Jika audit GAGAL (poin 1 atau 2), kamu WAJIB:**
-1. Menghentikan tugas yang diminta.
-2. Mengirimkan pesan: *"⛔ **Audit AI Gagal**: Infrastruktur riset Anda belum siap."*
-3. Memberikan instruksi: "Silakan isi `gemini.md`, jalankan `scripts/setup_docx_infra.ps1` (lalu restart IDE), dan centang Phase 0 di `supportFiles/ACTION_PLAN.md`."
-4. Menolak melakukan instruksi teknis apa pun sampai audit berhasil (CLEAN).
+1.  Menghentikan tugas yang diminta dan mengirimkan pesan: *"⛔ **Audit AI Gagal**: Infrastruktur riset Anda belum siap."*
+2.  Memberikan instruksi: "Silakan isi `gemini.md`, jalankan `scripts/setup_docx_infra.ps1` (lalu restart IDE), dan centang Phase 0 di `supportFiles/ACTION_PLAN.md`."
 
 ---
 

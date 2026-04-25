@@ -14,7 +14,7 @@ Agar tidak tersesat, bayangkan folder di sini seperti sebuah kantor riset:
 Pilih salah satu cara untuk menyiapkan "nyawa" pendukung asisten AI di komputer Anda:
 
 ### Opsi A: One-Click Setup (Sangat Direkomendasikan - Windows)
-Buka PowerShell di folder ini dan jalankan perintah sakti ini:
+Buka **Terminal Antigravity** di folder ini dan jalankan perintah sakti ini:
 ```powershell
 # Jalankan skrip ini untuk cek Python, buat venv, dan instal dependensi otomatis
 powershell -ExecutionPolicy Bypass -File .\scripts\setup_env.ps1
@@ -86,19 +86,22 @@ Gunakan `/context-summary` di awal setiap sesi untuk memastikan asisten memiliki
 ---
 
 ## 🛠️ Maintenance & Updates
-Repository ini mendukung **Self-Healing Infrastructure**. Jika asisten memberi tahu ada versi baru tersedia:
-1. Jalankan perintah `/update-infra`.
-2. Asisten akan otomatis memperbarui seluruh workflow, skill, dan skrip pendukung tanpa menghapus tulisan Anda.
+Repositori ini dirancang untuk terus berkembang. Agar Anda selalu mendapatkan fitur terbaru (seperti ekstraktor PDF yang lebih cerdas atau skill baru), lakukan update secara berkala.
+
+### Cara Melakukan Update:
+Cukup berikan perintah sederhana ini kepada Antigravity:
+> *"Tolong cek apakah ada update infrastruktur terbaru di repo pusat. Jika ada, jalankan /update-infra sekarang."*
+
+### Apa yang Terjadi Saat Update?
+1. **Pencangkokan Aman**: Asisten akan menarik kode terbaru tanpa menyentuh draf tulisan, pdf referensi, atau identitas proyek Anda.
+2. **Self-Healing**: Sistem akan mendeteksi file yang rusak atau hilang dan memperbaikinya secara otomatis.
+3. **Konfigurasi Ulang**: Environment virtual Anda akan diperbarui jika ada library baru yang dibutuhkan.
 
 ---
 
-## 🚀 Command Cheat Sheet (Tabel Referensi Cepat)
+## 🆘 Butuh Bantuan?
+Jika Anda bingung atau terjadi error, tanyakan kepada asisten:
+- *"Bagaimana cara kerja workflow X?"*
+- *"Tolong audit repositori saya, apakah sudah sesuai standar?"*
 
-| Jenis Tugas | Perintah / Prompt | Kegunaan Utama |
-|---|---|---|
-| **Ekstraksi PDF** | `/extract-metrics` | Mengubah PDF kaku jadi data tabel yang bisa diolah AI. |
-| **Tulis Bab** | `/write-subsection` | Menghasilkan paragraf akademik tanpa karakter "robot". |
-| **Audit Tulisan** | `scripts/prose_auditor.py` | Memastikan tulisanmu tidak mengandung tanda-tanda AI (seperti em-dash). |
-| **Koneksi Cloud** | `scripts/sync_global_brain.ps1` | Menjaga draf di komputer tetap sama dengan yang ada di cloud. |
-
-*Selamat meneliti, semoga skripsimu cepat selesai dan mencerahkan dunia!* 🚀✨
+*"Build smarter, write faster, research deeper."* 🚀
