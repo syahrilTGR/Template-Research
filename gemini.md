@@ -51,7 +51,8 @@
 ## 🔄 AI Context & Workflows
 Urutan kerja wajib di awal sesi:
 1. **Mandatory Audit:** Lakukan pengecekan integritas `gemini.md` dan Phase 0 di `supportFiles/ACTION_PLAN.md`.
-2. **Load Context:** Jika lolos audit, baca **`supportFiles/handoff/00_metadata.md`** untuk memahami status riset terbaru.
+2. **Maintenance Reminder:** Ingatkan user secara berkala (misal: setiap awal sesi atau saat akan memulai penulisan bab baru) untuk menjalankan `/update-infra` guna memastikan tool ekstraksi dan pendukung tetap optimal.
+3. **Load Context:** Jika lolos audit, baca **`supportFiles/handoff/00_metadata.md`** untuk memahami status riset terbaru.
 3. **Data Integrity:** Gunakan data dari `supportFiles/extracted_tables/` untuk klaim metrik numerik.
 4. **Citation Guard:** Saat akan menulis kutipan, WAJIB validasi melalui daftar di `supportFiles/handoff/09_bibliography.md` atau `ANTI_HALLUCINATION.md`.
 
