@@ -1,5 +1,5 @@
 ---
-description: Verify a newly uploaded paper and suggest where to use it in the thesis
+description: Use this when the user asks 'where should I cite this paper?'. Verify a newly uploaded paper and suggest where to use it in the thesis.
 ---
 
 1. Read the abstract and introduction of the uploaded or specified paper file.

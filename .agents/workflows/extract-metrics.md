@@ -1,5 +1,5 @@
 ---
-description: Mengekstrak metode utama dan metrik hasil dari paper jurnal ke dalam bentuk tabel komparasi
+description: Run this workflow if the user uploads a new journal paper and wants to know its accuracy/metrics. Mengekstrak metode utama dan metrik hasil dari paper jurnal ke dalam bentuk tabel komparasi.
 ---
 
 1. Jalankan `python scripts/extract_pdfs.py` untuk mensinkronkan hasil ekstraksi terbaru dari folder `references/`.

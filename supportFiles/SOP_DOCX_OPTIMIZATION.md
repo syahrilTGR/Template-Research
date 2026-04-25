@@ -28,8 +28,8 @@ npm install -g docx
 ### B. Konfigurasi `NODE_PATH`
 Agar Node.js dapat menemukan library global tersebut, daftarkan path-nya ke Environment Variable Windows:
 ```powershell
-# Jalankan di PowerShell (Sesuaikan path jika perlu)
-[System.Environment]::SetEnvironmentVariable("NODE_PATH", "C:\Users\Syahril\AppData\Roaming\npm\node_modules", "User")
+# Jalankan di PowerShell (Sesuaikan [Username] dengan nama user Windows Anda)
+[System.Environment]::SetEnvironmentVariable("NODE_PATH", "C:\Users\[Username]\AppData\Roaming\npm\node_modules", "User")
 ```
 
 ---

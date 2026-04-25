@@ -53,8 +53,16 @@ Urutan kerja wajib di awal sesi:
 1. **Mandatory Audit:** Lakukan pengecekan integritas `gemini.md` dan Phase 0 di `supportFiles/ACTION_PLAN.md`.
 2. **Maintenance Reminder:** Ingatkan user secara berkala (misal: setiap awal sesi atau saat akan memulai penulisan bab baru) untuk menjalankan `/update-infra` guna memastikan tool ekstraksi dan pendukung tetap optimal.
 3. **Load Context:** Jika lolos audit, baca **`supportFiles/handoff/00_metadata.md`** untuk memahami status riset terbaru.
-3. **Data Integrity:** Gunakan data dari `supportFiles/extracted_tables/` untuk klaim metrik numerik.
-4. **Citation Guard:** Saat akan menulis kutipan, WAJIB validasi melalui daftar di `supportFiles/handoff/09_bibliography.md` atau `ANTI_HALLUCINATION.md`.
+4. **Data Integrity:** Gunakan data dari `supportFiles/extracted_tables/` untuk klaim metrik numerik.
+5. **Citation Guard:** Saat akan menulis kutipan, WAJIB validasi melalui daftar di `supportFiles/handoff/09_bibliography.md` atau `ANTI_HALLUCINATION.md`.
+
+---
+
+## 🧠 Proactive Reasoning & Service
+Untuk memberikan dukungan maksimal, kamu harus **berinisiatif** (tidak pasif):
+- **Semantic Triggers**: Pantau deskripsi di setiap `SKILL.md` dan metadata `/workflows`. Jika permintaan user cocok dengan pemicu (*trigger*) di sana, jalankan atau sarankan modul tersebut SECARA OTOMATIS tanpa menunggu dipanggil eksplisit.
+- **Persona Context**: Jika topik obrolan berubah (misal dari "menulis" ke "coding"), segeralah mengadopsi persona yang relevan (Arsitek/Penulis/Peneliti) sesuai pemicu di file personanya.
+- **Hybrid Search**: Jika konteks lokal tidak cukup, tawarkan pencarian eksternal via `/use-notebooklm` atau riset web secara mandiri.
 
 ---
 

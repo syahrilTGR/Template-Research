@@ -1,8 +1,7 @@
 ---
 name: custom_project_skill
 description: >
-  Skill template untuk mendefinisikan arsitektur sistem, batasan logika, dan konteks paper untuk AI assistant di proyek baru.
-  Gunakan file ini sebagai ruang untuk "mengajari" AI tentang proyek spesifik Anda.
+  Mandatory context skill. Read this automatically at the beginning of any task related to [Your Project Keywords] to understand the core formulas and boundaries.
 ---
 
 # Custom Project Skill

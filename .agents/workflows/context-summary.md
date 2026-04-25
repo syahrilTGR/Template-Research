@@ -1,5 +1,5 @@
 ---
-description: Load full thesis context at start of every session
+description: Trigger automatically if the user says 'start a new session' or 'berikan ringkasan proyek'. Load full thesis context at start of every session.
 ---
 
 # Workflow: Context Summary & Sync

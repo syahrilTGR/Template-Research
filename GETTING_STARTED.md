@@ -75,7 +75,12 @@ Jika Anda memiliki paper jurnal baru (.pdf) yang ingin dimasukkan ke dalam riset
 2. Berikan prompt ini ke Antigravity:
    > *"Saya baru saja menambahkan paper baru di folder references. Tolong jalankan /extract-metrics untuk mengekstrak metrik kinerjanya, buatkan ringkasannya di folder intelligence, dan perbarui tabel komparasi literatur saya."*
 
-### 2. Sinkronisasi Tulisan (Word <-> Markdown)
+### 2. Membuat Diagram / Flowchart (Draw.io)
+Pembuatan diagram arsitektur atau alur riset harus menggunakan aplikasi open-source agar metadatanya tetap tersimpan di repositori Anda.
+- Silakan baca panduan lengkap pembuatannya di **`supportFiles/SOP_DIAGRAMS.md`**.
+- Platform pilihan: [app.diagrams.net](https://app.diagrams.net)
+
+### 3. Sinkronisasi Tulisan (Word <-> Markdown)
 Gunakan `/context-summary` di awal setiap sesi untuk memastikan asisten memiliki konteks draf terbaru Anda yang ada di OneDrive/Word.
 
 ---

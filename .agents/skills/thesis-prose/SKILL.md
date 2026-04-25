@@ -1,8 +1,8 @@
 ---
 name: thesis-prose
 description: >
+  Use this explicitly for Chapter drafting or revision when the user asks to write thesis paragraphs.
   Skill untuk menulis, mendraft, atau merevisi bagian thesis dalam bahasa Inggris akademik formal.
-  Aktif otomatis ketika user meminta penulisan, drafting, atau revisi subbab thesis.
 ---
 
 # Thesis Prose Writing Skill

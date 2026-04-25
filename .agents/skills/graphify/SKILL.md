@@ -1,3 +1,9 @@
+---
+name: graphify
+description: >
+  Use this skill automatically when the user asks to analyze the architecture, find related concepts, or needs deep context mapping of the codebase.
+---
+
 # Skill: Graphify (Project Local Orchestrator)
 
 Skill ini adalah adaptasi lokal dari global graphify skill, yang didesain khusus untuk mengelola Knowledge Graph riset proyek ini secara komprehensif.
