@@ -1,12 +1,46 @@
 ---
-name: context-summary
 description: Load full thesis context at start of every session
 ---
 
-1. Read `supportFiles/ACTION_PLAN.md` — **MANDATORY**: Verify if "Phase 0: Infrastructure" is fully completed `[x]`. If not, stop and alert the user.
-2. Read `supportFiles/handoff/00_metadata.md` — note the current stage, what is already written, and what is currently being worked on.
-2. Read `supportFiles/decisions_log.md` — note the latest technical decisions made.
-3. Confirm the technical stack and project constraints defined in the active skills.
-4. Check `references/` folder to understand available literature.
-5. Report back to the user with a concise onboarding message: "Here is what I know about your project context... [Summarize Stage, Next Actions]".
-6. Ask the user: "What would you like to work on today?"
+# Workflow: Context Summary & Sync
+
+Workflow ini memastikan asisten memiliki konteks penelitian terbaru, termasuk draf tulisan, referensi, dan file proposal fisik di OneDrive.
+
+**Script Utama**: `scripts/sync_word.ps1` (Jika dikonfigurasi)
+
+---
+
+## Step 1: Inisialisasi Konteks (Handoff & Metadata)
+
+Baca file-file berikut untuk memahami status riset terbaru:
+1.  Read `supportFiles/handoff/00_metadata.md` (Timeline & Versi).
+2.  Read `supportFiles/handoff/` (Draf aktif per bab).
+3.  Read `supportFiles/pending_references.md` (Antrean referensi).
+
+---
+
+## Step 2 (Opsional): Sinkronisasi OneDrive
+
+Jika Anda mengelola file `.docx` utama di OneDrive, jalankan sinkronisasi untuk menarik update manual yang Anda lakukan di Word ke folder proyek lokal.
+
+// turbo
+```powershell
+# Jalankan script sinkronisasi (Pastikan path di dalam script sudah disesuaikan)
+rtk powershell -c "scripts/sync_word.ps1"
+```
+
+---
+
+## Step 3: Verifikasi Progres & Onboarding
+
+Laporkan kembali ke user dengan ringkasan:
+- **Status Sekarang**: ["Sedang menulis Bab 3.2", "Menunggu konversi 5 referensi", dll.]
+- **Next Task**: ["Melanjutkan subbab 3.3", "Mengekstrak tabel dari Paper A", dll.]
+- **Integrity Check**: ["Semua draf sinkron dengan Word", atau "Perlu audit sinkronisasi"]
+
+---
+
+## Step 4: Interaksi
+
+Tanyakan kepada user:
+*"Saya sudah siap. Ingin lanjut menulis subbab berikutnya, atau ada paper baru yang perlu kita bedah?"*

@@ -1,23 +1,19 @@
-# Skill: Graphify Knowledge Mapping
+# Skill: Graphify (Project Local Orchestrator)
 
-Skill untuk memetakan arsitektur riset, hubungan antarkomponen koding, dan draf tesis ke dalam Knowledge Graph terintegrasi (GraphRAG).
+Skill ini adalah adaptasi lokal dari global graphify skill, yang didesain khusus untuk mengelola Knowledge Graph riset proyek ini secara komprehensif.
 
-## 🛡️ Self-Healing & Guardrails
+## 🚀 Orchestrator Utama
+Lokasi: `.agents/skills/graphify/scripts/sync_brain_comprehensive.py`
 
-1. **Auto-Dependency Check**: Setiap kali user memanggil `/graphify`, agen WAJIB melakukan pengecekan library:
-   - Cek apakah `graphifyy` (double 'y') terpasang di interpreter yang digunakan.
-   - Jika hilang, tawarkan: *"Saya mendeteksi `graphifyy` belum terpasang. Ingin saya pasang sekarang ke environment Anda?"*
-2. **Context Integrity**: Pastikan perintah dijalankan dari root proyek agar folder `graphify-out/` tercipta di lokasi yang benar.
+### Kegunaan
+Berbeda dengan standar `graphify update`, orkestrator ini melakukan:
+1.  **Full Re-detection**: Memastikan file `.md` di `intelligence/` dan logs di `supportFiles/` selalu terdeteksi.
+2.  **AST Update**: Melakukan ekstraksi struktur kode program.
+3.  **Global Sink**: Otomatis memicu push data ke `Brain-Global-Center`.
 
-## 🛠️ Execution Commands
+## 🛠️ Cara Penggunaan
+Selalu gunakan workflow `/sync-global-brain` untuk menjalankan sinkronisasi. Jangan menjalankan `graphify update` secara manual jika ingin menyertakan draf dokumen research.
 
-- **Update Graph**: `rtk graphify update .` (Gunakan setelah modifikasi besar pada kode atau draf).
-- **Audit Knowledge**: `rtk graphify audit` (Untuk mendeteksi konsep-konsep yang terisolasi/orphan nodes).
-
-## 🤖 Interaction Protocol
-
-AI bertindak sebagai pengelola basis pengetahuan:
-- Saat user bertanya *"Bagaimana hubungan komponen A dan B?"*, AI akan membaca `graphify-out/GRAPH_REPORT.md` atau query via MCP Graphify (jika aktif).
-- AI akan menyarankan update graph secara proaktif jika mendeteksi banyak file baru yang belum dipetakan.
-
-Ketik: *"Gunakan /graphify untuk memetakan progres riset saya hari ini."*
+---
+**Author:** Antigravity AI (Research Bureau)
+**Last Updated:** 2026-04-25 12:35
