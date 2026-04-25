@@ -13,7 +13,8 @@
 2. **Phase 0 Belum Selesai**: Poin-poin "Phase 0" di `supportFiles/ACTION_PLAN.md` belum dicentang `[x]`. 
 3. **Outdated Infrastructure**: Gunakan `read_url_content` untuk mengecek `gemini.md` di repo pusat (Link di atas). Bandingkan nilai **Last updated**. Jika versi online lebih baru:
     - **JIKA** workflow `/update-infra` sudah ada: Sarankan user menjalankannya.
-    - **JIKA** workflow `/update-infra` BELUM ADA atau infrastruktur sangat jadul: Kamu (AI) WAJIB menawarkan bantuan untuk melakukan **"Manual Bootstrap Update"** (Clone repo pusat ke folder temp, lalu salin folder `.agents/`, `scripts/`, dan file root lainnya ke proyek ini) agar user mendapatkan teknologi terbaru.
+    - **JIKA** workflow `/update-infra` BELUM ADA atau infrastruktur sangat jadul: Kamu (AI) WAJIB menawarkan bantuan untuk melakukan **"Manual Bootstrap Update"** (Clone repo pusat ke folder temp, lalu salin folder `.agents/`, `scripts/`, dan file root lainnya ke proyek ini). 
+    - **Note**: Setelah update, kamu WAJIB membaca `supportFiles/SOP_DOCX_OPTIMIZATION.md` dan melakukan "Re-Audit" total.
 
 **Jika audit GAGAL (poin 1 atau 2), kamu WAJIB:**
 1. Menghentikan tugas yang diminta.
@@ -31,6 +32,7 @@
 ## 💻 Environment & Technical Context
 - **OS Focus:** [e.g., Windows/macOS/Linux]
 - **Hardware Utama:** [ISI_DISINI]
+- **Default VENV:** [ISI_DISINI]
 - **Key Frameworks:** [e.g., PyTorch, TensorFlow, Scikit-learn]
 - **Core Algorithm:** [e.g., YOLOv8, LSTM, Random Forest]
 

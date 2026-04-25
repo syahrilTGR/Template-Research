@@ -44,6 +44,16 @@ $CONFIG_PATH = "supportFiles/.venv_config.txt"
 $PYTHON_VENV_EXE | Out-File -FilePath $CONFIG_PATH -Encoding utf8
 Write-Host "Venv path recorded in $CONFIG_PATH" -ForegroundColor Green
 
+# 4b. Auto-Update gemini.md
+$GEMINI_FILE = "gemini.md"
+if (Test-Path $GEMINI_FILE) {
+    Write-Host "Updating venv information in $GEMINI_FILE..." -ForegroundColor Cyan
+    $geminiContent = Get-Content $GEMINI_FILE
+    $updatedContent = $geminiContent -replace "- \*\*Default VENV:\*\* \[ISI_DISINI\]", "- **Default VENV:** $PYTHON_VENV_EXE"
+    $updatedContent | Set-Content $GEMINI_FILE
+    Write-Host "gemini.md updated with $PYTHON_VENV_EXE" -ForegroundColor Green
+}
+
 # 5. Success Message
 Write-Host "`n--- ✅ Setup Complete! ---" -ForegroundColor Green
 Write-Host "To activate the environment, run this command:" -ForegroundColor White

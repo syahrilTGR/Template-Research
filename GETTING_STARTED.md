@@ -65,6 +65,28 @@ Agar progresmu aman dan bisa dilanjutkan di HP atau komputer lain (via cloud):
 
 ---
 
+## 🚀 Common Research Workflows
+
+Setelah instalasi selesai, berikut adalah beberapa tugas umum yang bisa Anda lakukan:
+
+### 1. Menambah & Mengekstrak Referensi Baru
+Jika Anda memiliki paper jurnal baru (.pdf) yang ingin dimasukkan ke dalam riset:
+1. Simpan file PDF di folder `references/`.
+2. Berikan prompt ini ke Antigravity:
+   > *"Saya baru saja menambahkan paper baru di folder references. Tolong jalankan /extract-metrics untuk mengekstrak metrik kinerjanya, buatkan ringkasannya di folder intelligence, dan perbarui tabel komparasi literatur saya."*
+
+### 2. Sinkronisasi Tulisan (Word <-> Markdown)
+Gunakan `/context-summary` di awal setiap sesi untuk memastikan asisten memiliki konteks draf terbaru Anda yang ada di OneDrive/Word.
+
+---
+
+## 🛠️ Maintenance & Updates
+Repository ini mendukung **Self-Healing Infrastructure**. Jika asisten memberi tahu ada versi baru tersedia:
+1. Jalankan perintah `/update-infra`.
+2. Asisten akan otomatis memperbarui seluruh workflow, skill, dan skrip pendukung tanpa menghapus tulisan Anda.
+
+---
+
 ## 🚀 Command Cheat Sheet (Tabel Referensi Cepat)
 
 | Jenis Tugas | Perintah / Prompt | Kegunaan Utama |

@@ -53,5 +53,16 @@ rtk powershell -c "Remove-Item -Path '.agents/_bridge_update_' -Recurse -Force ;
 
 ---
 
+## Step 4: Post-Update Integrity Audit
+
+Asisten WAJIB melakukan audit ulang secara mandiri untuk memastikan fitur baru aktif.
+
+// turbo
+```powershell
+# Pemicu Audit (Lihat aturan di gemini.md)
+rtk powershell -c "echo 'Update Complete. Starting Re-Audit...'"
+```
+*(Asisten akan otomatis membaca gemini.md kembali dan melakukan verifikasi total).*
+
 ## ⚠️ Perhatian
 Jika Anda memiliki modifikasi kustom pada file sistem, buat backup terlebih dahulu atau commit perubahan Anda sebelum menjalankan workflow ini.
