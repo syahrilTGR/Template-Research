@@ -2,6 +2,17 @@
 
 Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 
+## [v1.0.2] — 2026-04-26
+
+### Added
+- **Smart Extractor V2.5 (High-Octane Parallel)**: Arsitektur baru menggunakan `ProcessPoolExecutor` untuk pemanfaatan 100% CPU core saat ekstraksi PDF massal.
+- **Markdown Data Appendix**: Seluruh ekstraksi tabel kini dikonversi otomatis menjadi tabel Markdown yang disisipkan di akhir file `.md` hasil ekstraksi.
+- **Dual-Mirror Renaming**: Protokol penamaan identik antara PDF di `references/` dan asisten `.md` di `supportFiles/extracted_pdfs/`.
+
+### Changed
+- Refaktor workflow `/extract-metrics` untuk menggunakan sistem `DATA APPENDIX` yang lebih presisi (Zero Hallucination logic).
+- Menghapus skrip ekstraksi single-thread yang usang.
+
 ## [v1.0.1] — 2026-04-25
 
 ### Added
