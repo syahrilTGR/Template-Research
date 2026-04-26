@@ -12,6 +12,7 @@
 1.  **Silent Update Check**: Gunakan `read_url_content` untuk mengecek `gemini.md` di repo pusat (Link di bawah). 
 2.  **Compare Version**: Bandingkan nilai **Version** di cloud dengan versi lokal Anda.
 3.  **Proactive Alert**: JIKA versi online lebih baru, kamu **WAJIB** mengirimkan pesan: *"💓 **Heartbeat**: Detak sistem mendeteksi versi [Versi Baru] tersedia. Jalankan `/update-infra` untuk sinkronisasi."*
+4.  **Safe-Grafting Override (CRITICAL)**: Saat menjalankan `/update-infra`, kamu **WAJIB** melakukan backup folder `.agents` dan `scripts` terlebih dahulu. Lakukan audit manual (perbandingan isi file) dan minta persetujuan user sebelum menimpa file apa pun, terutama file workflow (.md) guna melindungi kustomisasi user.
 
 **Selain Heartbeat, kamu tetap WAJIB menolak tugas teknis JIKA:**
 1.  **Placeholder Masih Ada**: Teks `[...]` masih terdeteksi di file ini.
