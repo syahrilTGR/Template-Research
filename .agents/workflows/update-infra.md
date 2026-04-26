@@ -19,27 +19,29 @@ rtk git clone https://github.com/syahrilTGR/Template-Research .agents/_bridge_up
 
 ---
 
-## Step 2: Eksekusi Update (Comprehensive System Audit)
+## Step 2: Eksekusi Update (Safe Smart-Audit)
 
-Asisten WAJIB melakukan audit menyeluruh antara folder lokal dan folder `.agents/_bridge_update_`. 
+Asisten WAJIB melakukan backup infrastruktur saat ini dan melakukan audit manual sebelum melakukan pembaruan.
 
-**Aturan Grafting (Pencangkokan):**
+**1. Create Safety Backup:**
+// turbo
+```powershell
+# Backup folder .agents dan scripts ke folder timestamp
+$timestamp = Get-Date -Format "yyyyMMdd_HHmm"
+$backupDir = ".agents/backups/infra_pre_update_$timestamp"
+New-Item -ItemType Directory -Path $backupDir -Force
+robocopy ".agents" "$backupDir/.agents" /E /XD "backups" "_bridge_update_" /TBD /NP
+robocopy "scripts" "$backupDir/scripts" /E /TBD /NP
+echo "Backup saved to $backupDir"
+```
 
-1.  **Infrastructure Sync (OVERWRITE IF NEWER)**: 
-    - Seluruh isi folder `.agents/` (Skills, Workflows, Plugins).
-    - Seluruh isi folder `scripts/`.
-    - Seluruh file utility di root (e.g., `*.ps1`, `*.py`, `.antigravityignore`).
-2.  **Research Guard (DO NOT OVERWRITE)**:
-    - `references/` (PDF Jurnal user).
-    - `supportFiles/handoff/` (Draf tulisan user).
-    - `intelligence/` (Catatan penelitian).
-    - `example/` (Kecuali jika user meminta update template contoh).
-3.  **Identity Preservation**: 
-    - Pada `gemini.md`, hanya perbarui bagian **AI AUDITOR** (v1.0.x dll). 
-    - **JANGAN** menyentuh bagian `## 🎯 Project Identity` dan `## 💻 Environment & Technical Context`. Itu adalah data pribadi user.
+**2. Smart Audit (Instruksi untuk Agent):**
+Agen wajib melakukan perbandingan antara folder lokal dan `.agents/_bridge_update_`.
+> *"Bandingkan file-file di folder `.agents/` dan `scripts/`. Tampilkan daftar file yang memiliki perbedaan konten (DIFF) kepada user. Tanyakan persetujuan user sebelum menimpa file, terutama untuk file Workflow (.md) yang mungkin sudah dimodifikasi kustom oleh user."*
 
-**Instruksi untuk Agent:**
-> *"Lakukan audit perbandingan folder antara proyek ini dan `.agents/_bridge_update_`. Ganti/tambahkan file infrastruktur (Skills, Workflows, Scripts, Root Files) dengan versi terbaru. JANGAN hapus atau modifikasi folder draf/riset (handoff, references, intelligence). Laporkan ringkasan 'What's New' berdasarkan CHANGELOG.md terbaru."*
+**3. Selective Grafting:**
+- File **Sistem/Script** (`.py`, `.ps1`) yang bersifat *engine* disarankan untuk diperbarui.
+- File **Workflow** (`.md`) disarankan untuk ditinjau ulang agar modifikasi kustom user tidak hilang.
 
 ---
 
