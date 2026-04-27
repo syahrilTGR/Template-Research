@@ -35,9 +35,9 @@ robocopy "scripts" "$backupDir/scripts" /E /TBD /NP
 echo "Backup saved to $backupDir"
 ```
 
-**2. Smart Audit (Instruksi untuk Agent):**
+**2. Infra Audit Dashboard (MANDATORI):**
 Agen wajib melakukan perbandingan antara folder lokal dan `.agents/_bridge_update_`.
-> *"Bandingkan file-file di folder `.agents/` dan `scripts/`. Tampilkan daftar file yang memiliki perbedaan konten (DIFF) kepada user. Tanyakan persetujuan user sebelum menimpa file, terutama untuk file Workflow (.md) yang mungkin sudah dimodifikasi kustom oleh user."*
+> *"Gunakan tools pembanding untuk melihat perbedaan konten. **WAJIB** buat sebuah **Artifact: Infra Audit Dashboard** berisi tabel: | File | Status | Perubahan | Rekomendasi |. Status 'Modified' diberikan jika file lokal mengandung kustomisasi user (seperti identitas/prose) yang tidak ada di pusat. Jangan menimpa file tanpa persetujuan eksplisit user terhadap dashboard tersebut."*
 
 **3. Selective Grafting:**
 - File **Sistem/Script** (`.py`, `.ps1`) yang bersifat *engine* disarankan untuk diperbarui.

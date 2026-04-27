@@ -2,6 +2,17 @@
 
 Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 
+## [v1.0.3] — 2026-04-28
+
+### Added
+- **Precise Code Extraction**: Penambahan skrip `extract_code.py` untuk ekstraksi blok kode karakter-per-karakter dari XML Word secara presisi.
+- **High-Fidelity Docx SOP**: Sinkronisasi skill `docx` dengan standar global (Audit-Draft-Build-Verify).
+- **Safe-Grafting Hotfix**: Injeksi protokol keamanan update-infra langsung ke `gemini.md` untuk menjamin backup otomatis.
+- **Infra Audit Dashboard**: Sistem pelaporan update interaktif via Artifact untuk transparansi penuh sebelum melakukan overwriting file.
+
+### Changed
+- Hardening workflow `/update-infra` dengan protokol **Smart Audit & Backup** untuk melindungi kustomisasi user.
+
 ## [v1.0.2] — 2026-04-26
 
 ### Added

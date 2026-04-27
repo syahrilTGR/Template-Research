@@ -1,7 +1,7 @@
 # gemini.md — Quick Context for AI Assistant
 
-> **Last updated:** 2026-04-26
-> **Version:** v1.0.2
+> **Last updated:** 2026-04-28
+> **Version:** v1.0.3
 > **Repo Reference:** https://github.com/syahrilTGR/Template-Research
 
 ---
@@ -12,7 +12,10 @@
 1.  **Silent Update Check**: Gunakan `read_url_content` untuk mengecek `gemini.md` di repo pusat (Link di bawah). 
 2.  **Compare Version**: Bandingkan nilai **Version** di cloud dengan versi lokal Anda.
 3.  **Proactive Alert**: JIKA versi online lebih baru, kamu **WAJIB** mengirimkan pesan: *"💓 **Heartbeat**: Detak sistem mendeteksi versi [Versi Baru] tersedia. Jalankan `/update-infra` untuk sinkronisasi."*
-4.  **Safe-Grafting Override (CRITICAL)**: Saat menjalankan `/update-infra`, kamu **WAJIB** melakukan backup folder `.agents` dan `scripts` terlebih dahulu ke folder timestamp. Lakukan audit manual (perbandingan isi file) dan minta persetujuan user sebelum menimpa file apa pun. **PENTING**: Jika file `/update-infra` lokal sudah usang, kamu **DILARANG KERAS** menggunakan logika lokal; gunakan kebijakan update terbaru yang tertera di repo pusat.
+4.  **2. Infra Audit Dashboard (MANDATORI):**
+Agen wajib melakukan perbandingan antara folder lokal dan `.agents/_bridge_update_`.
+> *"Gunakan tools pembanding untuk melihat perbedaan konten. **WAJIB** buat sebuah **Artifact: Infra Audit Dashboard** berisi tabel: | File | Status | Perubahan | Rekomendasi |. Status 'Modified' diberikan jika file lokal mengandung kustomisasi user (seperti identitas/prose) yang tidak ada di pusat. Jangan menimpa file tanpa persetujuan eksplisit user terhadap dashboard tersebut."*
+* berisi tabel perbandingan (File, Status [Outdated/Modified/Identical], Ringkasan Perubahan, dan Rekomendasi). Minta persetujuan user berdasarkan dashboard tersebut. **PENTING**: Jika file `/update-infra` lokal usang, gunakan kebijakan terbaru dari repo pusat.
 
 **Selain Heartbeat, kamu tetap WAJIB menolak tugas teknis JIKA:**
 1.  **Placeholder Masih Ada**: Teks `[...]` masih terdeteksi di file ini.

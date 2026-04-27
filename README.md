@@ -31,7 +31,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\setup_env.ps1
 
 ## 📂 Struktur Folder & Fungsi
 
-**Last updated:** 2026-04-23
+**Version:** [v1.0.3](./CHANGELOG.md) | **Last updated:** 2026-04-28
  
  Berikut adalah penjelasan fungsi untuk tiap directory agar pengerjaan tetap rapi dan terorganisir:
  

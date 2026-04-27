@@ -14,7 +14,8 @@ A .docx file is a ZIP archive containing XML files.
 
 | Task | Approach |
 |------|----------|
-| **Python Execution** | **MANDATORY**: Use `python` (or use your project's venv) |
+| **Python Execution** | **MANDATORY**: Prefix all python commands with `python` |
+| **Script Location** | **GLOBAL**: Scripts are located in the Antigravity global directory: `C:\Users\[Username]\.gemini\antigravity\skills\docx\scripts` |
 | Read/analyze content | `unpack` for raw XML (Pandoc is [OPTIONAL]) |
 | Create new document | Use `docx-js` - see Creating New Documents below |
 | Edit existing document | Unpack → edit XML → repack - see Editing Existing Documents below |
@@ -33,8 +34,7 @@ python scripts/office/soffice.py --headless --convert-to docx document.doc
 # [OPTIONAL - REQUIRES PANDOC] Text extraction with tracked changes
 # pandoc --track-changes=all document.docx -o output.md
 
-```bash
-# Raw XML access
+# Raw XML access (Standard EcoBin Approach)
 python scripts/office/unpack.py document.docx unpacked/
 ```
 
@@ -55,20 +55,35 @@ python scripts/accept_changes.py input.docx output.docx
 
 ---
 
+## Re-Engineering Strategy (The Audit-First Approach)
+
+Untuk menghasilkan dokumen yang identik 100% dengan referensi (High-Fidelity), ikuti fase **Audit-Draft-Build-Verify**:
+
+### Phase 1: Mandatory Audit Checklist
+Sebelum menulis kode, bongkar file referensi (`unpack`) dan identifikasi elemen berikut:
+
+> [!TIP]
+> **Automated Code Extraction**: Jika dokumen referensi memiliki blok kode, **JANGAN** mengetik ulang secara manual. Gunakan skrip `extract_code.py` di folder global `scripts/` untuk mengekstraksi teks karakter-per-karakter dari XML asli guna menghindari kesalahan tipografi.
+
+| Element | XML Tag | What to Look For | Unit |
+|---------|---------|------------------|------|
+| **Page Size** | `<w:pgSz>` | Width & Height | DXA |
+| **Margins** | `<w:pgMar>` | Top, Bottom, Left, Right | DXA |
+| **Font Family** | `<w:rFonts>` | `ascii` or `hAnsi` (The TRUE font name) | String |
+| **Font Size** | `<w:sz>` | Value / 2 = pt size (e.g., 24 = 12pt) | Half-pt |
+| **Spacing** | `<w:spacing>` | `line` (line height), `before`, `after` | DXA |
+| **Alignment** | `<w:jc>` | `both` (justified), `center`, `start` | Enum |
+| **Indentation** | `<w:ind>` | `left`, `hanging`, `firstLine` | DXA |
+| **Numbering** | `<w:numPr>` | `numId` and `ilvl` for list consistency | ID |
+
+### Phase 2: Implementation Blueprint
+Gunakan hasil audit di atas sebagai konstanta dalam skrip JavaScript. Jangan menebak nilai.
+
+---
+
 ## Creating New Documents
 
-Generate .docx files with JavaScript, then validate. 
-
-### Global Installation & Environment
-To avoid local `node_modules` clutter, install `docx` globally and configure Windows to find it:
-
-1. **Install Global**: `npm install -g docx`
-2. **Set NODE_PATH**: 
-   ```powershell
-   [System.Environment]::SetEnvironmentVariable("NODE_PATH", "C:\Users\Syahril\AppData\Roaming\npm\node_modules", "User")
-   ```
-3. **Restart Antigravity**: For the new environment variables to take effect.
-
+Generate .docx files with JavaScript, then validate. Install: `npm install -g docx`
 
 ### Setup
 ```javascript
@@ -126,31 +141,40 @@ size: {
 // Content width = 15840 - left margin - right margin (uses the long edge)
 ```
 
-### Styles (Override Built-in Headings)
+### Styles (Dynamic Auditing)
 
-Use Arial as the default font (universally supported). Keep titles black for readability.
+**MANDATORY**: Jangan menggunakan font default (Arial/Calibri). Ambil font dari hasil Audit XML (`styles.xml`). Gunakan pola **Modular Helper Functions** untuk konsistensi.
 
 ```javascript
+// Example: Implementation based on XML Audit results
+const FONT_NAME = "Times New Roman"; // Derived from <w:rFonts w:ascii="..." />
+const LINE_SPACING = 360;           // Derived from <w:spacing w:line="..." />
+
+const body = (text) => new Paragraph({
+  alignment: AlignmentType.JUSTIFIED,
+  spacing: { line: LINE_SPACING },
+  children: [new TextRun({ text, font: FONT_NAME, size: 24 })] // 24 = 12pt
+});
+
+const h2 = (text, number) => new Paragraph({
+  heading: HeadingLevel.HEADING_2,
+  spacing: { before: 240, after: 120 },
+  children: [new TextRun({ text: `${number} ${text}`, font: FONT_NAME, size: 28, bold: true })]
+});
+
 const doc = new Document({
   styles: {
-    default: { 
-      document: { 
-        run: { font: "Times New Roman", size: 24 }, // 12pt (standard)
-        paragraph: { alignment: AlignmentType.JUSTIFIED } 
-      } 
-    },
+    default: { document: { run: { font: FONT_NAME, size: 24 } } },
     paragraphStyles: [
-      { id: "Heading1", name: "Heading 1", basedOn: "Normal", next: "Normal", quickFormat: true,
-        run: { size: 32, bold: true, font: "Times New Roman" },
-        paragraph: { spacing: { before: 240, after: 240 }, outlineLevel: 0 } },
       { id: "Heading2", name: "Heading 2", basedOn: "Normal", next: "Normal", quickFormat: true,
-        run: { size: 28, bold: true, font: "Times New Roman" },
-        paragraph: { spacing: { before: 180, after: 180 }, outlineLevel: 1 } },
+        run: { size: 28, bold: true, font: FONT_NAME },
+        paragraph: { spacing: { before: 240, after: 120 }, outlineLevel: 1 } },
     ]
   },
   sections: [{
     children: [
-      new Paragraph({ heading: HeadingLevel.HEADING_1, children: [new TextRun("Title")] }),
+      h2("Theory", "1.2"),
+      body("This paragraph uses styles derived directly from the XML audit."),
     ]
   }]
 });
@@ -237,19 +261,34 @@ columnWidths: [7000, 2360]  // Must sum to table width
 - Cell `margins` are internal padding - they reduce content area, not add to cell width
 - For full-width tables: use content width (page width minus left and right margins)
 
-### Images
+### Images (Preservasi Aspect Ratio)
+
+**MANDATORY**: Foto hitungan manual atau screenshot seringkali memiliki rasio yang tidak standar. Memasukkan dimensi secara menebak atau *hardcode* akan membuat gambar distorsi ("gepeng"). Selalu gunakan pendekatan **Calculated Scaling**:
+
+1.  **Audit Dimensi Asli**: Cek properti file (lebar & tinggi asli dalam pixel).
+2.  **Pilih Anchor Width**: Tentukan lebar yang diinginkan (misal: sesuai lebar konten halaman ~9360 DXA atau ukuran standar foto ~450px).
+3.  **Hitung Tinggi Proporsional**: 
+    *   `TargetHeight = TargetWidth * (OriginalHeight / OriginalWidth)`
+
+#### **Best Practice: Image Helper (Node.js)**
+Gunakan fungsi pembantu di dalam skrip builder untuk memastikan rasio tetap konsisten:
 
 ```javascript
-// CRITICAL: type parameter is REQUIRED
-new Paragraph({
-  children: [new ImageRun({
-    type: "png", // Required: png, jpg, jpeg, gif, bmp, svg
-    data: fs.readFileSync("image.png"),
-    transformation: { width: 200, height: 150 },
-    altText: { title: "Title", description: "Desc", name: "Name" } // All three required
-  })]
+// Helper untuk menghitung dimensi proporsional
+const getScaledDims = (originalW, originalH, targetW) => ({
+    width: targetW,
+    height: targetW * (originalH / originalW)
+});
+
+// Implementasi
+new ImageRun({
+    data: fs.readFileSync("manual_calc.png"),
+    transformation: getScaledDims(1200, 1600, 450), // Rasio tetap terjaga
 })
 ```
+
+> [!CAUTION]
+> Kegagalan menjaga aspect ratio pada dokumen akademik (terutama pada grafik/hitungan) dianggap sebagai cacat profesional. Selalu audit dimensi sebelum build.
 
 ### Page Breaks
 
@@ -392,53 +431,15 @@ sections: [{
 }]
 ```
 
-### Specialized Academic Components
-
-#### noteBox (Callout/Teori)
-Tabel dengan border tebal di sisi kiri untuk menonjolkan teori atau rumus penting.
-```javascript
-new Table({
-  width: { size: 9360, type: WidthType.DXA },
-  columnWidths: [9360],
-  rows: [
-    new TableRow({
-      children: [
-        new TableCell({
-          borders: {
-            left: { style: BorderStyle.SINGLE, size: 40, color: "000000" }, // Tebal kiri
-            top: { style: BorderStyle.NIL },
-            bottom: { style: BorderStyle.NIL },
-            right: { style: BorderStyle.NIL },
-          },
-          shading: { fill: "F3F3F3", type: ShadingType.CLEAR },
-          children: [new Paragraph({ children: [new TextRun({ text: "Teori Penting: ...", bold: true })] })]
-        })
-      ]
-    })
-  ]
-});
-```
-
-#### Iteration Table (Monospace Alignment)
-Gunakan `Courier New` agar angka desimal sejajar secara vertikal.
-```javascript
-new TableCell({
-  children: [new Paragraph({ 
-    alignment: AlignmentType.RIGHT,
-    children: [new TextRun({ text: "0.12345", font: "Courier New" })] 
-  })]
-});
-```
-
 ### Critical Rules for docx-js
 
-- **Template First**: Always `unpack` the user's reference document to extract exact font names, sizing (`sz`), spacing (`line`), and margins.
-- **Set page size explicitly** - docx-js defaults to A4; use US Letter (12240 x 15840 DXA) only if explicitly requested.
+- **Set page size explicitly** - docx-js defaults to A4; use US Letter (12240 x 15840 DXA) for US documents
 - **Landscape: pass portrait dimensions** - docx-js swaps width/height internally; pass short edge as `width`, long edge as `height`, and set `orientation: PageOrientation.LANDSCAPE`
 - **Never use `\n`** - use separate Paragraph elements
 - **Never use unicode bullets** - use `LevelFormat.BULLET` with numbering config
 - **PageBreak must be in Paragraph** - standalone creates invalid XML
 - **ImageRun requires `type`** - always specify png/jpg/etc
+- **Always audit image aspect ratio** - use calculated height based on intrinsic dimensions to prevent "gepeng" (distorted) images
 - **Always set table `width` with DXA** - never use `WidthType.PERCENTAGE` (breaks in Google Docs)
 - **Tables need dual widths** - `columnWidths` array AND cell `width`, both must match
 - **Table width = sum of columnWidths** - for DXA, ensure they add up exactly
@@ -494,6 +495,32 @@ Then add markers to document.xml (see Comments in XML Reference).
 python scripts/office/pack.py unpacked/ output.docx --original document.docx
 ```
 Validates with auto-repair, condenses XML, and creates DOCX. Use `--validate false` to skip.
+
+---
+
+## 🛠️ Advanced: Surgical XML Editing (High-Fidelity Manual)
+
+Use this method if automation scripts fail or if working with sensitive IEEE/academic templates that require strict XML structural integrity.
+
+### 1. Surgical Text Replacement
+Avoid performing bulk text replacements across the entire XML file. Use `multi_replace_file_content` targeting small, specific blocks (per paragraph or per heading) to minimize the risk of mismatched tags.
+
+### 2. Manual Media Injection
+To insert new images manually:
+1.  **Copy**: Move the image file to `unpacked/word/media/`.
+2.  **Relate**: Open `unpacked/word/_rels/document.xml.rels` and add a new relationship (or overwrite an existing one) with a unique `Id` (e.g., `rId15`).
+3.  **Audit Cleanup**: If overwriting an existing relationship (e.g., replacing `.jpeg` with `.png`), ensure the old file is deleted from the `media` folder to prevent "Unreferenced file" errors during packing.
+4.  **Inject**: Insert the `<w:drawing>` block into `document.xml` referencing the corresponding `rId`.
+
+### 3. XML Integrity Audit
+If packing fails due to validation errors:
+- Use a tracking script (e.g., `find_stray.py`) to locate runaway `<w:t>` elements or closing `</w:p>` tags that are not properly nested.
+- Word XML rules are strict: Text (`<w:t>`) **MUST** be inside a Run (`<w:r>`), and a Run **MUST** be inside a Paragraph (`<w:p>`).
+
+### 4. Final Packing
+Always use the `--original [template.docx]` flag when running `pack.py` to ensure that 100% of the original template's metadata, properties, and styles are preserved.
+
+---
 
 **Auto-repair will fix:**
 - `durableId` >= 0x7FFFFFFF (regenerates valid ID)
@@ -641,6 +668,7 @@ After running `comment.py` (see Step 2), add markers to document.xml. For replie
 ## Dependencies
 
 - **pandoc**: Text extraction
+- **extract_code.py**: Skrip Python di folder global `scripts/` untuk ekstraksi teks kode dari XML secara presisi.
 - **docx**: `npm install -g docx` (new documents)
 - **LibreOffice**: PDF conversion (auto-configured for sandboxed environments via `scripts/office/soffice.py`)
 - **Poppler**: `pdftoppm` for images
