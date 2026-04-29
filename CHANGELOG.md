@@ -2,6 +2,14 @@
 
 Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 
+## [v1.0.4] — 2026-04-29
+
+### Added
+- **Surgical XML Math Equation Insertion**: Panduan teknis baru untuk injeksi rumus matematika (`OMath`) secara presisi ke dalam struktur XML Word menggunakan font **Cambria Math**.
+- **LaTeX-to-XML Mapping SOP**: Standar operasional untuk konversi manual notasi matematika kompleks (superscript, subscript, fraction) ke format OOXML.
+- **Interactive Math Workflow**: Protokol keamanan 2-tahap (Draft -> Verify -> Surgical Convert) untuk mencegah kerusakan file saat melakukan injeksi rumus matematika.
+- **Infra Audit Dashboard**: Protokol mandatori untuk transparansi update infrastruktur via tabel perbandingan otomatis.
+
 ## [v1.0.3] — 2026-04-28
 
 ### Added

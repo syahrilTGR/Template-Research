@@ -14,8 +14,8 @@ A .docx file is a ZIP archive containing XML files.
 
 | Task | Approach |
 |------|----------|
-| **Python Execution** | **MANDATORY**: Prefix all python commands with `python` |
-| **Script Location** | **GLOBAL**: Scripts are located in the Antigravity global directory: `C:\Users\[Username]\.gemini\antigravity\skills\docx\scripts` |
+| **EcoBin Default** | **MANDATORY**: Prefix all python commands with `conda run -n train_mx150 python` |
+| **Script Location** | **GLOBAL**: Scripts are located in the Antigravity global directory: `C:\Users\Syahril\.gemini\antigravity\skills\docx\scripts` |
 | Read/analyze content | `unpack` for raw XML (Pandoc is [OPTIONAL]) |
 | Create new document | Use `docx-js` - see Creating New Documents below |
 | Edit existing document | Unpack → edit XML → repack - see Editing Existing Documents below |
@@ -25,7 +25,7 @@ A .docx file is a ZIP archive containing XML files.
 Legacy `.doc` files must be converted before editing (requires LibreOffice):
 
 ```bash
-python scripts/office/soffice.py --headless --convert-to docx document.doc
+conda run -n train_mx150 python scripts/office/soffice.py --headless --convert-to docx document.doc
 ```
 
 ### Reading Content
@@ -35,13 +35,13 @@ python scripts/office/soffice.py --headless --convert-to docx document.doc
 # pandoc --track-changes=all document.docx -o output.md
 
 # Raw XML access (Standard EcoBin Approach)
-python scripts/office/unpack.py document.docx unpacked/
+conda run -n train_mx150 python scripts/office/unpack.py document.docx unpacked/
 ```
 
 ### Converting to Images [OPTIONAL - REQUIRES LIBREOFFICE/POPPLER]
 
 ```bash
-python scripts/office/soffice.py --headless --convert-to pdf document.docx
+conda run -n train_mx150 python scripts/office/soffice.py --headless --convert-to pdf document.docx
 pdftoppm -jpeg -r 150 document.pdf page
 ```
 
@@ -50,20 +50,20 @@ pdftoppm -jpeg -r 150 document.pdf page
 To produce a clean document with all tracked changes accepted (requires LibreOffice):
 
 ```bash
-python scripts/accept_changes.py input.docx output.docx
+conda run -n train_mx150 python scripts/accept_changes.py input.docx output.docx
 ```
 
 ---
 
 ## Re-Engineering Strategy (The Audit-First Approach)
 
-Untuk menghasilkan dokumen yang identik 100% dengan referensi (High-Fidelity), ikuti fase **Audit-Draft-Build-Verify**:
+To produce a document that is 100% identical to the reference (High-Fidelity), follow the **Audit-Draft-Build-Verify** phase:
 
 ### Phase 1: Mandatory Audit Checklist
-Sebelum menulis kode, bongkar file referensi (`unpack`) dan identifikasi elemen berikut:
+Before writing any code, disassemble the reference file (`unpack`) and identify the following elements:
 
 > [!TIP]
-> **Automated Code Extraction**: Jika dokumen referensi memiliki blok kode, **JANGAN** mengetik ulang secara manual. Gunakan skrip `extract_code.py` di folder global `scripts/` untuk mengekstraksi teks karakter-per-karakter dari XML asli guna menghindari kesalahan tipografi.
+> **Automated Code Extraction**: If the reference document has code blocks, **DO NOT** re-type them manually. Use the `extract_code.py` script in the global `scripts/` folder to extract text character-by-character from the original XML to avoid typographical errors.
 
 | Element | XML Tag | What to Look For | Unit |
 |---------|---------|------------------|------|
@@ -143,7 +143,7 @@ size: {
 
 ### Styles (Dynamic Auditing)
 
-**MANDATORY**: Jangan menggunakan font default (Arial/Calibri). Ambil font dari hasil Audit XML (`styles.xml`). Gunakan pola **Modular Helper Functions** untuk konsistensi.
+**MANDATORY**: Do not use default fonts (Arial/Calibri). Extract the font name from the XML audit results (`styles.xml`). Use a **Modular Helper Functions** pattern for consistency.
 
 ```javascript
 // Example: Implementation based on XML Audit results
@@ -263,7 +263,7 @@ columnWidths: [7000, 2360]  // Must sum to table width
 
 ### Images (Preservasi Aspect Ratio)
 
-**MANDATORY**: Foto hitungan manual atau screenshot seringkali memiliki rasio yang tidak standar. Memasukkan dimensi secara menebak atau *hardcode* akan membuat gambar distorsi ("gepeng"). Selalu gunakan pendekatan **Calculated Scaling**:
+**MANDATORY**: Photos of manual calculations or screenshots often have non-standard ratios. Specifying dimensions by guessing or hardcoding will cause image distortion ("stretching"). Always use a **Calculated Scaling** approach:
 
 1.  **Audit Dimensi Asli**: Cek properti file (lebar & tinggi asli dalam pixel).
 2.  **Pilih Anchor Width**: Tentukan lebar yang diinginkan (misal: sesuai lebar konten halaman ~9360 DXA atau ukuran standar foto ~450px).
@@ -271,7 +271,7 @@ columnWidths: [7000, 2360]  // Must sum to table width
     *   `TargetHeight = TargetWidth * (OriginalHeight / OriginalWidth)`
 
 #### **Best Practice: Image Helper (Node.js)**
-Gunakan fungsi pembantu di dalam skrip builder untuk memastikan rasio tetap konsisten:
+Use helper functions in the builder script to ensure the ratio remains consistent:
 
 ```javascript
 // Helper untuk menghitung dimensi proporsional
@@ -288,7 +288,7 @@ new ImageRun({
 ```
 
 > [!CAUTION]
-> Kegagalan menjaga aspect ratio pada dokumen akademik (terutama pada grafik/hitungan) dianggap sebagai cacat profesional. Selalu audit dimensi sebelum build.
+> Failure to maintain the aspect ratio in academic documents (especially in graphs/calculations) is considered a professional flaw. Always audit dimensions before building.
 
 ### Page Breaks
 
@@ -520,6 +520,88 @@ If packing fails due to validation errors:
 ### 4. Final Packing
 Always use the `--original [template.docx]` flag when running `pack.py` to ensure that 100% of the original template's metadata, properties, and styles are preserved.
 
+### 5. Critical Desktop Word Compatibility Standards
+Desktop Word (2013+) is significantly stricter than Word Online or Google Docs. Violation of these rules will cause a "Catastrophic Failure" or "Word experienced an error" dialog:
+
+> [!IMPORTANT]
+> **Rule 1: ID constraint (`paraId`)**
+> All `<w:p>` elements must have a valid `w14:paraId` attribute. This ID value **MUST** be a hexadecimal representing a **positive 32-bit signed integer** (range `00000001` to `7FFFFFFF`). If an ID starts with `8-F`, Word Desktop will treat the document as corrupt.
+
+> [!IMPORTANT]
+> **Rule 2: No Nested Tags in `<w:t>`**
+> Text tags (`<w:t>`) **MUST** only contain plain text. Never place other tags (such as `<m:oMath>`, `<w:rPr>`, or `<w:br/>`) inside a `<w:t>`. If you need to insert a formula in the middle of a sentence, use the following structure:
+> `... <w:t>text before</w:t></w:r><m:oMath>...</m:oMath><w:r><w:t>text after</w:t> ...`
+
+> [!WARNING]
+> **Rule 3: Whitespace Preservation**
+> Use the `xml:space="preserve"` attribute on `<w:t>` tags if the text contains leading or trailing spaces (e.g., `<w:t xml:space="preserve"> where </w:t>`). Failure to do this will cause words to run together in Word Desktop.
+
+---
+
+### 6. Native Math Equations (OMML) Injection
+When dealing with academic or engineering documents, use **Office Math Markup Language (OMML)** instead of plain text formatting. Native equations are clickable, editable, and render with professional typography.
+
+> [!IMPORTANT]
+> **OMML vs. Text Formatting**: Do NOT use `<w:vertAlign w:val="superscript"/>` for math. It produces non-standard text runs. Always use the `<m:oMath>` structure.
+
+#### Key OMML Tags
+- `<m:oMath>`: The root container for a math expression.
+- `<m:r>`: Math Run (similar to `<w:r>`).
+- `<m:t>`: Math Text (similar to `<w:t>`).
+- `<m:sSup>`: Superscript (Base: `<m:e>`, Power: `<m:sup>`).
+- `<m:sSub>`: Subscript (Base: `<m:e>`, Index: `<m:sub>`).
+- `<m:sSubSup>`: Combined Subscript and Superscript.
+- `<m:f>`: Fraction (Numerator: `<m:num>`, Denominator: `<m:den>`).
+
+#### Implementation Pattern (LaTeX Mapping)
+To manually inject an equation into a paragraph (`<w:p>`):
+
+1. **LaTeX**: `$y^3$`
+   **XML Mapping**:
+   ```xml
+   <m:oMath>
+     <m:sSup>
+       <m:e><m:r><m:t>y</m:t></m:r></m:e>
+       <m:sup><m:r><m:t>3</m:t></m:r></m:sup>
+     </m:sSup>
+   </m:oMath>
+   ```
+
+2. **LaTeX**: `$x_0$`
+   **XML Mapping**:
+   ```xml
+   <m:oMath>
+     <m:sSub>
+       <m:e><m:r><m:t>x</m:t></m:r></m:e>
+       <m:sub><m:r><m:t>0</m:t></m:r></m:sub>
+     </m:sSub>
+   </m:oMath>
+   ```
+
+#### Mandatory Font Styling
+Equations must use **Cambria Math** to render symbols correctly. Ensure every math run (`<m:r>`) has the following property:
+```xml
+<w:rPr>
+  <w:rFonts w:ascii="Cambria Math" w:hAnsi="Cambria Math"/>
+</w:rPr>
+```
+
+---
+
+### 7. Interactive Math Workflow (Safety-First)
+To prevent document corruption and ensure content accuracy, follow this 2-step interactive workflow when a user requests to "insert LaTeX equations" or similar complex math:
+
+#### Phase A: The Plain-Text Draft
+1.  **Draft**: Insert the equations as plain text LaTeX strings (e.g., `$y^3$`, `$E=mc^2$`) inside a standard `<w:r>` or `new TextRun`.
+2.  **Verify**: Ask the user to open the draft document and confirm the mathematical notation and context are correct.
+3.  **Pre-requisite**: Do NOT perform XML surgery or OMML injection in this phase.
+
+#### Phase B: The Surgical Conversion
+1.  **Unpack**: Once the user approves the draft, disassemble the document using `unpack.py`.
+2.  **Surgical Replace**: Locate the paragraph (`<w:p>`) containing the placeholder and replace the text run with the corresponding `<m:oMath>` structure (see Section 6 for mapping).
+3.  **Apply Math Font**: Every math run (`<m:r>`) **MUST** include the `Cambria Math` font property.
+4.  **Pack & Validate**: Re-assemble the document using `pack.py` and run `validate.py` to ensure the file structure remains 100% compliant and is not corrupted.
+
 ---
 
 **Auto-repair will fix:**
@@ -668,7 +750,7 @@ After running `comment.py` (see Step 2), add markers to document.xml. For replie
 ## Dependencies
 
 - **pandoc**: Text extraction
-- **extract_code.py**: Skrip Python di folder global `scripts/` untuk ekstraksi teks kode dari XML secara presisi.
+- **extract_code.py**: Python script in the global `scripts/` folder for high-precision text extraction of code from XML.
 - **docx**: `npm install -g docx` (new documents)
 - **LibreOffice**: PDF conversion (auto-configured for sandboxed environments via `scripts/office/soffice.py`)
 - **Poppler**: `pdftoppm` for images
