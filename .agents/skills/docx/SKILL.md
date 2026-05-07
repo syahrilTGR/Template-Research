@@ -14,8 +14,8 @@ A .docx file is a ZIP archive containing XML files.
 
 | Task | Approach |
 |------|----------|
-| **EcoBin Default** | **MANDATORY**: Prefix all python commands with `conda run -n train_mx150 python` |
-| **Script Location** | **GLOBAL**: Scripts are located in the Antigravity global directory: `C:\Users\Syahril\.gemini\antigravity\skills\docx\scripts` |
+| **[Project_Name] Default** | **MANDATORY**: Prefix all python commands with `conda run -n train_mx150 python` |
+| **Script Location** | **GLOBAL**: Scripts are located in the Antigravity global directory: `C:\Users\[User_Name]\.gemini\antigravity\skills\docx\scripts` |
 | Read/analyze content | `unpack` for raw XML (Pandoc is [OPTIONAL]) |
 | Create new document | Use `docx-js` - see Creating New Documents below |
 | Edit existing document | Unpack → edit XML → repack - see Editing Existing Documents below |
@@ -34,7 +34,7 @@ conda run -n train_mx150 python scripts/office/soffice.py --headless --convert-t
 # [OPTIONAL - REQUIRES PANDOC] Text extraction with tracked changes
 # pandoc --track-changes=all document.docx -o output.md
 
-# Raw XML access (Standard EcoBin Approach)
+# Raw XML access (Standard [Project_Name] Approach)
 conda run -n train_mx150 python scripts/office/unpack.py document.docx unpacked/
 ```
 

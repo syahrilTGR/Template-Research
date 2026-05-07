@@ -213,7 +213,7 @@ Berikut adalah daftar skrip alat bantu yang sudah tertanam di `scripts/`. AI **w
 Untuk menjalankan skrip Python di atas, asisten **wajib** menggunakan executable Python dari virtual environment yang sudah dicatat:
 
 1. **Check Config**: Selalu baca file `supportFiles/.venv_config.txt` untuk mendapatkan path absolut ke `python.exe`.
-2. **Execution**: Gunakan path tersebut secara eksplisit saat menjalankan perintah melalui `run_command` (misalnya: `& "C:\Users\Syahril\thesis_venv\Scripts\python.exe" scripts/prose_auditor.py`).
+2. **Execution**: Gunakan path tersebut secara eksplisit saat menjalankan perintah melalui `run_command` (misalnya: `& "C:\Users\[User_Name]\thesis_venv\Scripts\python.exe" scripts/prose_auditor.py`).
 3. **Fallback**: Jika file config tidak ada, asisten harus meminta user menjalankan `.\scripts\setup_env.ps1` terlebih dahulu.
 
 ---

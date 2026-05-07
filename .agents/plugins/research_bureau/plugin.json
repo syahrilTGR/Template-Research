@@ -1,7 +1,7 @@
 {
   "name": "Research Bureau",
   "version": "1.1.0",
-  "description": "Multi-agent persona system for specialized academic research tasks, universalized from IL_Ecobin.",
+  "description": "Multi-agent persona system for specialized academic research tasks, universalized from [Project_Name].",
   "author": "Antigravity Research",
   "persona_path": ".agents/plugins/research_bureau/personas",
   "personas": [

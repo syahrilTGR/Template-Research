@@ -44,7 +44,7 @@ rtk powershell -c "conda run -n train_mx150 python .agents\skills\graphify\scrip
 Syncing from local graph: f:\ML_Project\Template\graphify-out\graph.json
 Graph loaded: [N] nodes, [E] edges.
 Global Research Brain Finalized!
-Updated Report saved to C:\Users\Syahril\Documents\Brain-Global-Center\GRAPH_REPORT.md
+Updated Report saved to C:\Users\[User_Name]\Documents\Brain-Global-Center\GRAPH_REPORT.md
 ```
 
 > **Peringatan**: Jika outputnya `Graph loaded: X nodes, 0 edges`, periksa apakah skrip membaca file lokal dengan benar.
@@ -55,14 +55,14 @@ Updated Report saved to C:\Users\Syahril\Documents\Brain-Global-Center\GRAPH_REP
 
 ```powershell
 # Lihat 30 baris pertama laporan untuk memeriksa God Nodes dan statistik terbaru
-rtk powershell -c "Get-Content 'C:/Users/Syahril/Documents/Brain-Global-Center/GRAPH_REPORT.md' -TotalCount 30"
+rtk powershell -c "Get-Content 'C:/Users/[User_Name]/Documents/Brain-Global-Center/GRAPH_REPORT.md' -TotalCount 30"
 ```
 
 ---
 
 ## Step 4 (Opsional): Buka Obsidian untuk Visualisasi
 
-Buka folder `C:/Users/Syahril/Documents/Brain-Global-Center/Obsidian-Vault` sebagai Vault di Obsidian
+Buka folder `C:/Users/[User_Name]/Documents/Brain-Global-Center/Obsidian-Vault` sebagai Vault di Obsidian
 untuk melihat visualisasi graph riset terbaru.
 
 ---

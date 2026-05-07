@@ -1,4 +1,4 @@
-# Quick Reference — IL EcoBin
+# Quick Reference — [Project_Name]
 
 Cheatsheet cepat untuk sesi kerja. Baca ini + handoff.md sebelum mulai.
 
