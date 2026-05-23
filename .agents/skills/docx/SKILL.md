@@ -14,18 +14,57 @@ A .docx file is a ZIP archive containing XML files.
 
 | Task | Approach |
 |------|----------|
-| **[Project_Name] Default** | **MANDATORY**: Prefix all python commands with `conda run -n train_mx150 python` |
+| **[Project_Name] Default** | **MANDATORY**: Prefix all python commands with `[PYTHON_PATH_PLACEHOLDER]` |
 | **Script Location** | **GLOBAL**: Scripts are located in the Antigravity global directory: `C:\Users\[User_Name]\.gemini\antigravity\skills\docx\scripts` |
 | Read/analyze content | `unpack` for raw XML (Pandoc is [OPTIONAL]) |
 | Create new document | Use `docx-js` - see Creating New Documents below |
-| Edit existing document | Unpack → edit XML → repack - see Editing Existing Documents below |
+| Edit existing document | Unpack â†’ edit XML â†’ repack - see Editing Existing Documents below |
+
+## ðŸš€ Dynamic Setup Protocol (FOR AGENTS)
+
+> [!IMPORTANT]
+> **If the Python path above is still `[PYTHON_PATH_PLACEHOLDER]`, the agent MUST:**
+> 1.  **Scan**: Search the workspace (`.`) and User Home (`$HOME`) for `python.exe` inside virtual environment folders (e.g., `.venv`, `venv`, `env`, `.venv_ecobin`).
+> 2.  **Prompt**: Present the discovered paths to the user and ask which one should be used for this skill.
+> 3.  **Update**: Overwrite the `[PYTHON_PATH_PLACEHOLDER]` in this file with the absolute path chosen by the user.
+
+## Mandatory Integrity Protocols ([Project_Name] Special)
+
+> [!IMPORTANT]
+> **The Zero-Summarization Rule**: When migrating theory or technical content from Markdown to .docx, **NEVER** summarize or truncate. Maintain 100% content parity. If the source has step-by-step algorithms, code blocks, or specific pitfalls, they MUST all be present in the final document.
+
+> [!WARNING]
+> **Hierarchy Integrity Check**: Be extremely vigilant with Heading Levels. Mis-assigning a Heading 2 to what should be a Heading 3 will break the document numbering (e.g., pushing section 1.3 to 1.4). Always verify the parent-child relationship of sections.
+
+> [!IMPORTANT]
+> **Black Only Rule**: Selalu gunakan warna hitam (`000000`) untuk semua elemen teks. Hindari warna otomatis atau warna tema (seperti biru pada heading default) untuk mencegah korupsi XML atau ketidakkonsistenan pada Word Desktop.
+
+> [!IMPORTANT]
+> **Academic Styling & Layout Rules**:
+> - **Primary Font**: Must use **Times New Roman** sized **12pt** for body paragraphs (size `24` in docx-js) and **14pt** for Headings (size `28` in docx-js).
+> - **Text Alignment**: Use **Justified** alignment (`AlignmentType.JUSTIFIED` or `<w:jc w:val="both"/>` in XML) for formal academic density.
+> - **Dual-Width Tables**: Always define explicit widths in twips/DXA (`WidthType.DXA`) on both the parent `<w:tblW>` and each cell `<w:tcW>`. Sum of cells must equal the table width. Never use percentages.
+> - **Table Shading**: Use `ShadingType.CLEAR` (not SOLID) for cell shading to prevent backgrounds from rendering as solid black on Word Desktop.
+> - **Monospace Numerical Tables**: Use a monospace font (**Courier New**) inside table cells for numerical calculations so decimal numbers align vertically.
+> - **Aspect Ratio Auditing**: When embedding graphics, always audit original dimensions beforehand and calculate heights: `TargetHeight = TargetWidth * (OriginalHeight / OriginalWidth)` to prevent image stretching/distortion.
+
+> [!IMPORTANT]
+> **Environment Rule**: Always use `[PYTHON_PATH_PLACEHOLDER]` for all Python-based office tools (recalc, unpack, etc.) in this workspace.
+
+> [!CAUTION]
+> **Desktop Word XML Integrity Rules**:
+> - **ID Constraint (`paraId`)**: All `<w:p>` elements must have a valid `w14:paraId`. This ID **MUST** represent a **positive signed 32-bit integer** (`00000001` to `7FFFFFFF`). Starting with `8-F` triggers immediate corruption flags on Word Desktop.
+> - **No Nested Tags in `<w:t>`**: Text tags (`<w:t>`) must strictly contain raw text only. Keep math runs (`<m:oMath>`), run properties (`<w:rPr>`), and line breaks (`<w:br/>`) outside `<w:t>`.
+> - **Whitespace Preservation**: Use the `xml:space="preserve"` attribute on `<w:t>` elements if the text contains leading or trailing spaces (e.g., `<w:t xml:space="preserve"> where </w:t>`).
+
+---
 
 ### Converting .doc to .docx [OPTIONAL - REQUIRES LIBREOFFICE]
 
 Legacy `.doc` files must be converted before editing (requires LibreOffice):
 
 ```bash
-conda run -n train_mx150 python scripts/office/soffice.py --headless --convert-to docx document.doc
+[PYTHON_PATH_PLACEHOLDER] scripts/office/soffice.py --headless --convert-to docx document.doc
 ```
 
 ### Reading Content
@@ -35,13 +74,13 @@ conda run -n train_mx150 python scripts/office/soffice.py --headless --convert-t
 # pandoc --track-changes=all document.docx -o output.md
 
 # Raw XML access (Standard [Project_Name] Approach)
-conda run -n train_mx150 python scripts/office/unpack.py document.docx unpacked/
+[PYTHON_PATH_PLACEHOLDER] scripts/office/unpack.py document.docx unpacked/
 ```
 
 ### Converting to Images [OPTIONAL - REQUIRES LIBREOFFICE/POPPLER]
 
 ```bash
-conda run -n train_mx150 python scripts/office/soffice.py --headless --convert-to pdf document.docx
+[PYTHON_PATH_PLACEHOLDER] scripts/office/soffice.py --headless --convert-to pdf document.docx
 pdftoppm -jpeg -r 150 document.pdf page
 ```
 
@@ -50,17 +89,69 @@ pdftoppm -jpeg -r 150 document.pdf page
 To produce a clean document with all tracked changes accepted (requires LibreOffice):
 
 ```bash
-conda run -n train_mx150 python scripts/accept_changes.py input.docx output.docx
+[PYTHON_PATH_PLACEHOLDER] scripts/accept_changes.py input.docx output.docx
 ```
 
 ---
 
 ## Re-Engineering Strategy (The Audit-First Approach)
 
-To produce a document that is 100% identical to the reference (High-Fidelity), follow the **Audit-Draft-Build-Verify** phase:
+To produce a document that is 100% identical to the reference (High-Fidelity), follow this systematic **4-Step Pipeline**:
+
+### Step 1: Raw Text Extraction & Unpacking
+- **Text Extraction**: Convert the blank instructor template `.docx` back to markdown to understand the initial structure:
+  ```bash
+  [PYTHON_PATH_PLACEHOLDER] scripts/office/extract_docx.py template.docx output.md
+  ```
+- **Package Unpacking**: Disassemble the template into raw OpenXML folders to access the core XML files (`word/document.xml`, `word/styles.xml`, `word/_rels/document.xml.rels`):
+  ```bash
+  [PYTHON_PATH_PLACEHOLDER] scripts/office/unpack.py template.docx unpacked_folder
+  ```
+
+### Step 2: Syllabus Audit & Structural Blueprinting
+- Extract the text of the teacher's assignment/syllabus file.
+- Compare the assignment's objectives, procedures, and calculations against the blank template.
+- Record the final integrated structure into a clean Markdown specification file (e.g., `structure_laporan.md`). This acts as the definitive design blueprint.
+
+### Step 3: High-Fidelity Surgical XML Injection
+- Open the unpacked template's `word/document.xml` and surgically insert the audited sections, headings, list paragraphs, and native OMML equations.
+- **Rules for compliance**:
+  - Set Heading levels strictly (H1, H2, H3) to maintain automated Table of Contents numbering.
+  - Format all code blocks using custom-themed Callout Boxes (single-cell table with a thick blue left border and light blue shading).
+  - Maintain exact paragraph spacing (`w:spacing`) preceding justification (`w:jc`) inside all elements.
+- Repack the folder and validate XSD schemas:
+  ```bash
+  [PYTHON_PATH_PLACEHOLDER] scripts/office/pack.py unpacked_folder output.docx --original template.docx
+  [PYTHON_PATH_PLACEHOLDER] scripts/office/validate.py output.docx     
+  ```
+
+### Step 4: Decoupled Practical Implementations
+- Develop external practical components first to avoid locking or context pollution:
+  - **MATLAB Development**: Implement step-by-step mathematical codes with academic headers and annotated fit plots.
+  - **Excel Modeling**: Build a live dynamic spreadsheet (`Linear Regression.xlsx`) using live formulas.
+  - **Flowchart Drafting**: Create structured, balanced Draw.io flowcharts.
+- Once these items are ready, take screenshots and insert them into the designated figure captions in the surgically assembled Word document.
+
+---
+
+### ðŸ”’ File Lock & Shadow Packaging Fallback (Desktop Word Locks)
+When Desktop Word is running, the target `.docx` file will be locked exclusively by the OS, causing a `PermissionError` when running `pack.py`.
+To handle this gracefully:
+1. **Detect Lock**: The updated `pack.py` script automatically catches the locked file exception.
+2. **Compile Shadow File**: It compiles to a shadow copy: `_temp.docx` instead of failing.    
+3. **Generate Swap Script**: It writes a Python sync helper `sync_docx.py` in the workspace root.
+4. **User Action**: The sync helper waits until Word is closed, then safely performs the atomic replace operation.
+
+---
 
 ### Phase 1: Mandatory Audit Checklist
 Before writing any code, disassemble the reference file (`unpack`) and identify the following elements:
+
+> [!IMPORTANT]
+> **The Zero-Summarization Rule**: When migrating theory or technical content from Markdown to .docx, **NEVER** summarize or truncate. Maintain 100% content parity. If the source has step-by-step algorithms, code blocks, or specific pitfalls, they MUST all be present in the final document.
+
+> [!WARNING]
+> **Hierarchy Integrity Check**: Be extremely vigilant with Heading Levels. Mis-assigning a Heading 2 to what should be a Heading 3 will break the document numbering (e.g., pushing section 1.3 to 1.4). Always verify the parent-child relationship of sections.
 
 > [!TIP]
 > **Automated Code Extraction**: If the reference document has code blocks, **DO NOT** re-type them manually. Use the `extract_code.py` script in the global `scripts/` folder to extract text character-by-character from the original XML to avoid typographical errors.
@@ -77,9 +168,17 @@ Before writing any code, disassemble the reference file (`unpack`) and identify 
 | **Numbering** | `<w:numPr>` | `numId` and `ilvl` for list consistency | ID |
 
 ### Phase 2: Implementation Blueprint
-Gunakan hasil audit di atas sebagai konstanta dalam skrip JavaScript. Jangan menebak nilai.
+Use the audit results above as constants in your builder scripts or XML templates. Never guess values.
 
----
+### Phase 3: Build & Refine
+Execute the script to generate the document. If any manual XML surgery is needed (e.g., for complex OMML), perform it now using the `unpack` -> edit -> `pack` workflow.
+
+### Phase 4: Final Verification Audit (MANDATORY)
+After the final `.docx` is produced, perform a reverse-extraction to verify content parity:   
+
+1.  **Extract**: Use `extract_docx.py` to convert the final `.docx` back to Markdown.
+2.  **Compare**: Compare the extraction result with the original source (Markdown/Text).      
+3.  **Validate**: Ensure all headings, code blocks, and formulas are present and correctly hierarchically structured.
 
 ## Creating New Documents
 
@@ -88,7 +187,7 @@ Generate .docx files with JavaScript, then validate. Install: `npm install -g do
 ### Setup
 ```javascript
 const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, ImageRun,
-        Header, Footer, AlignmentType, PageOrientation, LevelFormat, ExternalHyperlink,
+        Header, Footer, AlignmentType, PageOrientation, LevelFormat, ExternalHyperlink,       
         InternalHyperlink, Bookmark, FootnoteReferenceRun, PositionalTab,
         PositionalTabAlignment, PositionalTabRelativeTo, PositionalTabLeader,
         TabStopType, TabStopPosition, Column, SectionType,
@@ -100,7 +199,7 @@ Packer.toBuffer(doc).then(buffer => fs.writeFileSync("doc.docx", buffer));
 ```
 
 ### Validation
-After creating the file, validate it. If validation fails, unpack, fix the XML, and repack.
+After creating the file, validate it. If validation fails, unpack, fix the XML, and repack.   
 ```bash
 python scripts/office/validate.py doc.docx
 ```
@@ -143,7 +242,7 @@ size: {
 
 ### Styles (Dynamic Auditing)
 
-**MANDATORY**: Do not use default fonts (Arial/Calibri). Extract the font name from the XML audit results (`styles.xml`). Use a **Modular Helper Functions** pattern for consistency.
+**MANDATORY**: Do not use default fonts (Arial/Calibri). Extract the font name from the XML audit results (`styles.xml`). Use a **Modular Helper Functions** pattern for consistency.       
 
 ```javascript
 // Example: Implementation based on XML Audit results
@@ -183,16 +282,16 @@ const doc = new Document({
 ### Lists (NEVER use unicode bullets)
 
 ```javascript
-// ❌ WRONG - never manually insert bullet characters
-new Paragraph({ children: [new TextRun("• Item")] })  // BAD
+// âŒ WRONG - never manually insert bullet characters
+new Paragraph({ children: [new TextRun("â€¢ Item")] })  // BAD
 new Paragraph({ children: [new TextRun("\u2022 Item")] })  // BAD
 
-// ✅ CORRECT - use numbering config with LevelFormat.BULLET
+// âœ… CORRECT - use numbering config with LevelFormat.BULLET
 const doc = new Document({
   numbering: {
     config: [
       { reference: "bullets",
-        levels: [{ level: 0, format: LevelFormat.BULLET, text: "•", alignment: AlignmentType.LEFT,
+        levels: [{ level: 0, format: LevelFormat.BULLET, text: "â€¢", alignment: AlignmentType.LEFT,
           style: { paragraph: { indent: { left: 720, hanging: 360 } } } }] },
       { reference: "numbers",
         levels: [{ level: 0, format: LevelFormat.DECIMAL, text: "%1.", alignment: AlignmentType.LEFT,
@@ -209,7 +308,7 @@ const doc = new Document({
   }]
 });
 
-// ⚠️ Each reference creates INDEPENDENT numbering
+// âš ï¸ Each reference creates INDEPENDENT numbering
 // Same reference = continues (1,2,3 then 4,5,6)
 // Different reference = restarts (1,2,3 then 1,2,3)
 ```
@@ -245,7 +344,7 @@ new Table({
 
 **Table width calculation:**
 
-Always use `WidthType.DXA` — `WidthType.PERCENTAGE` breaks in Google Docs.
+Always use `WidthType.DXA` â€” `WidthType.PERCENTAGE` breaks in Google Docs.
 
 ```javascript
 // Table width = sum of columnWidths = content width
@@ -255,10 +354,10 @@ columnWidths: [7000, 2360]  // Must sum to table width
 ```
 
 **Width rules:**
-- **Always use `WidthType.DXA`** — never `WidthType.PERCENTAGE` (incompatible with Google Docs)
+- **Always use `WidthType.DXA`** â€” never `WidthType.PERCENTAGE` (incompatible with Google Docs)
 - Table width must equal the sum of `columnWidths`
 - Cell `width` must match corresponding `columnWidth`
-- Cell `margins` are internal padding - they reduce content area, not add to cell width
+- Cell `margins` are internal padding - they reduce content area, not add to cell width       
 - For full-width tables: use content width (page width minus left and right margins)
 
 ### Images (Preservasi Aspect Ratio)
@@ -267,7 +366,7 @@ columnWidths: [7000, 2360]  // Must sum to table width
 
 1.  **Audit Dimensi Asli**: Cek properti file (lebar & tinggi asli dalam pixel).
 2.  **Pilih Anchor Width**: Tentukan lebar yang diinginkan (misal: sesuai lebar konten halaman ~9360 DXA atau ukuran standar foto ~450px).
-3.  **Hitung Tinggi Proporsional**: 
+3.  **Hitung Tinggi Proporsional**:
     *   `TargetHeight = TargetWidth * (OriginalHeight / OriginalWidth)`
 
 #### **Best Practice: Image Helper (Node.js)**
@@ -409,7 +508,7 @@ Force a column break with a new section using `type: SectionType.NEXT_COLUMN`.
 
 ```javascript
 // CRITICAL: Headings must use HeadingLevel ONLY - no custom styles
-new TableOfContents("Table of Contents", { hyperlink: true, headingStyleRange: "1-3" })
+new TableOfContents("Table of Contents", { hyperlink: true, headingStyleRange: "1-3" })       
 ```
 
 ### Headers/Footers
@@ -417,14 +516,14 @@ new TableOfContents("Table of Contents", { hyperlink: true, headingStyleRange: "
 ```javascript
 sections: [{
   properties: {
-    page: { margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 } } // 1440 = 1 inch
+    page: { margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 } } // 1440 = 1 inch   
   },
   headers: {
-    default: new Header({ children: [new Paragraph({ children: [new TextRun("Header")] })] })
+    default: new Header({ children: [new Paragraph({ children: [new TextRun("Header")] })] }) 
   },
   footers: {
     default: new Footer({ children: [new Paragraph({
-      children: [new TextRun("Page "), new TextRun({ children: [PageNumber.CURRENT] })]
+      children: [new TextRun("Page "), new TextRun({ children: [PageNumber.CURRENT] })]       
     })] })
   },
   children: [/* content */]
@@ -434,14 +533,14 @@ sections: [{
 ### Critical Rules for docx-js
 
 - **Set page size explicitly** - docx-js defaults to A4; use US Letter (12240 x 15840 DXA) for US documents
-- **Landscape: pass portrait dimensions** - docx-js swaps width/height internally; pass short edge as `width`, long edge as `height`, and set `orientation: PageOrientation.LANDSCAPE`
+- **Landscape: pass portrait dimensions** - docx-js swaps width/height internally; pass short edge as `width`, long edge as `height`, and set `orientation: PageOrientation.LANDSCAPE`      
 - **Never use `\n`** - use separate Paragraph elements
 - **Never use unicode bullets** - use `LevelFormat.BULLET` with numbering config
 - **PageBreak must be in Paragraph** - standalone creates invalid XML
-- **ImageRun requires `type`** - always specify png/jpg/etc
+- **MANDATORY: ImageRun MUST have `type`** â€” without `type: "png"` (or `"jpg"`, `"gif"`), the library will generate an image file with a `.undefined` extension. Word Desktop **immediately rejects** the entire document as "unreadable content". This is the most common cause of corruption errors when using ImageRun.
 - **Always audit image aspect ratio** - use calculated height based on intrinsic dimensions to prevent "gepeng" (distorted) images
 - **Always set table `width` with DXA** - never use `WidthType.PERCENTAGE` (breaks in Google Docs)
-- **Tables need dual widths** - `columnWidths` array AND cell `width`, both must match
+- **Tables need dual widths** - `columnWidths` array AND cell `width`, both must match        
 - **Table width = sum of columnWidths** - for DXA, ensure they add up exactly
 - **Always add cell margins** - use `margins: { top: 80, bottom: 80, left: 120, right: 120 }` for readable padding
 - **Use `ShadingType.CLEAR`** - never SOLID for table shading
@@ -460,7 +559,7 @@ sections: [{
 ```bash
 python scripts/office/unpack.py document.docx unpacked/
 ```
-Extracts XML, pretty-prints, merges adjacent runs, and converts smart quotes to XML entities (`&#x201C;` etc.) so they survive editing. Use `--merge-runs false` to skip run merging.
+Extracts XML, pretty-prints, merges adjacent runs, and converts smart quotes to XML entities (`&#x201C;` etc.) so they survive editing. Use `--merge-runs false` to skip run merging.       
 
 ### Step 2: Edit XML
 
@@ -477,33 +576,36 @@ Edit files in `unpacked/word/`. See XML Reference below for patterns.
 ```
 | Entity | Character |
 |--------|-----------|
-| `&#x2018;` | ‘ (left single) |
-| `&#x2019;` | ’ (right single / apostrophe) |
-| `&#x201C;` | “ (left double) |
-| `&#x201D;` | ” (right double) |
+| `&#x2018;` | â€˜ (left single) |
+| `&#x2019;` | â€™ (right single / apostrophe) |
+| `&#x201C;` | â€œ (left double) |
+| `&#x201D;` | â€ (right double) |
 
 **Adding comments:** Use `comment.py` to handle boilerplate across multiple XML files (text must be pre-escaped XML):
 ```bash
 python scripts/comment.py unpacked/ 0 "Comment text with &amp; and &#x2019;"
 python scripts/comment.py unpacked/ 1 "Reply text" --parent 0  # reply to comment 0
-python scripts/comment.py unpacked/ 0 "Text" --author "Custom Author"  # custom author name
+python scripts/comment.py unpacked/ 0 "Text" --author "Custom Author"  # custom author name   
 ```
 Then add markers to document.xml (see Comments in XML Reference).
 
 ### Step 3: Pack
 ```bash
-python scripts/office/pack.py unpacked/ output.docx --original document.docx
+python scripts/office/unpack.py document.docx unpacked/
 ```
-Validates with auto-repair, condenses XML, and creates DOCX. Use `--validate false` to skip.
+Validates with auto-repair, condenses XML, and creates DOCX. Use `--validate false` to skip.  
 
 ---
 
-## 🛠️ Advanced: Surgical XML Editing (High-Fidelity Manual)
+## ðŸ› ï¸ Advanced: Surgical XML Editing (High-Fidelity Manual)
 
 Use this method if automation scripts fail or if working with sensitive IEEE/academic templates that require strict XML structural integrity.
 
 ### 1. Surgical Text Replacement
 Avoid performing bulk text replacements across the entire XML file. Use `multi_replace_file_content` targeting small, specific blocks (per paragraph or per heading) to minimize the risk of mismatched tags.
+
+> [!IMPORTANT]
+> **No Custom Python Scripts for Edits**: Never use custom Python scripts to perform manual text or XML replacements. Always use the built-in `replace_file_content` or `multi_replace_file_content` tools. This ensures the USER can see exactly what is being changed and reduces the risk of automated logic errors.
 
 ### 2. Manual Media Injection
 To insert new images manually:
@@ -517,9 +619,6 @@ If packing fails due to validation errors:
 - Use a tracking script (e.g., `find_stray.py`) to locate runaway `<w:t>` elements or closing `</w:p>` tags that are not properly nested.
 - Word XML rules are strict: Text (`<w:t>`) **MUST** be inside a Run (`<w:r>`), and a Run **MUST** be inside a Paragraph (`<w:p>`).
 
-### 4. Final Packing
-Always use the `--original [template.docx]` flag when running `pack.py` to ensure that 100% of the original template's metadata, properties, and styles are preserved.
-
 ### 5. Critical Desktop Word Compatibility Standards
 Desktop Word (2013+) is significantly stricter than Word Online or Google Docs. Violation of these rules will cause a "Catastrophic Failure" or "Word experienced an error" dialog:
 
@@ -530,7 +629,7 @@ Desktop Word (2013+) is significantly stricter than Word Online or Google Docs. 
 > [!IMPORTANT]
 > **Rule 2: No Nested Tags in `<w:t>`**
 > Text tags (`<w:t>`) **MUST** only contain plain text. Never place other tags (such as `<m:oMath>`, `<w:rPr>`, or `<w:br/>`) inside a `<w:t>`. If you need to insert a formula in the middle of a sentence, use the following structure:
-> `... <w:t>text before</w:t></w:r><m:oMath>...</m:oMath><w:r><w:t>text after</w:t> ...`
+> `... <w:t>text before</w:t></w:r><m:oMath>...</m:oMath><w:r><w:t>text after</w:t> ...`      
 
 > [!WARNING]
 > **Rule 3: Whitespace Preservation**
@@ -597,8 +696,8 @@ To prevent document corruption and ensure content accuracy, follow this 2-step i
 3.  **Pre-requisite**: Do NOT perform XML surgery or OMML injection in this phase.
 
 #### Phase B: The Surgical Conversion
-1.  **Unpack**: Once the user approves the draft, disassemble the document using `unpack.py`.
-2.  **Surgical Replace**: Locate the paragraph (`<w:p>`) containing the placeholder and replace the text run with the corresponding `<m:oMath>` structure (see Section 6 for mapping).
+1.  **Unpack**: Once the user approves the draft, disassemble the document using `unpack.py`. 
+2.  **Surgical Replace**: Locate the paragraph (`<w:p>`) containing the placeholder and replace the text run with the corresponding `<m:oMath>` structure (see Section 6 for mapping).      
 3.  **Apply Math Font**: Every math run (`<m:r>`) **MUST** include the `Cambria Math` font property.
 4.  **Pack & Validate**: Re-assemble the document using `pack.py` and run `validate.py` to ensure the file structure remains 100% compliant and is not corrupted.
 
@@ -682,7 +781,7 @@ Without the `<w:del/>` in `<w:pPr><w:rPr>`, accepting changes leaves an empty pa
 </w:ins>
 ```
 
-**Restoring another author's deletion** - add insertion after (don't modify their deletion):
+**Restoring another author's deletion** - add insertion after (don't modify their deletion):  
 ```xml
 <w:del w:author="Jane" w:id="5">
   <w:r><w:delText>deleted text</w:delText></w:r>
@@ -706,7 +805,7 @@ After running `comment.py` (see Step 2), add markers to document.xml. For replie
 </w:del>
 <w:r><w:t> more text</w:t></w:r>
 <w:commentRangeEnd w:id="0"/>
-<w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="0"/></w:r>
+<w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="0"/></w:r>  
 
 <!-- Comment 0 with reply 1 nested inside -->
 <w:commentRangeStart w:id="0"/>
@@ -714,8 +813,8 @@ After running `comment.py` (see Step 2), add markers to document.xml. For replie
   <w:r><w:t>text</w:t></w:r>
   <w:commentRangeEnd w:id="1"/>
 <w:commentRangeEnd w:id="0"/>
-<w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="0"/></w:r>
-<w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="1"/></w:r>
+<w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="0"/></w:r>  
+<w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="1"/></w:r>  
 ```
 
 ### Images

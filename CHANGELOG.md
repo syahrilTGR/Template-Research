@@ -2,6 +2,16 @@
 
 Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 
+## [v1.0.5] — 2026-05-23
+
+### Added
+- **Dynamic Setup Protocol**: Implementasi sistem deteksi environment virtual otomatis untuk Agent. Memungkinkan penyesuaian path Python secara lokal tanpa merusak standarisasi repositori publik.
+- **Agent-Led Environment Configuration**: Instruksi baru yang mewajibkan Agent melakukan scanning (`.venv`, `.venv_ecobin`, dll) dan menawarkan opsi interpreter kepada user jika terdeteksi placeholder `[PYTHON_PATH_PLACEHOLDER]`.
+
+### Changed
+- **Universal Sanitization**: Pembersihan total informasi sensitif dan path hardcoded (e.g., nama user lokal, venv spesifik) dari skill `docx` untuk keamanan distribusi publik.
+- **Docx Skill Synchronization**: Integrasi perbaikan kritis pada `ImageRun` (mandatory type extension) dan penanganan *File Lock* via *Shadow Packaging* (Word Desktop compatibility).
+
 ## [v1.0.4] — 2026-04-29
 
 ### Added
