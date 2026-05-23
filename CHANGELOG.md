@@ -2,6 +2,17 @@
 
 Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 
+## [v1.0.6] — 2026-05-23
+
+### Added
+- **Local Ingestion of pptx & xlsx**: Memindahkan seluruh berkas *skill* global `pptx` dan `xlsx` ke direktori lokal `.agents/skills/` agar terintegrasi penuh ke dalam repositori riset portabel.
+- **Dynamic Skill Junctioning SOP**: Pembersihan otomatis tanda pengenal pribadi serta pembuatan *Directory Junction* Windows (`/j`) untuk mengarahkan 11 berkas *skills* global ke versi lokal secara terintegrasi secara *real-time*.
+
+### Fixed
+- **Docx Validation Hotfix**: Injeksi parameter `encoding="utf-8"` saat pembacaan berkas XML di validator untuk mencegah kegagalan *decoding* `'charmap'` pada Windows default codepage.
+- **Generic Docx Skill Sync**: Sinkronisasi penuh seluruh skrip pengaman Word (`pack.py`, `unpack.py`, `sync_check.py`, `extract_docx.py`) dalam bentuk generik ke repositori lokal.
+- **Sterile Documentation Sync**: Mengintegrasikan `SKILL.md` generik baru yang bersih dari *path* pribadi dan tersemat dengan otomatisasi interpretasi virtual environment (*Dynamic Setup Protocol*).
+
 ## [v1.0.5] — 2026-05-23
 
 ### Added

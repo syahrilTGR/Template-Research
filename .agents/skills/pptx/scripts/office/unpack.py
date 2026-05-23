@@ -71,21 +71,6 @@ def unpack(
         for xml_file in xml_files:
             _escape_smart_quotes(xml_file)
 
-        # Save sync metadata to prevent overwriting manual edits in future sessions
-        try:
-            import os
-            import json
-            stat = input_path.stat()
-            metadata = {
-                "docx_path": str(input_path.resolve()),
-                "mtime": stat.st_mtime,
-                "size": stat.st_size
-            }
-            last_sync_path = output_path / ".last_sync.json"
-            last_sync_path.write_text(json.dumps(metadata, indent=2), encoding="utf-8")
-        except Exception as e:
-            print(f"Warning: Failed to save sync metadata: {e}", file=sys.stderr)
-
         return None, message
 
     except zipfile.BadZipFile:

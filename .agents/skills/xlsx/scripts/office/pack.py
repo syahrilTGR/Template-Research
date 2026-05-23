@@ -57,83 +57,13 @@ def pack(
             for xml_file in temp_content_dir.rglob(pattern):
                 _condense_xml(xml_file)
 
-        try:
-            output_path.parent.mkdir(parents=True, exist_ok=True)
-            with zipfile.ZipFile(output_path, "w", zipfile.ZIP_DEFLATED) as zf:
-                for f in temp_content_dir.rglob("*"):
-                    if f.is_file() and not f.name.startswith("."):
-                        zf.write(f, f.relative_to(temp_content_dir))
-            _update_sync_metadata(input_dir, output_path)
-            return None, f"Successfully packed {input_dir} to {output_file}"
-        except PermissionError:
-            shadow_path = output_path.parent / (output_path.parent / f"{output_path.stem}_temp{output_path.suffix}")
-            print(f"WARNING: Target file '{output_path.name}' is currently locked. Attempting shadow packaging...")
-            try:
-                with zipfile.ZipFile(shadow_path, "w", zipfile.ZIP_DEFLATED) as zf:
-                    for f in temp_content_dir.rglob("*"):
-                        if f.is_file() and not f.name.startswith("."):
-                            zf.write(f, f.relative_to(temp_content_dir))
-                
-                # Write automatic sync_docx.py script
-                sync_script_path = output_path.parent / "sync_docx.py"
-                _write_auto_sync_script(sync_script_path, shadow_path.name, output_path.name)
-                _update_sync_metadata(input_dir, shadow_path)
-                
-                return None, f"WARNING: Target '{output_path.name}' is LOCKED. Successfully packed to SHADOW file '{shadow_path.name}'. Placed sync_docx.py in output folder. Close Word and run sync_docx.py to finalize!"
-            except Exception as e:
-                return None, f"Error: Shadow packaging failed: {e}"
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with zipfile.ZipFile(output_path, "w", zipfile.ZIP_DEFLATED) as zf:
+            for f in temp_content_dir.rglob("*"):
+                if f.is_file():
+                    zf.write(f, f.relative_to(temp_content_dir))
 
-def _write_auto_sync_script(script_path, shadow_name, target_name):
-    script_content = f"""import os
-import shutil
-import time
-
-src = r"{shadow_name}"
-dst = r"{target_name}"
-
-print("--- Antigravity DOCX Sync Utility ---")
-print(f"Waiting for {{dst}} lock to be released...")
-
-while True:
-    if not os.path.exists(src):
-        print(f"Error: Shadow file '{{src}}' not found. Already synchronized?")
-        break
-    try:
-        shutil.copy2(src, dst)
-        os.remove(src)
-        print("\\n[SUCCESS] Successfully synchronized report!")
-        break
-    except PermissionError:
-        print(".", end="", flush=True)
-        time.sleep(1)
-    except Exception as e:
-        print(f"\\n[ERROR] Unexpected error: {{e}}")
-        break
-
-input("\\nPress Enter to exit...")
-"""
-    try:
-        with open(script_path, "w", encoding="utf-8") as f:
-            f.write(script_content)
-    except Exception as e:
-        import sys
-        print(f"Warning: Failed to create sync script: {e}", file=sys.stderr)
-
-
-def _update_sync_metadata(unpacked_dir: Path, docx_path: Path) -> None:
-    try:
-        import json
-        stat = docx_path.stat()
-        metadata = {
-            "docx_path": str(docx_path.resolve()),
-            "mtime": stat.st_mtime,
-            "size": stat.st_size
-        }
-        last_sync_path = unpacked_dir / ".last_sync.json"
-        last_sync_path.write_text(json.dumps(metadata, indent=2), encoding="utf-8")
-    except Exception as e:
-        import sys
-        print(f"Warning: Failed to update sync metadata: {e}", file=sys.stderr)
+    return None, f"Successfully packed {input_dir} to {output_file}"
 
 
 def _run_validation(

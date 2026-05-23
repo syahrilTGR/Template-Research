@@ -302,7 +302,6 @@ class BaseSchemaValidator:
                 file_path.is_file()
                 and file_path.name != "[Content_Types].xml"
                 and not file_path.name.endswith(".rels")
-                and not file_path.name.startswith(".")
             ):  
                 all_files.append(file_path.resolve())
 
@@ -761,7 +760,7 @@ class BaseSchemaValidator:
                 )
                 schema = lxml.etree.XMLSchema(xsd_doc)
 
-            with open(xml_file, "r", encoding="utf-8") as f:
+            with open(xml_file, "r") as f:
                 xml_doc = lxml.etree.parse(f)
 
             xml_doc, _ = self._remove_template_tags_from_text_nodes(xml_doc)

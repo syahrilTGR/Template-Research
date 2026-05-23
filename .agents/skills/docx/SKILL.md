@@ -18,9 +18,9 @@ A .docx file is a ZIP archive containing XML files.
 | **Script Location** | **GLOBAL**: Scripts are located in the Antigravity global directory: `C:\Users\[User_Name]\.gemini\antigravity\skills\docx\scripts` |
 | Read/analyze content | `unpack` for raw XML (Pandoc is [OPTIONAL]) |
 | Create new document | Use `docx-js` - see Creating New Documents below |
-| Edit existing document | Unpack â†’ edit XML â†’ repack - see Editing Existing Documents below |
+| Edit existing document | Unpack → edit XML → repack - see Editing Existing Documents below |
 
-## ðŸš€ Dynamic Setup Protocol (FOR AGENTS)
+## 🚀 Dynamic Setup Protocol (FOR AGENTS)
 
 > [!IMPORTANT]
 > **If the Python path above is still `[PYTHON_PATH_PLACEHOLDER]`, the agent MUST:**
@@ -122,7 +122,7 @@ To produce a document that is 100% identical to the reference (High-Fidelity), f
 - Repack the folder and validate XSD schemas:
   ```bash
   [PYTHON_PATH_PLACEHOLDER] scripts/office/pack.py unpacked_folder output.docx --original template.docx
-  [PYTHON_PATH_PLACEHOLDER] scripts/office/validate.py output.docx     
+  [PYTHON_PATH_PLACEHOLDER] scripts/office/validate.py output.docx
   ```
 
 ### Step 4: Decoupled Practical Implementations
@@ -134,11 +134,11 @@ To produce a document that is 100% identical to the reference (High-Fidelity), f
 
 ---
 
-### ðŸ”’ File Lock & Shadow Packaging Fallback (Desktop Word Locks)
+### 🔒 File Lock & Shadow Packaging Fallback (Desktop Word Locks)
 When Desktop Word is running, the target `.docx` file will be locked exclusively by the OS, causing a `PermissionError` when running `pack.py`.
 To handle this gracefully:
 1. **Detect Lock**: The updated `pack.py` script automatically catches the locked file exception.
-2. **Compile Shadow File**: It compiles to a shadow copy: `_temp.docx` instead of failing.    
+2. **Compile Shadow File**: It compiles to a shadow copy: `_temp.docx` instead of failing.
 3. **Generate Swap Script**: It writes a Python sync helper `sync_docx.py` in the workspace root.
 4. **User Action**: The sync helper waits until Word is closed, then safely performs the atomic replace operation.
 
@@ -174,10 +174,10 @@ Use the audit results above as constants in your builder scripts or XML template
 Execute the script to generate the document. If any manual XML surgery is needed (e.g., for complex OMML), perform it now using the `unpack` -> edit -> `pack` workflow.
 
 ### Phase 4: Final Verification Audit (MANDATORY)
-After the final `.docx` is produced, perform a reverse-extraction to verify content parity:   
+After the final `.docx` is produced, perform a reverse-extraction to verify content parity:
 
 1.  **Extract**: Use `extract_docx.py` to convert the final `.docx` back to Markdown.
-2.  **Compare**: Compare the extraction result with the original source (Markdown/Text).      
+2.  **Compare**: Compare the extraction result with the original source (Markdown/Text).
 3.  **Validate**: Ensure all headings, code blocks, and formulas are present and correctly hierarchically structured.
 
 ## Creating New Documents
@@ -187,7 +187,7 @@ Generate .docx files with JavaScript, then validate. Install: `npm install -g do
 ### Setup
 ```javascript
 const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, ImageRun,
-        Header, Footer, AlignmentType, PageOrientation, LevelFormat, ExternalHyperlink,       
+        Header, Footer, AlignmentType, PageOrientation, LevelFormat, ExternalHyperlink,
         InternalHyperlink, Bookmark, FootnoteReferenceRun, PositionalTab,
         PositionalTabAlignment, PositionalTabRelativeTo, PositionalTabLeader,
         TabStopType, TabStopPosition, Column, SectionType,
@@ -199,7 +199,7 @@ Packer.toBuffer(doc).then(buffer => fs.writeFileSync("doc.docx", buffer));
 ```
 
 ### Validation
-After creating the file, validate it. If validation fails, unpack, fix the XML, and repack.   
+After creating the file, validate it. If validation fails, unpack, fix the XML, and repack.
 ```bash
 python scripts/office/validate.py doc.docx
 ```
@@ -242,7 +242,7 @@ size: {
 
 ### Styles (Dynamic Auditing)
 
-**MANDATORY**: Do not use default fonts (Arial/Calibri). Extract the font name from the XML audit results (`styles.xml`). Use a **Modular Helper Functions** pattern for consistency.       
+**MANDATORY**: Do not use default fonts (Arial/Calibri). Extract the font name from the XML audit results (`styles.xml`). Use a **Modular Helper Functions** pattern for consistency.
 
 ```javascript
 // Example: Implementation based on XML Audit results
@@ -282,16 +282,16 @@ const doc = new Document({
 ### Lists (NEVER use unicode bullets)
 
 ```javascript
-// âŒ WRONG - never manually insert bullet characters
-new Paragraph({ children: [new TextRun("â€¢ Item")] })  // BAD
+// ❌ WRONG - never manually insert bullet characters
+new Paragraph({ children: [new TextRun("• Item")] })  // BAD
 new Paragraph({ children: [new TextRun("\u2022 Item")] })  // BAD
 
-// âœ… CORRECT - use numbering config with LevelFormat.BULLET
+// ✅ CORRECT - use numbering config with LevelFormat.BULLET
 const doc = new Document({
   numbering: {
     config: [
       { reference: "bullets",
-        levels: [{ level: 0, format: LevelFormat.BULLET, text: "â€¢", alignment: AlignmentType.LEFT,
+        levels: [{ level: 0, format: LevelFormat.BULLET, text: "•", alignment: AlignmentType.LEFT,
           style: { paragraph: { indent: { left: 720, hanging: 360 } } } }] },
       { reference: "numbers",
         levels: [{ level: 0, format: LevelFormat.DECIMAL, text: "%1.", alignment: AlignmentType.LEFT,
@@ -308,7 +308,7 @@ const doc = new Document({
   }]
 });
 
-// âš ï¸ Each reference creates INDEPENDENT numbering
+// ⚠️ Each reference creates INDEPENDENT numbering
 // Same reference = continues (1,2,3 then 4,5,6)
 // Different reference = restarts (1,2,3 then 1,2,3)
 ```
@@ -344,7 +344,7 @@ new Table({
 
 **Table width calculation:**
 
-Always use `WidthType.DXA` â€” `WidthType.PERCENTAGE` breaks in Google Docs.
+Always use `WidthType.DXA` — `WidthType.PERCENTAGE` breaks in Google Docs.
 
 ```javascript
 // Table width = sum of columnWidths = content width
@@ -354,10 +354,10 @@ columnWidths: [7000, 2360]  // Must sum to table width
 ```
 
 **Width rules:**
-- **Always use `WidthType.DXA`** â€” never `WidthType.PERCENTAGE` (incompatible with Google Docs)
+- **Always use `WidthType.DXA`** — never `WidthType.PERCENTAGE` (incompatible with Google Docs)
 - Table width must equal the sum of `columnWidths`
 - Cell `width` must match corresponding `columnWidth`
-- Cell `margins` are internal padding - they reduce content area, not add to cell width       
+- Cell `margins` are internal padding - they reduce content area, not add to cell width
 - For full-width tables: use content width (page width minus left and right margins)
 
 ### Images (Preservasi Aspect Ratio)
@@ -366,7 +366,7 @@ columnWidths: [7000, 2360]  // Must sum to table width
 
 1.  **Audit Dimensi Asli**: Cek properti file (lebar & tinggi asli dalam pixel).
 2.  **Pilih Anchor Width**: Tentukan lebar yang diinginkan (misal: sesuai lebar konten halaman ~9360 DXA atau ukuran standar foto ~450px).
-3.  **Hitung Tinggi Proporsional**:
+3.  **Hitung Tinggi Proporsional**: 
     *   `TargetHeight = TargetWidth * (OriginalHeight / OriginalWidth)`
 
 #### **Best Practice: Image Helper (Node.js)**
@@ -485,45 +485,10 @@ sections: [{
     },
   },
   children: [/* content flows naturally across columns */]
-}]
-
-// Custom-width columns (equalWidth must be false)
-sections: [{
-  properties: {
-    column: {
-      equalWidth: false,
-      children: [
-        new Column({ width: 5400, space: 720 }),
-        new Column({ width: 3240 }),
-      ],
-    },
-  },
-  children: [/* content */]
-}]
-```
-
-Force a column break with a new section using `type: SectionType.NEXT_COLUMN`.
-
-### Table of Contents
-
-```javascript
-// CRITICAL: Headings must use HeadingLevel ONLY - no custom styles
-new TableOfContents("Table of Contents", { hyperlink: true, headingStyleRange: "1-3" })       
-```
-
-### Headers/Footers
-
-```javascript
-sections: [{
-  properties: {
-    page: { margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 } } // 1440 = 1 inch   
-  },
-  headers: {
-    default: new Header({ children: [new Paragraph({ children: [new TextRun("Header")] })] }) 
   },
   footers: {
     default: new Footer({ children: [new Paragraph({
-      children: [new TextRun("Page "), new TextRun({ children: [PageNumber.CURRENT] })]       
+      children: [new TextRun("Page "), new TextRun({ children: [PageNumber.CURRENT] })]
     })] })
   },
   children: [/* content */]
@@ -533,14 +498,14 @@ sections: [{
 ### Critical Rules for docx-js
 
 - **Set page size explicitly** - docx-js defaults to A4; use US Letter (12240 x 15840 DXA) for US documents
-- **Landscape: pass portrait dimensions** - docx-js swaps width/height internally; pass short edge as `width`, long edge as `height`, and set `orientation: PageOrientation.LANDSCAPE`      
+- **Landscape: pass portrait dimensions** - docx-js swaps width/height internally; pass short edge as `width`, long edge as `height`, and set `orientation: PageOrientation.LANDSCAPE`
 - **Never use `\n`** - use separate Paragraph elements
 - **Never use unicode bullets** - use `LevelFormat.BULLET` with numbering config
 - **PageBreak must be in Paragraph** - standalone creates invalid XML
-- **MANDATORY: ImageRun MUST have `type`** â€” without `type: "png"` (or `"jpg"`, `"gif"`), the library will generate an image file with a `.undefined` extension. Word Desktop **immediately rejects** the entire document as "unreadable content". This is the most common cause of corruption errors when using ImageRun.
+- **MANDATORY: ImageRun MUST have `type`** — without `type: "png"` (or `"jpg"`, `"gif"`), the library will generate an image file with a `.undefined` extension. Word Desktop **immediately rejects** the entire document as "unreadable content". This is the most common cause of corruption errors when using ImageRun.
 - **Always audit image aspect ratio** - use calculated height based on intrinsic dimensions to prevent "gepeng" (distorted) images
 - **Always set table `width` with DXA** - never use `WidthType.PERCENTAGE` (breaks in Google Docs)
-- **Tables need dual widths** - `columnWidths` array AND cell `width`, both must match        
+- **Tables need dual widths** - `columnWidths` array AND cell `width`, both must match
 - **Table width = sum of columnWidths** - for DXA, ensure they add up exactly
 - **Always add cell margins** - use `margins: { top: 80, bottom: 80, left: 120, right: 120 }` for readable padding
 - **Use `ShadingType.CLEAR`** - never SOLID for table shading
@@ -553,15 +518,23 @@ sections: [{
 
 ## Editing Existing Documents
 
-**Follow all 3 steps in order.**
+**Follow all 4 steps in order.**
 
 ### Step 1: Unpack
 ```bash
 python scripts/office/unpack.py document.docx unpacked/
 ```
-Extracts XML, pretty-prints, merges adjacent runs, and converts smart quotes to XML entities (`&#x201C;` etc.) so they survive editing. Use `--merge-runs false` to skip run merging.       
+Extracts XML, pretty-prints, merges adjacent runs, and converts smart quotes to XML entities (`&#x201C;` etc.) so they survive editing. Use `--merge-runs false` to skip run merging.
 
-### Step 2: Edit XML
+### Step 2: Mandatory Sync Check (Anti-Overwrite Protection)
+> [!IMPORTANT]
+> **Pre-Edit Sync Audit**: BEFORE making *any* code or file modifications in `unpacked/word/`, you **MUST** run the check tool to verify if the user has manually edited the `.docx` document in Word:
+> ```bash
+> [PYTHON_PATH_PLACEHOLDER] scripts/office/sync_check.py unpacked/ document.docx --auto-unpack true
+> ```
+> If the `.docx` file has manual changes newer than the unpacked folder (e.g. from a user's manual save), this tool will automatically re-extract the document and synchronize those changes into the `unpacked/` folder safely.
+
+### Step 3: Edit XML
 
 Edit files in `unpacked/word/`. See XML Reference below for patterns.
 
@@ -576,28 +549,28 @@ Edit files in `unpacked/word/`. See XML Reference below for patterns.
 ```
 | Entity | Character |
 |--------|-----------|
-| `&#x2018;` | â€˜ (left single) |
-| `&#x2019;` | â€™ (right single / apostrophe) |
-| `&#x201C;` | â€œ (left double) |
-| `&#x201D;` | â€ (right double) |
+| `&#x2018;` | ‘ (left single) |
+| `&#x2019;` | ’ (right single / apostrophe) |
+| `&#x201C;` | “ (left double) |
+| `&#x201D;` | ” (right double) |
 
 **Adding comments:** Use `comment.py` to handle boilerplate across multiple XML files (text must be pre-escaped XML):
 ```bash
 python scripts/comment.py unpacked/ 0 "Comment text with &amp; and &#x2019;"
 python scripts/comment.py unpacked/ 1 "Reply text" --parent 0  # reply to comment 0
-python scripts/comment.py unpacked/ 0 "Text" --author "Custom Author"  # custom author name   
+python scripts/comment.py unpacked/ 0 "Text" --author "Custom Author"  # custom author name
 ```
 Then add markers to document.xml (see Comments in XML Reference).
 
-### Step 3: Pack
+### Step 4: Pack
 ```bash
-python scripts/office/unpack.py document.docx unpacked/
+python scripts/office/pack.py unpacked/ output.docx --original document.docx
 ```
-Validates with auto-repair, condenses XML, and creates DOCX. Use `--validate false` to skip.  
+Validates with auto-repair, condenses XML, and creates DOCX. Use `--validate false` to skip.
 
 ---
 
-## ðŸ› ï¸ Advanced: Surgical XML Editing (High-Fidelity Manual)
+## 🛠️ Advanced: Surgical XML Editing (High-Fidelity Manual)
 
 Use this method if automation scripts fail or if working with sensitive IEEE/academic templates that require strict XML structural integrity.
 
@@ -619,6 +592,9 @@ If packing fails due to validation errors:
 - Use a tracking script (e.g., `find_stray.py`) to locate runaway `<w:t>` elements or closing `</w:p>` tags that are not properly nested.
 - Word XML rules are strict: Text (`<w:t>`) **MUST** be inside a Run (`<w:r>`), and a Run **MUST** be inside a Paragraph (`<w:p>`).
 
+### 4. Final Packing
+Always use the `--original [template.docx]` flag when running `pack.py` to ensure that 100% of the original template's metadata, properties, and styles are preserved.
+
 ### 5. Critical Desktop Word Compatibility Standards
 Desktop Word (2013+) is significantly stricter than Word Online or Google Docs. Violation of these rules will cause a "Catastrophic Failure" or "Word experienced an error" dialog:
 
@@ -629,7 +605,7 @@ Desktop Word (2013+) is significantly stricter than Word Online or Google Docs. 
 > [!IMPORTANT]
 > **Rule 2: No Nested Tags in `<w:t>`**
 > Text tags (`<w:t>`) **MUST** only contain plain text. Never place other tags (such as `<m:oMath>`, `<w:rPr>`, or `<w:br/>`) inside a `<w:t>`. If you need to insert a formula in the middle of a sentence, use the following structure:
-> `... <w:t>text before</w:t></w:r><m:oMath>...</m:oMath><w:r><w:t>text after</w:t> ...`      
+> `... <w:t>text before</w:t></w:r><m:oMath>...</m:oMath><w:r><w:t>text after</w:t> ...`
 
 > [!WARNING]
 > **Rule 3: Whitespace Preservation**
@@ -696,8 +672,8 @@ To prevent document corruption and ensure content accuracy, follow this 2-step i
 3.  **Pre-requisite**: Do NOT perform XML surgery or OMML injection in this phase.
 
 #### Phase B: The Surgical Conversion
-1.  **Unpack**: Once the user approves the draft, disassemble the document using `unpack.py`. 
-2.  **Surgical Replace**: Locate the paragraph (`<w:p>`) containing the placeholder and replace the text run with the corresponding `<m:oMath>` structure (see Section 6 for mapping).      
+1.  **Unpack**: Once the user approves the draft, disassemble the document using `unpack.py`.
+2.  **Surgical Replace**: Locate the paragraph (`<w:p>`) containing the placeholder and replace the text run with the corresponding `<m:oMath>` structure (see Section 6 for mapping).
 3.  **Apply Math Font**: Every math run (`<m:r>`) **MUST** include the `Cambria Math` font property.
 4.  **Pack & Validate**: Re-assemble the document using `pack.py` and run `validate.py` to ensure the file structure remains 100% compliant and is not corrupted.
 
@@ -781,7 +757,7 @@ Without the `<w:del/>` in `<w:pPr><w:rPr>`, accepting changes leaves an empty pa
 </w:ins>
 ```
 
-**Restoring another author's deletion** - add insertion after (don't modify their deletion):  
+**Restoring another author's deletion** - add insertion after (don't modify their deletion):
 ```xml
 <w:del w:author="Jane" w:id="5">
   <w:r><w:delText>deleted text</w:delText></w:r>
@@ -805,7 +781,7 @@ After running `comment.py` (see Step 2), add markers to document.xml. For replie
 </w:del>
 <w:r><w:t> more text</w:t></w:r>
 <w:commentRangeEnd w:id="0"/>
-<w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="0"/></w:r>  
+<w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="0"/></w:r>
 
 <!-- Comment 0 with reply 1 nested inside -->
 <w:commentRangeStart w:id="0"/>
@@ -813,8 +789,8 @@ After running `comment.py` (see Step 2), add markers to document.xml. For replie
   <w:r><w:t>text</w:t></w:r>
   <w:commentRangeEnd w:id="1"/>
 <w:commentRangeEnd w:id="0"/>
-<w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="0"/></w:r>  
-<w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="1"/></w:r>  
+<w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="0"/></w:r>
+<w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="1"/></w:r>
 ```
 
 ### Images
