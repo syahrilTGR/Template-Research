@@ -24,7 +24,7 @@ A .docx file is a ZIP archive containing XML files.
 
 > [!IMPORTANT]
 > **If the Python path above is still `[PYTHON_PATH_PLACEHOLDER]`, the agent MUST:**
-> 1.  **Scan**: Search the workspace (`.`) and User Home (`$HOME`) for `python.exe` inside virtual environment folders (e.g., `.venv`, `venv`, `env`, `.venv_ecobin`).
+> 1.  **Scan**: Search the workspace (`.`) and User Home (`$HOME`) for `python.exe` inside virtual environment folders (e.g., `.venv`, `venv`, `env`, `[Venv_Name]`).
 > 2.  **Prompt**: Present the discovered paths to the user and ask which one should be used for this skill.
 > 3.  **Update**: Overwrite the `[PYTHON_PATH_PLACEHOLDER]` in this file with the absolute path chosen by the user.
 

@@ -39,18 +39,18 @@ with open('graphify-out/.graphify_detect.json', 'w', encoding='utf-8') as f:
     tmp_detect = REPO_ROOT / "tmp_detect_run.py"
     with open(tmp_detect, "w", encoding='utf-8') as f: f.write(detect_py_code)
     
-    run_cmd(f"conda run -n train_mx150 python {tmp_detect.name}")
+    run_cmd(f"python {tmp_detect.name}")
     if tmp_detect.exists(): os.remove(tmp_detect)
 
     # Step 2: AST Update
     print("--- Step 2: Updating AST (Code Structure) ---")
-    run_cmd("conda run -n train_mx150 graphify update .")
+    run_cmd("graphify update .")
 
     # Step 3: Pushing to Global Brain Center
     print("--- Step 3: Pushing to Global Brain Center ---")
     global_sync_script = REPO_ROOT / "scripts/update_global_brain.py"
     if global_sync_script.exists():
-        run_cmd(f"conda run -n train_mx150 python {global_sync_script}")
+        run_cmd(f"python {global_sync_script}")
     else:
         print("⚠️ Warning: scripts/update_global_brain.py not found. Skipping global sync.")
     

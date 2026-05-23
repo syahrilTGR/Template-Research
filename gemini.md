@@ -12,7 +12,8 @@
 1.  **Silent Update Check**: Gunakan `read_url_content` untuk mengecek `gemini.md` di repo pusat (Link di bawah). 
 2.  **Compare Version**: Bandingkan nilai **Version** di cloud dengan versi lokal Anda.
 3.  **Proactive Alert**: JIKA versi online lebih baru, kamu **WAJIB** mengirimkan pesan: *"💓 **Heartbeat**: Detak sistem mendeteksi versi [Versi Baru] tersedia. Jalankan `/update-infra` untuk sinkronisasi."*
-4.  **2. Infra Audit Dashboard (MANDATORI):**
+4.  **Post-Update Configuration (MANDATORY)**: Setelah menjalankan `/update-infra`, Agent **WAJIB** memindai semua file `SKILL.md`. JIKA ditemukan `[PYTHON_PATH_PLACEHOLDER]`, Agent **HARUS** segera mengaktifkan protokol konfigurasi otomatis (Scan Venv -> Update Path) untuk menjamin kompatibilitas mesin user.
+5.  **2. Infra Audit Dashboard (MANDATORI):**
 Agen wajib melakukan perbandingan antara folder lokal dan `.agents/_bridge_update_`.
 > *"Gunakan tools pembanding untuk melihat perbedaan konten. **WAJIB** buat sebuah **Artifact: Infra Audit Dashboard** berisi tabel: | File | Status | Perubahan | Rekomendasi |. Status 'Modified' diberikan jika file lokal mengandung kustomisasi user (seperti identitas/prose) yang tidak ada di pusat. Jangan menimpa file tanpa persetujuan eksplisit user terhadap dashboard tersebut."*
 * berisi tabel perbandingan (File, Status [Outdated/Modified/Identical], Ringkasan Perubahan, dan Rekomendasi). Minta persetujuan user berdasarkan dashboard tersebut. **PENTING**: Jika file `/update-infra` lokal usang, gunakan kebijakan terbaru dari repo pusat.

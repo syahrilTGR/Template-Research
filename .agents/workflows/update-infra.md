@@ -2,7 +2,7 @@
 description: Sinkronisasi otomatis infrastruktur repo dari Template-Research pusat
 ---
 
-# Workflow: Update Infrastructure (Self-Healing)
+# Workflow: Update Infrastructure (Self-Healing & Auto-Config)
 
 Workflow ini akan menarik update terbaru dari repository pusat tanpa merusak draf tulisan atau identitas riset Anda.
 
@@ -10,11 +10,15 @@ Workflow ini akan menarik update terbaru dari repository pusat tanpa merusak dra
 
 ## Step 1: Clone Independent (Temp)
 
-Kita akan melakukan clone dari repository pusat ke folder sementara, bahkan jika proyek Anda bukan folder Git.
+Asisten wajib mendeteksi sumber update. Prioritaskan URL remote `origin` jika ada, jika tidak, gunakan default pusat.
 
 // turbo
 ```powershell
-rtk git clone https://github.com/syahrilTGR/Template-Research .agents/_bridge_update_
+# Mendeteksi URL Repo (Default ke syahrilTGR jika tidak dalam folder git)
+$repoUrl = "https://github.com/syahrilTGR/Template-Research"
+if (git remote get-url origin 2>$null) { $repoUrl = git remote get-url origin }
+
+rtk git clone $repoUrl .agents/_bridge_update_
 ```
 
 ---
@@ -39,20 +43,24 @@ echo "Backup saved to $backupDir"
 Agen wajib melakukan perbandingan antara folder lokal dan `.agents/_bridge_update_`.
 > *"Gunakan tools pembanding untuk melihat perbedaan konten. **WAJIB** buat sebuah **Artifact: Infra Audit Dashboard** berisi tabel: | File | Status | Perubahan | Rekomendasi |. Status 'Modified' diberikan jika file lokal mengandung kustomisasi user (seperti identitas/prose) yang tidak ada di pusat. Jangan menimpa file tanpa persetujuan eksplisit user terhadap dashboard tersebut."*
 
-**3. Selective Grafting:**
-- File **Sistem/Script** (`.py`, `.ps1`) yang bersifat *engine* disarankan untuk diperbarui.
-- File **Workflow** (`.md`) disarankan untuk ditinjau ulang agar modifikasi kustom user tidak hilang.
+**3. Selective Grafting & Conflict Handling:**
+- **Engine Files** (`.py`, `.ps1`, `.js`): Overwrite langsung setelah backup.
+- **Skill Files** (`SKILL.md`): Overwrite untuk mendapatkan protokol terbaru.
+- **Identity Files** (`gemini.md`, `ACTION_PLAN.md`): **Dilarang Overwrite**. Lakukan *Smart Merge* (perbarui versi dan instruksi sistem, tapi tetap pertahankan [Project Identity] milik user).
 
 ---
 
-## Step 3: Cleanup & Setup
+## Step 3: Cleanup & Auto-Configuration
 
-Setelah file diperbarui, asisten wajib menghapus folder temporary dan menjalankan setup ulang environment.
+Setelah file diperbarui, asisten wajib menghapus folder temporary dan menjalankan rutinitas setup.
 
 // turbo
 ```powershell
 rtk powershell -c "Remove-Item -Path '.agents/_bridge_update_' -Recurse -Force ; scripts/setup_env.ps1 ; scripts/setup_docx_infra.ps1"
 ```
+
+**MANDATORY POST-UPDATE HANDSHAKE:**
+Setelah update selesai, asisten **WAJIB** memindai file `SKILL.md` (docx). Jika ditemukan placeholder `[PYTHON_PATH_PLACEHOLDER]`, asisten **HARUS SEGERA** menjalankan **Dynamic Setup Protocol** (Scan venv -> Ask User -> Update Path) tanpa menunggu perintah tambahan dari user.
 
 ---
 

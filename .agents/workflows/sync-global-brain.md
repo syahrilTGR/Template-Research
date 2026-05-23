@@ -7,7 +7,7 @@ description: Sinkronisasi Knowledge Graph lokal ke Global Brain Center (incremen
 Workflow ini menggabungkan data riset terbaru dari `graphify-out/graph.json` ke dalam `Brain-Global-Center`,
 lalu me-refresh Obsidian Vault dan `GRAPH_REPORT.md` secara otomatis.
 
-**Environment Wajib**: `train_mx150` (Conda/Miniconda di `F:/miniconda3/envs/train_mx150`)  
+**Environment Wajib**: [PYTHON_PATH_PLACEHOLDER] (Sesuai konfigurasi di `SKILL.md`)  
 **Script Utama**: `scripts/update_global_brain.py`
 
 ---
@@ -29,7 +29,7 @@ Pastikan database `graph.json` lokal mencakup perubahan kode DAN dokumen (sepert
 
 // turbo
 ```powershell
-rtk powershell -c "conda run -n train_mx150 python .agents\skills\graphify\scripts\sync_brain_comprehensive.py"
+rtk powershell -c "[PYTHON_PATH_PLACEHOLDER] .agents\skills\graphify\scripts\sync_brain_comprehensive.py"
 ```
 
 > **Catatan**: Skrip ini secara otomatis akan menjalankan `graphify update` (untuk kode) dan `scripts/update_global_brain.py` (untuk sinkronisasi global), sehingga Anda tidak perlu menjalankan Step 2 secara terpisah.
@@ -71,7 +71,7 @@ untuk melihat visualisasi graph riset terbaru.
 
 | Poin | Detail |
 |---|---|
-| **Environment** | Selalu gunakan `conda run -n train_mx150` |
+| **Environment** | Selalu gunakan `[PYTHON_PATH_PLACEHOLDER]` |
 | **Sumber Data** | `graphify-out/graph.json` (lokal) → dipush ke `global-graph.json` (Global Brain) |
 | **Skema edges** | File lokal pakai `"edges"`, file global kadang pakai `"links"` |
 | **Frekuensi** | Jalankan setiap kali ada perubahan signifikan di kode atau draf thesis |
