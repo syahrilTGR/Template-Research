@@ -31,7 +31,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\setup_env.ps1
 
 ## 📂 Struktur Folder & Fungsi
 
-**Version:** [v1.0.6](./CHANGELOG.md) | **Last updated:** 2026-05-23
+**Version:** [v1.0.7](./CHANGELOG.md) | **Last updated:** 2026-05-25
  
  Berikut adalah penjelasan fungsi untuk tiap directory agar pengerjaan tetap rapi dan terorganisir:
  
@@ -58,6 +58,7 @@ Proyek ini dilengkapi dengan asisten AI yang bisa membantu menulis subbab lapora
 
 - **Panduan Cepat**: Lihat file [HOW_TO_USE_ANTIGRAVITY.md](./HOW_TO_USE_ANTIGRAVITY.md) untuk mempelajari cara memanggil workflow asisten.
 - **Support**: Asisten ini memahami konteks proyek melalui file-file di directory `.agents`.
+- **Pembaruan & Rilis**: Kapan saja ada versi baru, jalankan perintah `/update-infra` di obrolan AI. Detail fitur rilis terbaru dapat dibaca pada dokumen [supportFiles/announcement_v1.0.7.pdf](./supportFiles/announcement_v1.0.7.pdf).
 
 ---
 *Developed with ❤️ as a Universal Research Template.*

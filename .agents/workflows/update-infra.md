@@ -10,14 +10,11 @@ Workflow ini akan menarik update terbaru dari repository pusat tanpa merusak dra
 
 ## Step 1: Clone Independent (Temp)
 
-Asisten wajib mendeteksi sumber update. Prioritaskan URL remote `origin` jika ada, jika tidak, gunakan default pusat.
+Asisten wajib menarik pembaruan infrastruktur langsung dari repositori pusat template.
 
 // turbo
 ```powershell
-# Mendeteksi URL Repo (Default ke syahrilTGR jika tidak dalam folder git)
 $repoUrl = "https://github.com/syahrilTGR/Template-Research"
-if (git remote get-url origin 2>$null) { $repoUrl = git remote get-url origin }
-
 rtk git clone $repoUrl .agents/_bridge_update_
 ```
 
@@ -74,6 +71,10 @@ Asisten WAJIB melakukan audit ulang secara mandiri untuk memastikan fitur baru a
 rtk powershell -c "echo 'Update Complete. Starting Re-Audit...'"
 ```
 *(Asisten akan otomatis membaca gemini.md kembali dan melakukan verifikasi total).*
+
+> [!IMPORTANT]
+> **Rekomendasi Rilis Baru**: 
+> Setelah pembaruan selesai, asisten **WAJIB** menyarankan pengguna untuk membaca dokumen pengumuman rilis resmi yang terletak di [supportFiles/announcement_v1.0.7.pdf](file:///g:/Project/Template/supportFiles/announcement_v1.0.7.pdf) (atau berkas PDF pengumuman rilis terbaru yang tersedia) guna memahami seluruh daftar penambahan *skills*, panduan penulisan bebas AI, dan cara penggunaan fitur-fitur baru.
 
 ## ⚠️ Perhatian
 Jika Anda memiliki modifikasi kustom pada file sistem, buat backup terlebih dahulu atau commit perubahan Anda sebelum menjalankan workflow ini.

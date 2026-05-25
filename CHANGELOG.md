@@ -2,6 +2,16 @@
 
 Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 
+## [v1.0.7] — 2026-05-25
+
+### Added
+- **Academic Literature Search Skills**: Menambahkan *skills* riset ilmiah global `literature-search-arxiv`, `literature-search-openalex`, dan `science_skills_common` secara lokal ke dalam repositori.
+- **Advanced Support Guides**: Mengintegrasikan 5 dokumen pendukung generik berstandar tinggi ke folder `supportFiles/` (`thesis_writing_guide.md`, `UNIVERSAL_THESIS_AI_GUIDE.md`, `GRAPHRAG_GUIDE.md`, `DOCX_SYNC_GUIDE.md`, `FILE_INDEX.md`).
+- **Venv-First Path Activation**: Menyelaraskan seluruh path eksekusi skrip sinkronisasi dan Word agar merujuk ke *virtual environment* terpusat `$HOME\thesis_venv` sesuai dengan alur kerja asli `setup_env.ps1`.
+
+### Fixed
+- **Universal Sanitization**: Melakukan pembersihan menyeluruh secara mandiri untuk menghapus data pribadi (Syahril, NIM, Kelas) dan spesifik proyek (EcoBin, MobileNet, YOLOv8) dari seluruh file yang baru disalin.
+
 ## [v1.0.6] — 2026-05-23
 
 ### Added

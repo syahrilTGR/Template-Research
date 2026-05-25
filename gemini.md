@@ -1,7 +1,7 @@
 # gemini.md — Quick Context for AI Assistant
 
-> **Last updated:** 2026-05-23
-> **Version:** v1.0.6
+> **Last updated:** 2026-05-25
+> **Version:** v1.0.7
 > **Repo Reference:** https://github.com/syahrilTGR/Template-Research
 
 ---
@@ -17,6 +17,7 @@
 Agen wajib melakukan perbandingan antara folder lokal dan `.agents/_bridge_update_`.
 > *"Gunakan tools pembanding untuk melihat perbedaan konten. **WAJIB** buat sebuah **Artifact: Infra Audit Dashboard** berisi tabel: | File | Status | Perubahan | Rekomendasi |. Status 'Modified' diberikan jika file lokal mengandung kustomisasi user (seperti identitas/prose) yang tidak ada di pusat. Jangan menimpa file tanpa persetujuan eksplisit user terhadap dashboard tersebut."*
 * berisi tabel perbandingan (File, Status [Outdated/Modified/Identical], Ringkasan Perubahan, dan Rekomendasi). Minta persetujuan user berdasarkan dashboard tersebut. **PENTING**: Jika file `/update-infra` lokal usang, gunakan kebijakan terbaru dari repo pusat.
+6.  **Release Announcement Recommendation (MANDATORY)**: Setelah menyelesaikan pembaruan via `/update-infra`, Agent **WAJIB** merekomendasikan pengguna secara visual di chat untuk membaca berkas pengumuman rilis resmi yang terletak di [supportFiles/announcement_v1.0.7.pdf](file:///g:/Project/Template/supportFiles/announcement_v1.0.7.pdf) (atau berkas PDF versi terbaru yang tersedia) guna mengetahui detail fitur baru dan perubahan penting yang telah diintegrasikan.
 
 **Selain Heartbeat, kamu tetap WAJIB menolak tugas teknis JIKA:**
 1.  **Placeholder Masih Ada**: Teks `[...]` masih terdeteksi di file ini.
