@@ -58,6 +58,8 @@ models/*
 
 # Project specific
 supportFiles/sessions/
+supportFiles/word_sync_config.json
+supportFiles/.venv_config.txt
 *.tmp
 *.bak
 ~$*.docx

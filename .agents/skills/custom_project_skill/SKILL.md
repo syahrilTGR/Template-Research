@@ -116,8 +116,8 @@ graph TD
 
 | Feature | Mandatory Specification |
 |---|---|
-| **Research Focus** | [Fokus penelitian utama proyek ini] |
-| **Primary Methodology** | [Metode yang digunakan untuk menjawab rumusan masalah] |
+| **Research Focus** | [IDENTITY:research_focus] |
+| **Primary Methodology** | [IDENTITY:primary_methodology] |
 
 ---
 

@@ -2,6 +2,21 @@
 
 Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 
+## [v1.0.8] — 2026-05-26
+
+### Added
+- **Walkthrough Merge Protocol (MANDATORY)**: Mengintegrasikan aturan penggabungan berkas walkthrough secara kumulatif ke dalam berkas `gemini.md` konstitusi asisten AI.
+- **Sanitized Walkthrough Activity Log**: Menginisialisasi dan mencatat sesi log kumulatif pertama di [`supportFiles/walkthrough.md`](supportFiles/walkthrough.md) secara steril dan generik untuk distribusi publik.
+- **Onboarding-First Auditor Protocol**: Merombak Auditor di `gemini.md` agar memicu interview terarah (9-pertanyaan) secara interaktif untuk mengisi identitas riset secara otomatis saat mendeteksi placeholder, alih-alih memblokir keras sesi di awal.
+- **Self-Bootstrapping Update (Pivot Protocol)**: Menambahkan protokol pivoting (Step 1.5) di `update-infra.md` agar setelah unduhan repositori terbaru selesai ke folder jembatan, agen langsung beralih mengeksekusi alur kerja pembaruan baru dari folder tersebut.
+
+### Changed
+- **Adaptive Document Referencing**: Mengubah seluruh pranala berkas absolut (`file:///g:/Project/Template/`) pada berkas `gemini.md` menjadi pranala relatif yang adaptif terhadap repositori lokal pengguna akhir.
+- **Dynamic Environment Resilience**: Memperbaiki skrip `setup_env.ps1` agar mendeteksi interpreter Python secara adaptif (`python`, `py`, atau `python3`) dan memindahkan path OneDrive `sync_word.ps1` ke berkas terpisah `supportFiles/word_sync_config.json` agar konfigurasi pengguna tidak tertimpa saat pembaruan infrastruktur.
+
+### Removed
+- **PDF Announcement Architecture**: Menghapus seluruh berkas biner selebaran rilis `supportFiles/announcement_v1.0.7.pdf` beserta skrip penyusunnya `scripts/generate_announcement_pdf.py` demi meminimalkan ukuran repositori dan menjaga fokus pada berkas teks/markdown yang bersih.
+
 ## [v1.0.7] — 2026-05-25
 
 ### Added

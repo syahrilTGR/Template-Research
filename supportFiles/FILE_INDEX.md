@@ -36,6 +36,7 @@ When starting a new session, use this file to answer:
 | `revision_progress_tracker.md` | Chapter-level revision checklist (Bab 1–4) | Tracking writing progress |
 | `pending_references.md` | Citations flagged as pending/unverified | Before finalizing references |
 | `walkthrough.md` | **Activity Log** — Cumulative history of sessions, changes, and key accomplishments | Start of session or audit |
+| `word_sync_config.json` | **Word Sync Configuration** — OneDrive and local paths for document synchronization | Before syncing Word drafts |
 | `schedule_penelitian.md` | **Thesis Schedule (Gantt Chart)** — 4-month week-by-week timeline for thesis activities | Drafting or revising Bab 3 schedule |
 
 ### 📚 Academic Writing & Thesis Drafts

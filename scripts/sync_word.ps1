@@ -1,11 +1,33 @@
-# WARNING: UPDATE THESE PATHS BEFORE RUNNING
-$sourcePath = '[PASTE_YOUR_ONEDRIVE_DOCX_PATH_HERE]'        # e.g., C:\Users\Name\OneDrive\Thesis.docx
-$destPath   = '[PASTE_YOUR_LOCAL_FOLDER_HERE]\Thesis.docx' # e.g., f:\Project\example\Thesis.docx
-$txtPath    = '[PASTE_YOUR_LOCAL_FOLDER_HERE]\Thesis.md'   # e.g., f:\Project\example\Thesis.md
+# Paths are dynamically loaded from supportFiles/word_sync_config.json to prevent them from being lost during updates.
+$CONFIG_FILE = "supportFiles/word_sync_config.json"
 
-# Check for placeholders
-if ($sourcePath -like "*[PASTE_*") {
-    Write-Host "⛔ ERROR: Silakan atur path OneDrive Anda di file ini terlebih dahulu!" -ForegroundColor Red
+# Create a default configuration file if it doesn't exist
+if (-not (Test-Path $CONFIG_FILE)) {
+    $defaultConfig = @{
+        sourcePath = "[PASTE_YOUR_ONEDRIVE_DOCX_PATH_HERE]"
+        destPath   = "[PASTE_YOUR_LOCAL_FOLDER_HERE]\Thesis.docx"
+        txtPath    = "[PASTE_YOUR_LOCAL_FOLDER_HERE]\Thesis.md"
+    }
+    $defaultConfig | ConvertTo-Json | Out-File -FilePath $CONFIG_FILE -Encoding utf8
+    Write-Host "⚙️ Inisialisasi: Berkas konfigurasi baru telah dibuat di $CONFIG_FILE" -ForegroundColor Cyan
+    Write-Host "-> Silakan isi path OneDrive dan folder lokal Anda di berkas tersebut sebelum menjalankan sinkronisasi!" -ForegroundColor Yellow
+    return
+}
+
+# Load the configuration
+$config = Get-Content $CONFIG_FILE | ConvertFrom-Json
+$sourcePath = $config.sourcePath
+$destPath   = $config.destPath
+$txtPath    = $config.txtPath
+
+# Check for placeholders in all three config values
+$hasPlaceholder = ($sourcePath -like "*PASTE_*") -or ($destPath -like "*PASTE_*") -or ($txtPath -like "*PASTE_*")
+if ($hasPlaceholder) {
+    Write-Host "⛔ ERROR: Konfigurasi belum lengkap di berkas $CONFIG_FILE" -ForegroundColor Red
+    Write-Host "   -> sourcePath : $sourcePath" -ForegroundColor Yellow
+    Write-Host "   -> destPath   : $destPath" -ForegroundColor Yellow
+    Write-Host "   -> txtPath    : $txtPath" -ForegroundColor Yellow
+    Write-Host "   Silakan isi semua path yang masih mengandung placeholder [PASTE_...] sebelum menjalankan sinkronisasi." -ForegroundColor Yellow
     return
 }
 
@@ -23,7 +45,13 @@ if (Test-Path -Path $sourcePath) {
     
     # 2. Extraction
     Write-Host "Extracting Word document to Markdown..."
-    python scripts/extract_docx.py "$destPath" "$txtPath"
+    $pythonExe = "python"
+    $configPath = "supportFiles/.venv_config.txt"
+    if (Test-Path $configPath) {
+        $pythonExe = Get-Content $configPath -Raw
+        $pythonExe = $pythonExe.Trim()
+    }
+    & $pythonExe scripts/extract_docx.py "$destPath" "$txtPath"
     Write-Host "Sync Complete!"
 } else {
     Write-Error "Source file not found: $sourcePath"

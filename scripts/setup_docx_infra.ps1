@@ -3,6 +3,12 @@
 
 Write-Host "--- DOCX Infrastructure Setup ---" -ForegroundColor Cyan
 
+# 0. Prerequisite: Check for npm
+if (-not (Get-Command npm -ErrorAction SilentlyContinue)) {
+    Write-Host "⛔ ERROR: 'npm' tidak ditemukan. Silakan install Node.js terlebih dahulu dari https://nodejs.org" -ForegroundColor Red
+    exit 1
+}
+
 # 1. Check for Global docx
 Write-Host "[1/2] Checking global 'docx' library..."
 $npmRoot = npm root -g

@@ -1,7 +1,7 @@
 # gemini.md — Quick Context for AI Assistant
 
-> **Last updated:** 2026-05-25
-> **Version:** v1.0.7
+> **Last updated:** 2026-05-26
+> **Version:** v1.0.8
 > **Repo Reference:** https://github.com/syahrilTGR/Template-Research
 
 ---
@@ -17,15 +17,40 @@
 Agen wajib melakukan perbandingan antara folder lokal dan `.agents/_bridge_update_`.
 > *"Gunakan tools pembanding untuk melihat perbedaan konten. **WAJIB** buat sebuah **Artifact: Infra Audit Dashboard** berisi tabel: | File | Status | Perubahan | Rekomendasi |. Status 'Modified' diberikan jika file lokal mengandung kustomisasi user (seperti identitas/prose) yang tidak ada di pusat. Jangan menimpa file tanpa persetujuan eksplisit user terhadap dashboard tersebut."*
 * berisi tabel perbandingan (File, Status [Outdated/Modified/Identical], Ringkasan Perubahan, dan Rekomendasi). Minta persetujuan user berdasarkan dashboard tersebut. **PENTING**: Jika file `/update-infra` lokal usang, gunakan kebijakan terbaru dari repo pusat.
-6.  **Release Announcement Recommendation (MANDATORY)**: Setelah menyelesaikan pembaruan via `/update-infra`, Agent **WAJIB** merekomendasikan pengguna secara visual di chat untuk membaca berkas pengumuman rilis resmi yang terletak di [supportFiles/announcement_v1.0.7.pdf](file:///g:/Project/Template/supportFiles/announcement_v1.0.7.pdf) (atau berkas PDF versi terbaru yang tersedia) guna mengetahui detail fitur baru dan perubahan penting yang telah diintegrasikan.
 
-**Selain Heartbeat, kamu tetap WAJIB menolak tugas teknis JIKA:**
-1.  **Placeholder Masih Ada**: Teks `[...]` masih terdeteksi di file ini.
-2.  **Phase 0 Belum Selesai**: Poin-poin "Phase 0" di `supportFiles/ACTION_PLAN.md` belum dicentang `[x]`. 
 
-**Jika audit GAGAL (poin 1 atau 2), kamu WAJIB:**
-1.  Menghentikan tugas yang diminta dan mengirimkan pesan: *"⛔ **Audit AI Gagal**: Infrastruktur riset Anda belum siap."*
-2.  Memberikan instruksi: "Silakan isi `gemini.md`, jalankan `scripts/setup_docx_infra.ps1` (lalu restart IDE), dan centang Phase 0 di `supportFiles/ACTION_PLAN.md`."
+**Selain Heartbeat, lakukan pengecekan kelayakan infrastruktur:**
+1. **Deteksi Placeholder**: Periksa apakah masih ada teks placeholder default seperti `[Your Title Here]`, `[Your Name]`, `[Your University]`, atau `[ISI_DISINI]` di berkas ini.
+   - **Tindakan**: JIKA terdeteksi, kamu **WAJIB JANGAN memblokir**. Ini menandakan Sesi Pertama (Fresh Clone). Kamu **HARUS LANGSUNG memulai 🚀 Onboarding Protocol** secara interaktif (bertanya di chat, menunggu jawaban, lalu menulis ke berkas secara otomatis).
+2. **Status Phase 0**: Periksa apakah poin-poin "Phase 0" di `supportFiles/ACTION_PLAN.md` sudah dicentang `[x]`.
+   - **Tindakan**: JIKA Phase 0 belum selesai setelah onboarding, ingatkan user untuk menjalankan skrip setup lingkungan.
+
+---
+
+### 🚀 Onboarding Protocol (Pemicu Otomatis Sesi Pertama)
+
+Jika terdeteksi placeholder identitas default, jalankan prosedur interview interaktif ini secara bertahap:
+
+1. **Sapa Pengguna**: *"Selamat datang di Template-Research! Saya mendeteksi ini adalah sesi awal Anda. Mari kita konfigurasi identitas penelitian Anda terlebih dahulu agar saya bisa melayani Anda dengan presisi akademik yang tinggi."*
+2. **Interview Interaktif**: Ajukan pertanyaan-pertanyaan berikut satu per satu (tunggu jawaban pengguna sebelum melanjutkan ke pertanyaan berikutnya):
+   * **Pertanyaan 1**: *"Apa **judul skripsi/tesis** yang sedang Anda kerjakan?"* ➔ (Tulis ke `Thesis Title:`)
+   * **Pertanyaan 2**: *"Siapa **nama lengkap** Anda?"* ➔ (Tulis ke `Student:`)
+   * **Pertanyaan 3**: *"**Universitas dan program studi** Anda?"* ➔ (Tulis ke `University/Program:`)
+   * **Pertanyaan 4**: *"Apa **sistem operasi utama** yang Anda gunakan? (Windows/macOS/Linux)"* ➔ (Tulis ke `OS Focus:`)
+   * **Pertanyaan 5**: *"Apa **hardware utama yang Anda gunakan dalam penelitian** ini? (misalnya: GPU server RTX 3090, NVIDIA Jetson Nano, Raspberry Pi 4, atau cukup isi CPU jika tidak memakai hardware khusus)"* ➔ (Tulis ke `Hardware Utama:`)
+   * **Pertanyaan 6**: *"**Framework machine learning/algoritma** utama apa yang digunakan? (misal: PyTorch, TensorFlow, Scikit-learn, OpenCV)"* ➔ (Tulis ke `Key Frameworks:`)
+   * **Pertanyaan 7**: *"Apa **algoritma inti atau arsitektur model** yang Anda teliti? (misal: YOLOv8, MobileNetV3, LSTM, Random Forest)"* ➔ (Tulis ke `Core Algorithm:`)
+   * **Pertanyaan 8**: *"Bisa tolong jelaskan singkat **fokus utama penelitian** Anda dalam 1-2 kalimat?"* ➔ (Ganti `[IDENTITY:research_focus]` di `SKILL.md`)
+   * **Pertanyaan 9**: *"Apa **metode ilmiah/pendekatan** utama yang Anda gunakan untuk menjawab rumusan masalah?"* ➔ (Ganti `[IDENTITY:primary_methodology]` di `SKILL.md`)
+
+3. **Konfirmasi Data**: Setelah semua pertanyaan dijawab, tampilkan ringkasan data tersebut dalam bentuk tabel markdown dan minta konfirmasi user.
+4. **Pembaruan Atomik**: Setelah disetujui, lakukan penulisan programmatik langsung ke:
+   - `gemini.md` (bagian `Project Identity` dan `Environment & Technical Context`)
+   - `.agents/skills/custom_project_skill/SKILL.md` (bagian `Core Research Logic`)
+   - Perbarui tanggal `Last updated:` di atas `gemini.md` dengan tanggal hari ini.
+5. **Konfirmasi Sukses**: Laporkan bahwa integrasi sukses dan sesi normal dapat langsung dimulai.
+
+---
 
 ---
 
@@ -60,6 +85,7 @@ Urutan kerja wajib di awal sesi:
 3. **Load Context:** Jika lolos audit, baca **`supportFiles/handoff/00_metadata.md`** untuk memahami status riset terbaru.
 4. **Data Integrity:** Gunakan data dari `supportFiles/extracted_tables/` untuk klaim metrik numerik.
 5. **Citation Guard:** Saat akan menulis kutipan, WAJIB validasi melalui daftar di `supportFiles/handoff/09_bibliography.md` atau `ANTI_HALLUCINATION.md`.
+6. **Walkthrough Merge Protocol (MANDATORY):** Setiap kali draf `walkthrough.md` dibuat di direktori brain (session storage) setelah menyelesaikan suatu tugas, asisten **WAJIB** menawarkan kepada pengguna untuk menggabungkan (*merge*) isinya ke dalam [`supportFiles/walkthrough.md`](supportFiles/walkthrough.md) (Cumulative Log). Dilarang memindahkan atau menimpa berkas tanpa konfirmasi penggabungan eksplisit.
 
 ---
 
