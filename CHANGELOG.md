@@ -10,6 +10,7 @@ Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 ### Changed
 - **Proactive Integration Rules**: Menambahkan pedoman proaktif pada konstitusi AI `gemini.md` dan `README.md` agar agen AI dapat mendeteksi, menawarkan, dan mengoperasikan perkakas `notebooklm-mcp` secara mandiri dalam melakukan deep literature research.
 - **Central File Indexing**: Mendaftarkan panduan `notebooklm_mcp_setup.md` ke dalam indeks repositori global `supportFiles/FILE_INDEX.md` di bawah sub-bagian **🔄 Sync & Infrastructure**.
+- **User Guide Alignment**: Memperbarui berkas panduan utama **[HOW_TO_USE_ANTIGRAVITY.md](file:///g:/Project/Template/HOW_TO_USE_ANTIGRAVITY.md)** untuk mendokumentasikan kedua metode integrasi NotebookLM (Hybrid Workflow & Direct MCP Server) secara lengkap bagi pengguna akhir.
 
 ## [v1.0.8] — 2026-05-26
 

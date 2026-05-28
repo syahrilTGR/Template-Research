@@ -10,19 +10,24 @@ Membuat berkas panduan teknis profesional `notebooklm_mcp_setup.md` yang merinci
 
 ### **Detailed Actions**
 - **Pembuatan Panduan Teknis `notebooklm_mcp_setup.md`**:
-  - Menyusun penjelasan prerekuisit dengan visualisasi tabel yang rapi, memetakan virtual environment `%USERPROFILE%\.venv_ecobin`, executable CLI `nlm.exe`, dan konfigurasi IDE.
+  - Menyusun penjelasan prerekuisit dengan visualisasi tabel yang rapi, memetakan virtual environment `thesis_venv`, executable CLI `nlm.exe`, dan konfigurasi IDE.
   - Mendokumentasikan dua metode autentikasi PowerShell: Metode aktivasi virtual environment (`Activate.ps1` + `nlm login`) dan Metode jalur langsung (`& ...\nlm.exe login`).
   - Menjelaskan solusi bagi masalah Python path mismatch (executable not found di conda/python lama) dan masalah autentikasi kedaluwarsa dengan force clear cookie (`nlm login --clear --force`).
-  - Menyajikan developer-friendly guide untuk tools MCP utama: `notebook_list`, `notebook_describe`, `notebook_query`, dan `source_add` beserta struktur JSON parameternya.
+  - Menyajikan developer-friendly guide untuk tools MCP utama: `notebook_list`, `notebook_describe`, `notebook_query`, dan `source_add` beserta struktur JSON parameternya, serta lembar sontekan (cheat sheet) kalimat percakapan asisten untuk pengguna akhir.
 - **Pembaruan Berkas Indeks Repositori**:
   - Mengintegrasikan berkas panduan baru `notebooklm_mcp_setup.md` ke dalam indeks pusat `supportFiles/FILE_INDEX.md` pada bagian **🔄 Sync & Infrastructure**.
   - Memperbarui metadata tanggal pembaruan terakhir (*Last updated*) pada `FILE_INDEX.md` menjadi `2026-05-28`.
-- **Integrasi Proaktif Asisten (`gemini.md` & `README.md`)**:
+- **Integrasi Proaktif Asisten (`gemini.md` & `README.md` & `HOW_TO_USE_ANTIGRAVITY.md`)**:
   - Menambahkan aturan proaktif pada `gemini.md` (`## 🧠 Proactive Reasoning & Service`) agar agen AI menawarkan/menggunakan alat `notebooklm-mcp` secara mandiri ketika memproses analisis literatur.
   - Memasukkan referensi setup guide baru pada `README.md` pada bagian fitur unggulan dan petunjuk penggunaan asisten.
+  - Memperbarui panduan asisten utama `HOW_TO_USE_ANTIGRAVITY.md` untuk mendokumentasikan dual-metode (Hybrid Workflow & Direct MCP Server).
+  - Memperbarui alur kerja utama di `.agents/workflows/use-notebooklm.md` agar dapat memandu kedua opsi integrasi (Hybrid & MCP Direct) secara langsung.
 - **Rilis Infrastruktur Riset (`v1.0.9`)**:
   - Meningkatkan versi dasar repositori dari `v1.0.8` ke `v1.0.9` di dalam `gemini.md`.
   - Mendokumentasikan rilis `v1.0.9` secara formal ke dalam `CHANGELOG.md` menggunakan standar *Keep a Changelog*.
+- **Atribusi & Penghargaan Open-Source**:
+  - Menyusun berkas formal `CREDITS.md` di root direktori untuk mendokumentasikan lisensi dan kredit bagi perkakas MCP, pustaka manipulasi dokumen (docx, python-docx, pdfplumber), API akademik (OpenAlex, arXiv), dan platform pendukung (Obsidian, Draw.io) dari internet.
+  - Mendaftarkan `CREDITS.md` ke dalam indeks repositori global `supportFiles/FILE_INDEX.md` pada bagian **Root Directory**.
 - **Sanitasi Privasi**:
   - Memastikan seluruh panduan steril dari jalur privat dan nama pengguna sistem (`Syahril`) demi keamanan distribusi berkas dalam lingkungan riset.
 

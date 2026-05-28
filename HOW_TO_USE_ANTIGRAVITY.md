@@ -40,14 +40,21 @@ Gunakan folder `intelligence/` sebagai "Otak Eksternal" proyek Anda yang bisa di
 
 ---
 
-## ☁️ Integrasi Deep Research (NotebookLM Hybrid)
+## ☁️ Integrasi Deep Research & Google NotebookLM (Hybrid & MCP)
 
-Jika asisten lokal (Antigravity) kehabisan referensi atau Anda butuh sintesis literatur skala besar, gunakan **Google NotebookLM** sebagai *partner* cloud Anda:
+Jika asisten lokal (Antigravity) kehabisan referensi atau Anda butuh sintesis literatur skala besar, gunakan layanan **Google NotebookLM** sebagai partner cloud riset Anda melalui dua metode yang tersedia:
 
+### 🔄 Metode 1: Alur Kerja Hibrida (Hybrid Workflow via `/use-notebooklm`)
+Metode ini digunakan untuk merumuskan prompt pencarian mendalam eksternal dan memindahkan data secara manual untuk menjaga keaslian file PDF asli:
 1. **Panggil Workflow**: Ketik `/use-notebooklm` di chat.
-2. **Dapatkan Prompt**: Asisten akan merumuskan "Prompt Deep Research" tajam berdasarkan *gap* yang ada di draf Anda saat ini.
-3. **Ekspor & Pemanenan PDF**: Paste prompt tersebut ke NotebookLM. Simpan sintesis teksnya, dan **download (harvest) seluruh file PDF sumber** yang ditemukan oleh NotebookLM.
-4. **Import Lokal**: Pindahkan PDF ke folder `references/`, dan paste sintesis naratifnya di `intelligence/catat_notebooklm/`. Antigravity kemudian akan mengekstrak metrik dari PDF-PDF tersebut secara masal untuk memperkuat Bab 2 Anda.
+2. **Dapatkan Prompt**: Asisten akan merumuskan "Prompt Deep Research" tajam berdasarkan kesenjangan (*gap*) yang ada di draf Anda saat ini.
+3. **Ekspor & Pemanenan PDF**: Paste prompt tersebut ke NotebookLM Web. Simpan sintesis teksnya, dan **download (harvest) seluruh file PDF sumber** yang ditemukan oleh NotebookLM.
+4. **Import Lokal**: Pindahkan PDF ke folder `references/`, dan paste sintesis naratifnya di `intelligence/catat_notebooklm/`. Antigravity kemudian akan mengekstrak metrik dari PDF-PDF tersebut secara masal untuk memperkuat draf laporan Anda.
+
+### ⚡ Metode 2: Integrasi Langsung Programatis (Direct MCP Integration)
+Pada versi **v1.0.9**, asisten AI Anda dapat berinteraksi secara langsung dengan akun Google NotebookLM Anda di cloud menggunakan protokol Model Context Protocol (MCP) tanpa perlu membuka browser secara manual.
+* **Kemampuan:** Asisten dapat secara otomatis menampilkan daftar notebook (`notebook_list`), meringkas dokumen (`notebook_describe`), melakukan query langsung lintas referensi di cloud (`notebook_query`), dan menambahkan berkas atau URL referensi baru secara instan (`source_add`).
+* **Memulai Setup:** Baca langkah instalasi otomatis menggunakan AI maupun manual, beserta instruksi konfigurasi dan autentikasi lengkapnya di berkas panduan **[notebooklm_mcp_setup.md](file:///g:/Project/Template/supportFiles/notebooklm_mcp_setup.md)**.
 
 ---
 

@@ -24,9 +24,9 @@ Untuk memastikan kelancaran operasional, pastikan detail arsitektur lingkungan p
 | Parameter Lingkungan | Deskripsi / Lokasi Sistem |
 | :--- | :--- |
 | **Sistem Operasi** | Windows (PowerShell 5.1 atau PowerShell 7+) |
-| **Virtual Environment Utama** | `%USERPROFILE%\.venv_ecobin` (Python 3.12.x) |
+| **Virtual Environment Utama** | `$HOME\thesis_venv` (Python 3.12.x) |
 | **Versi Paket CLI** | `notebooklm-mcp-cli` versi `0.6.13` (terinstall di dalam venv aktif) |
-| **Executable CLI Utama (`nlm`)** | `%USERPROFILE%\.venv_ecobin\Scripts\nlm.exe` |
+| **Executable CLI Utama (`nlm`)** | `$HOME\thesis_venv\Scripts\nlm.exe` |
 | **Konfigurasi MCP IDE** | `%USERPROFILE%\.gemini\config\mcp_config.json` |
 
 > [!NOTE]
@@ -34,7 +34,42 @@ Untuk memastikan kelancaran operasional, pastikan detail arsitektur lingkungan p
 
 ---
 
-## 2. Panduan Autentikasi (Langkah demi Langkah)
+## 2. Opsi Instalasi Paket CLI
+
+Sebelum masuk ke tahap autentikasi, paket CLI `notebooklm-mcp-cli` versi `0.6.13` harus sudah terinstall di dalam virtual environment (`thesis_venv`). Terdapat dua metode untuk menyelesaikannya:
+
+### 🤖 Opsi A: Instalasi Otomatis via Asisten AI (Agentic Setup)
+Metode ini adalah cara tercepat dan termudah. Anda cukup menyalin perintah/prompt di bawah ini dan mengirimkannya ke obrolan asisten AI (seperti Antigravity) untuk mengotomatiskan seluruh proses instalasi serta konfigurasi `mcp_config.json`.
+
+> **Salin Prompt Ini ke Chat Asisten:**
+> ```text
+> Hai Antigravity! Tolong bantu saya menyiapkan integrasi Google NotebookLM MCP secara otomatis. Silakan lakukan:
+> 1. Verifikasi dan instal paket CLI 'notebooklm-mcp-cli==0.6.13' ke dalam virtual environment utama saya di '$HOME\thesis_venv'.
+> 2. Bantu tambahkan konfigurasi server 'notebooklm' secara otomatis pada berkas '%USERPROFILE%\.gemini\config\mcp_config.json' dengan path nlm.exe yang benar.
+> ```
+
+---
+
+### 💻 Opsi B: Instalasi Manual (Manual Setup)
+Jika Anda memilih untuk mengelolanya sendiri via terminal PowerShell, ikuti langkah berikut:
+
+1. Buka terminal PowerShell dan aktifkan virtual environment `thesis_venv`:
+   ```powershell
+   & "$env:USERPROFILE\thesis_venv\Scripts\Activate.ps1"
+   ```
+2. Jalankan perintah instalasi paket CLI menggunakan pip:
+   ```powershell
+   pip install notebooklm-mcp-cli==0.6.13
+   ```
+3. Verifikasi instalasi dengan mengecek versi CLI yang terpasang:
+   ```powershell
+   nlm --version
+   ```
+   *(Output yang diharapkan: `0.6.13`)*
+
+---
+
+## 3. Panduan Autentikasi (Langkah demi Langkah)
 
 Proses autentikasi awal membutuhkan login interaktif menggunakan akun Google Anda yang memiliki akses ke layanan Google NotebookLM. Layanan ini akan membuka jendela browser eksternal untuk verifikasi akun dan menyimpan token autentikasi secara lokal di komputer Anda.
 
@@ -46,7 +81,7 @@ Metode ini direkomendasikan jika Anda bekerja secara interaktif langsung dari da
 1. Buka terminal PowerShell.
 2. Jalankan skrip aktivasi virtual environment:
    ```powershell
-   & "$env:USERPROFILE\.venv_ecobin\Scripts\Activate.ps1"
+   & "$env:USERPROFILE\thesis_venv\Scripts\Activate.ps1"
    ```
 3. Eksekusi perintah login:
    ```powershell
@@ -60,13 +95,45 @@ Metode ini sangat berguna jika Anda ingin menjalankan login secara instan tanpa 
 1. Buka terminal PowerShell.
 2. Panggil executable `nlm` secara langsung dari virtual environment menggunakan operator call (`&`):
    ```powershell
-   & "$env:USERPROFILE\.venv_ecobin\Scripts\nlm.exe" login
+   & "$env:USERPROFILE\thesis_venv\Scripts\nlm.exe" login
    ```
 3. Selesaikan proses login interaktif pada jendela browser yang terbuka.
 
 ---
 
-## 3. Troubleshooting Penting (Critical Fixes)
+## 4. Konfigurasi Server MCP di IDE (mcp_config.json)
+
+Agar asisten AI di IDE Anda (seperti VS Code, Cursor, atau editor berkemampuan MCP lainnya) dapat menggunakan perkakas Google NotebookLM secara langsung, Anda wajib mendaftarkan server `notebooklm` ke dalam berkas konfigurasi MCP IDE Anda (`mcp_config.json`).
+
+### 📝 Cara Menambahkan Konfigurasi:
+
+1. Buka berkas konfigurasi MCP IDE Anda yang berlokasi di:
+   `%USERPROFILE%\.gemini\config\mcp_config.json`
+2. Tambahkan entri baru `"notebooklm"` di dalam objek `"mcpServers"`. 
+3. Berikut adalah contoh isi konfigurasi JSON yang benar:
+
+```json
+{
+  "mcpServers": {
+    "notebooklm": {
+      "command": "C:\\Users\\<nama_pengguna>\\thesis_venv\\Scripts\\nlm.exe",
+      "args": [
+        "mcp"
+      ],
+      "env": {}
+    }
+  }
+}
+```
+
+> [!IMPORTANT]
+> - Pastikan Anda mengganti bagian `<username>` di dalam kolom `"command"` dengan nama pengguna Windows aktif Anda yang sebenarnya (misalnya `C:\\Users\\nama_pengguna\\...`).
+> - Gunakan tanda double backslash (`\\`) untuk setiap pembatas folder di Windows agar file JSON valid.
+> - Setelah menyimpan berkas `mcp_config.json`, lakukan **Restart** or **Reload Window** pada IDE Anda untuk memuat ulang server MCP.
+
+---
+
+## 5. Troubleshooting Penting (Critical Fixes)
 
 Berikut adalah ringkasan masalah kritis yang umum ditemui beserta solusi praktis untuk menyelesaikannya:
 
@@ -75,10 +142,10 @@ Berikut adalah ringkasan masalah kritis yang umum ditemui beserta solusi praktis
 * **Penyebab:** Eksekusi perintah `nlm` secara global mendeteksi konfigurasi interpreter python lama dari variabel lingkungan Windows (PATH) atau instalasi global yang usang.
 * **Solusi Praktis:**
   Hindari memanggil perintah `nlm` secara global tanpa spesifikasi lingkungan. Anda wajib memastikan salah satu dari dua tindakan berikut dilakukan sebelum memanggil CLI:
-  1. Jalankan skrip aktivasi venv `.venv_ecobin` terlebih dahulu sebelum memanggil perintah `nlm` (Metode A).
+  1. Jalankan skrip aktivasi venv `thesis_venv` terlebih dahulu sebelum memanggil perintah `nlm` (Metode A).
   2. Panggil CLI menggunakan jalur absolut virtual environment yang aktif secara langsung (Metode B):
      ```powershell
-     & "$env:USERPROFILE\.venv_ecobin\Scripts\nlm.exe" [perintah]
+     & "$env:USERPROFILE\thesis_venv\Scripts\nlm.exe" [perintah]
      ```
 
 ### 🚨 Masalah 2: Error Instan "Authentication Expired" saat Menjalankan `nlm login`
@@ -92,12 +159,12 @@ Berikut adalah ringkasan masalah kritis yang umum ditemui beserta solusi praktis
     ```
   * **Melalui jalur absolut langsung:**
     ```powershell
-    & "$env:USERPROFILE\.venv_ecobin\Scripts\nlm.exe" login --clear --force
+    & "$env:USERPROFILE\thesis_venv\Scripts\nlm.exe" login --clear --force
     ```
 
 ---
 
-## 4. Fitur Utama & Cara Penggunaan MCP
+## 6. Fitur Utama & Cara Penggunaan MCP
 
 Setelah proses autentikasi berhasil, asisten kecerdasan buatan dapat memanggil berbagai perkakas (tools) MCP secara langsung untuk berinteraksi dengan Google NotebookLM Anda. 
 
@@ -143,6 +210,26 @@ Menambahkan sumber referensi baru ke dalam notebook aktif. Sumber dapat berupa U
     "url": "https://arxiv.org/abs/2301.00001"
   }
   ```
+
+---
+
+## 💡 Panduan Cepat: Contoh Interaksi Langsung dengan Asisten AI
+
+Untuk membantu Anda langsung mulai menggunakan fitur ini tanpa memikirkan parameter JSON teknis, Anda dapat memberikan perintah dalam bahasa manusia biasa kepada asisten AI Anda. Asisten akan otomatis memetakan perintah Anda ke perkakas MCP yang sesuai.
+
+Berikut adalah lembar sontekan (*cheat sheet*) perintah obrolan yang dapat Anda gunakan:
+
+| Aktivitas Riset | Contoh Kalimat Obrolan yang Dapat Anda Gunakan | Perkakas MCP yang Bekerja |
+| :--- | :--- | :--- |
+| **Menampilkan Daftar Notebook** | *"Tolong tampilkan daftar notebook riset yang ada di Google NotebookLM saya."* | `notebook_list` |
+| **Melihat Dokumen & Ringkasan** | *"Tolong buat ringkasan dokumen untuk notebook ID <UUID_Notebook>."* | `notebook_describe` |
+| **Analisis & Kueri Cerdas** | *"Tanyakan ke notebook ID <UUID_Notebook> mengenai apa kesimpulan paper riset YOLOv8 di dalamnya."* | `notebook_query` |
+| **Menambah Jurnal Baru (URL)** | *"Tolong masukkan referensi URL https://arxiv.org/pdf/2301.00001 ke dalam notebook ID <UUID_Notebook>."* | `source_add` (url) |
+| **Menambah Teks Catatan** | *"Tolong tambahkan teks kesimpulan rapat riset ini ke dalam notebook ID <UUID_Notebook>."* | `source_add` (text) |
+
+> [!TIP]
+> - **Anda tidak perlu menghafal UUID notebook!** Jalankan perintah *tampilkan daftar notebook* terlebih dahulu, lalu selanjutnya Anda bisa merujuk notebook tersebut dengan namanya (misalnya: *"Tanyakan ke notebook Skripsi YOLOv8 saya mengenai..."*) dan asisten AI akan otomatis memetakan serta mencari UUID-nya untuk Anda!
+> - Seluruh kueri model berjalan langsung di cloud Google NotebookLM, sehingga sangat hemat memori lokal komputer Anda dan memanfaatkan kapabilitas pencarian literatur tingkat tinggi dari Google secara real-time.
 
 ---
 

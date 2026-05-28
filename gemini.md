@@ -37,9 +37,9 @@ Jika terdeteksi placeholder identitas default, jalankan prosedur interview inter
    * **Pertanyaan 2**: *"Siapa **nama lengkap** Anda?"* ➔ (Tulis ke `Student:`)
    * **Pertanyaan 3**: *"**Universitas dan program studi** Anda?"* ➔ (Tulis ke `University/Program:`)
    * **Pertanyaan 4**: *"Apa **sistem operasi utama** yang Anda gunakan? (Windows/macOS/Linux)"* ➔ (Tulis ke `OS Focus:`)
-   * **Pertanyaan 5**: *"Apa **hardware utama yang Anda gunakan dalam penelitian** ini? (misalnya: GPU server RTX 3090, NVIDIA Jetson Nano, Raspberry Pi 4, atau cukup isi CPU jika tidak memakai hardware khusus)"* ➔ (Tulis ke `Hardware Utama:`)
-   * **Pertanyaan 6**: *"**Framework machine learning/algoritma** utama apa yang digunakan? (misal: PyTorch, TensorFlow, Scikit-learn, OpenCV)"* ➔ (Tulis ke `Key Frameworks:`)
-   * **Pertanyaan 7**: *"Apa **algoritma inti atau arsitektur model** yang Anda teliti? (misal: YOLOv8, MobileNetV3, LSTM, Random Forest)"* ➔ (Tulis ke `Core Algorithm:`)
+   * **Pertanyaan 5**: *"Apa **hardware utama** yang digunakan dalam penelitian? (Contoh: 'GPU Server' (IT/ML), 'MCU ESP32 & Sensor' (IoT), 'Universal Testing Machine / Strain Gauge' (Sipil/Mesin), 'Spectrophotometer' (Kimia), atau cukup isi 'CPU/Laptop' jika tidak menggunakan hardware khusus)"* ➔ (Tulis ke `Hardware Utama:`)
+   * **Pertanyaan 6**: *"**Framework / Software / Simulator** utama apa yang digunakan? (Contoh: 'PyTorch/Arduino' (IT), 'ANSYS/SolidWorks/AutoCAD/SAP2000' (Mesin/Sipil), 'MATLAB/Simulink' (Elektro), 'SPSS/R/NVivo' (Sosial/Statistik))"* ➔ (Tulis ke `Key Frameworks:`)
+   * **Pertanyaan 7**: *"Apa **algoritma inti, rumus/persamaan utama, protokol, atau metode** yang Anda gunakan? (Contoh: 'YOLOv8/MQTT/OSPF' (IT), 'Finite Element Method (FEM) / CFD' (Sipil/Mesin), 'Regresi Linier / AHP' (Sosial/Statistik))"* ➔ (Tulis ke `Core Algorithm:`)
    * **Pertanyaan 8**: *"Bisa tolong jelaskan singkat **fokus utama penelitian** Anda dalam 1-2 kalimat?"* ➔ (Ganti `[IDENTITY:research_focus]` di `SKILL.md`)
    * **Pertanyaan 9**: *"Apa **metode ilmiah/pendekatan** utama yang Anda gunakan untuk menjawab rumusan masalah?"* ➔ (Ganti `[IDENTITY:primary_methodology]` di `SKILL.md`)
 
@@ -61,10 +61,10 @@ Jika terdeteksi placeholder identitas default, jalankan prosedur interview inter
 
 ## 💻 Environment & Technical Context
 - **OS Focus:** [e.g., Windows/macOS/Linux]
-- **Hardware Utama:** [ISI_DISINI]
-- **Default VENV:** [ISI_DISINI]
-- **Key Frameworks:** [e.g., PyTorch, TensorFlow, Scikit-learn]
-- **Core Algorithm:** [e.g., YOLOv8, LSTM, Random Forest]
+- **Hardware Utama:** [e.g., GPU RTX 3090 (IT) / ESP32 & Sensor (IoT) / UTM & Strain Gauge (Mesin/Sipil) / Spectrophotometer (Kimia) / Laptop]
+- **Default VENV:** [e.g., C:\Users\User\.venv_skripsi, or fill '-' if not using Python]
+- **Key Frameworks:** [e.g., PyTorch (ML) / ANSYS & AutoCAD (Mesin/Sipil) / MATLAB (Elektro) / SPSS (Sosial)]
+- **Core Algorithm:** [e.g., YOLOv8 (IT) / Finite Element Method (Mesin/Sipil) / Regresi Linier & AHP (Sosial)]
 
 ## 📁 Repository Ecosystem Map
 

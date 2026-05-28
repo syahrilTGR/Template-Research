@@ -20,6 +20,7 @@ When starting a new session, use this file to answer:
 |---|---|---|
 | `gemini.md` | **AI Constitution** — mandatory rules, protocols, and project overview for every agent session | Always first |
 | `intelligence/_INDEX.md` | Obsidian Map of Content (MOC) — semantic links between thesis drafts and code | Deep architecture research |
+| `CREDITS.md` | Atribusi Lisensi & Kredit Open-Source — Penghargaan terhadap perkakas pihak ketiga | Audit lisensi atau pemeriksaan kepatuhan kode |
 
 ---
 
