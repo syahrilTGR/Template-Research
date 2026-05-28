@@ -2,6 +2,15 @@
 
 Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 
+## [v1.0.9] — 2026-05-28
+
+### Added
+- **NotebookLM MCP Technical Guide**: Menyusun panduan setup, autentikasi (PowerShell & direct path), troubleshooting (mismatch jalur Python dan cookie kedaluwarsa), serta penggunaan perkakas model (`notebook_list`, `notebook_describe`, `notebook_query`, `source_add`) pada `supportFiles/notebooklm_mcp_setup.md` dengan sanitasi total dari data privat.
+
+### Changed
+- **Proactive Integration Rules**: Menambahkan pedoman proaktif pada konstitusi AI `gemini.md` dan `README.md` agar agen AI dapat mendeteksi, menawarkan, dan mengoperasikan perkakas `notebooklm-mcp` secara mandiri dalam melakukan deep literature research.
+- **Central File Indexing**: Mendaftarkan panduan `notebooklm_mcp_setup.md` ke dalam indeks repositori global `supportFiles/FILE_INDEX.md` di bawah sub-bagian **🔄 Sync & Infrastructure**.
+
 ## [v1.0.8] — 2026-05-26
 
 ### Added

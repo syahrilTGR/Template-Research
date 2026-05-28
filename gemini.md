@@ -1,7 +1,7 @@
 # gemini.md — Quick Context for AI Assistant
 
-> **Last updated:** 2026-05-26
-> **Version:** v1.0.8
+> **Last updated:** 2026-05-28
+> **Version:** v1.0.9
 > **Repo Reference:** https://github.com/syahrilTGR/Template-Research
 
 ---
@@ -94,6 +94,7 @@ Untuk memberikan dukungan maksimal, kamu harus **berinisiatif** (tidak pasif):
 - **Semantic Triggers**: Pantau deskripsi di setiap `SKILL.md` dan metadata `/workflows`. Jika permintaan user cocok dengan pemicu (*trigger*) di sana, jalankan atau sarankan modul tersebut SECARA OTOMATIS tanpa menunggu dipanggil eksplisit.
 - **Persona Context**: Jika topik obrolan berubah (misal dari "menulis" ke "coding"), segeralah mengadopsi persona yang relevan (Arsitek/Penulis/Peneliti) sesuai pemicu di file personanya.
 - **Hybrid Search**: Jika konteks lokal tidak cukup, tawarkan pencarian eksternal via `/use-notebooklm` atau riset web secara mandiri.
+- **NotebookLM MCP Direct Integration**: Jika pengguna menanyakan kueri literatur mendalam, memerlukan deskripsi notebook, atau ingin menambahkan dokumen referensi baru ke cloud, tawarkan atau gunakan tools `notebooklm-mcp` secara proaktif. Jika terjadi kendala autentikasi atau instalasi, arahkan pengguna ke panduan teknis [notebooklm_mcp_setup.md](file:///g:/Project/Template/supportFiles/notebooklm_mcp_setup.md).
 
 ---
 

@@ -3,6 +3,35 @@
 
 ---
 
+## 📅 [2026-05-28 07:00] Session: Dokumentasi & Setup Integrasi Google NotebookLM MCP
+
+### **Objective**
+Membuat berkas panduan teknis profesional `notebooklm_mcp_setup.md` yang merinci alur instalasi, autentikasi, penyelesaian masalah, serta cara penggunaan perkakas `notebooklm-mcp` secara aman dengan mengganti semua direktori sensitif menggunakan variabel lingkungan/placeholder universal.
+
+### **Detailed Actions**
+- **Pembuatan Panduan Teknis `notebooklm_mcp_setup.md`**:
+  - Menyusun penjelasan prerekuisit dengan visualisasi tabel yang rapi, memetakan virtual environment `%USERPROFILE%\.venv_ecobin`, executable CLI `nlm.exe`, dan konfigurasi IDE.
+  - Mendokumentasikan dua metode autentikasi PowerShell: Metode aktivasi virtual environment (`Activate.ps1` + `nlm login`) dan Metode jalur langsung (`& ...\nlm.exe login`).
+  - Menjelaskan solusi bagi masalah Python path mismatch (executable not found di conda/python lama) dan masalah autentikasi kedaluwarsa dengan force clear cookie (`nlm login --clear --force`).
+  - Menyajikan developer-friendly guide untuk tools MCP utama: `notebook_list`, `notebook_describe`, `notebook_query`, dan `source_add` beserta struktur JSON parameternya.
+- **Pembaruan Berkas Indeks Repositori**:
+  - Mengintegrasikan berkas panduan baru `notebooklm_mcp_setup.md` ke dalam indeks pusat `supportFiles/FILE_INDEX.md` pada bagian **🔄 Sync & Infrastructure**.
+  - Memperbarui metadata tanggal pembaruan terakhir (*Last updated*) pada `FILE_INDEX.md` menjadi `2026-05-28`.
+- **Integrasi Proaktif Asisten (`gemini.md` & `README.md`)**:
+  - Menambahkan aturan proaktif pada `gemini.md` (`## 🧠 Proactive Reasoning & Service`) agar agen AI menawarkan/menggunakan alat `notebooklm-mcp` secara mandiri ketika memproses analisis literatur.
+  - Memasukkan referensi setup guide baru pada `README.md` pada bagian fitur unggulan dan petunjuk penggunaan asisten.
+- **Rilis Infrastruktur Riset (`v1.0.9`)**:
+  - Meningkatkan versi dasar repositori dari `v1.0.8` ke `v1.0.9` di dalam `gemini.md`.
+  - Mendokumentasikan rilis `v1.0.9` secara formal ke dalam `CHANGELOG.md` menggunakan standar *Keep a Changelog*.
+- **Sanitasi Privasi**:
+  - Memastikan seluruh panduan steril dari jalur privat dan nama pengguna sistem (`Syahril`) demi keamanan distribusi berkas dalam lingkungan riset.
+
+### **System Insights**
+* **Keamanan Informasi**: Penggunaan variabel lingkungan `%USERPROFILE%` dan placeholder `<username>` memastikan dokumentasi ini bersifat universal dan siap dipakai oleh peneliti lain tanpa membocorkan struktur user directory lokal.
+* **Aksesibilitas Integrasi**: Panduan ini melengkapi workflow hibrida NotebookLM di repositori, memungkinkan transisi yang mulus bagi asisten untuk melakukan deep query langsung terhadap repositori literatur digital.
+
+---
+
 ## 📅 [2026-05-26 10:48] Session: Onboarding-First Auditor & Bootstrapping Pivot Protocol (v1.0.8 Release)
 
 ### **Objective**

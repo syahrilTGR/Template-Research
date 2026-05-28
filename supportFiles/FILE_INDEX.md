@@ -1,7 +1,7 @@
 # FILE_INDEX.md — Central File Registry
 > **Purpose:** Single source of truth for all files in this project. Every new file MUST be registered here.
 > **Maintained by:** AI Agent (mandatory per `gemini.md` indexing protocol).
-> **Last updated:** 2026-05-20
+> **Last updated:** 2026-05-28
 
 ---
 
@@ -85,6 +85,7 @@ When starting a new session, use this file to answer:
 | `DOCX_SYNC_GUIDE.md` | Word document sync protocol (OneDrive) | Before generating .docx |
 | `ANTI_HALLUCINATION.md` | Rules to prevent AI hallucinations in thesis | Quality control review |
 | `PROMPT_TEMPLATE.md` | Prompt templates for recurring agent tasks | Writing custom prompts |
+| `notebooklm_mcp_setup.md` | Guide for setting up, authenticating, and troubleshooting notebooklm-mcp | Setting up or using NotebookLM integration |
 | `.agents/workflows/sync-audit-proposal.md` | Instruction-only manual sync & visual-cognitive proposal audit workflow | Performing manual sync and thesis checks |
 
 ---
