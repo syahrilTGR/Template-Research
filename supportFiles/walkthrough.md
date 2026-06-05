@@ -3,6 +3,29 @@
 
 ---
 
+## 📅 [2026-06-05 22:15] Session: Migrasi Python-Native Mesin Auto-Update & Rilis v1.1.1
+
+### **Objective**
+Meningkatkan efisiensi, portabilitas cross-platform, dan ketahanan proses `/update-infra` dengan memigrasikan seluruh logika dari PowerShell ke skrip Python murni (`scripts/update_infra.py`).
+
+### **Detailed Actions**
+- **Development of update_infra.py**:
+  - Menulis mesin pembaruan Python-native yang secara dinamis memeriksa versi lokal vs online di repositori pusat.
+  - Mengimplementasikan pencadangan otomatis (safety backup) folder `.agents` dan `scripts` dengan folder stempel waktu sebelum file ditimpa.
+  - Memasang rutinitas Smoke Test otomatis pasca pembaruan untuk memvalidasi kesiapan paket `scienceskillscommon` dan ketersediaan Node.js `docx`.
+- **Workflow Optimization**:
+  - Menyederhanakan berkas alur kerja `.agents/workflows/update-infra.md` agar memanggil langsung `python scripts/update_infra.py` (melalui placeholder interpreter lokal).
+- **Version Release v1.1.1**:
+  - Menaikkan versi repositori dasar dari `v1.1.0` ke `v1.1.1` di `gemini.md`.
+  - Memperbarui panduan versi pada berkas `HOW_TO_USE_ANTIGRAVITY.md`.
+  - Mencatat rilis secara formal di `CHANGELOG.md` dan `supportFiles/walkthrough.md`.
+
+### **System Insights**
+* **Cross-Platform Resilience**: Peralihan dari `.ps1` ke `.py` meniadakan dependensi shell eksternal bagi pengguna non-Windows (macOS/Linux), memastikan kelancaran update yang seragam di seluruh ekosistem riset.
+* **Auto-Validation Handshake**: Smoke test terintegrasi memastikan error konfigurasi (seperti package path/node modules missing) langsung terdeteksi di awal sebelum pengguna melakukan pemanggilan workflow riset lainnya.
+
+---
+
 ## 📅 [2026-06-05 22:00] Session: Peningkatan Kompatibilitas Windows & Rilis Infrastruktur v1.1.0
 
 ### **Objective**

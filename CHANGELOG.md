@@ -2,6 +2,16 @@
 
 Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 
+## [v1.1.1] — 2026-06-05
+
+### Added
+- **Python-Native Update Engine**: Menambahkan skrip baru `scripts/update_infra.py` untuk mengotomatisasi pembaruan infrastruktur repositori dengan penanganan *cross-platform* (Windows, macOS, Linux).
+- **Pre-check Versioning**: Menambahkan sistem deteksi versi online sebelum mengunduh ZIP untuk menghindari pembaruan redundan dan memberikan konfirmasi *force update*.
+- **Post-Update Smoke Testing**: Rangkaian tes pasca-pembaruan untuk memvalidasi kesiapan paket `scienceskillscommon` dan fungsionalitas Node.js `docx`.
+
+### Changed
+- **update-infra Workflow Optimization**: Memotong dan menyederhanakan kode PowerShell yang panjang pada `.agents/workflows/update-infra.md` menjadi panggilan langsung ke mesin pembaruan Python-native.
+
 ## [v1.1.0] — 2026-06-05
 
 ### Added
