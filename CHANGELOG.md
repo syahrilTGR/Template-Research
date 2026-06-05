@@ -2,6 +2,17 @@
 
 Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 
+## [v1.1.0] — 2026-06-05
+
+### Added
+- **Windows Compatibility for Science Skills**: Menambahkan penanganan kompatibilitas platform Windows (`win32`) menggunakan `msvcrt` dan `threading.Lock` di dalam paket utilitas bersama `scienceskillscommon` untuk menggantikan modul `fcntl` (Unix-only).
+- **scienceskillscommon Package**: Menambahkan paket baru `scienceskillscommon` (tanpa tanda hubung) untuk mendistribusikan kode utilitas bersama tanpa kendala import di environment python/uv.
+- **Academic Writing & Safety Protocols in gemini.md**: Mengadopsi pedoman penulisan akademik yang ketat (Zero Colon/Semicolon in Prose, Zero Em-dash, Zero Space Table, UPOD Structure, Physical Reference Verification) serta protokol keamanan asisten (Execution Safety, New File Indexing, Glossary, dan Commit Log).
+
+### Changed
+- **Science Skills Update**: Memperbarui dependensi inline, tool sources, dan baris import di modul `literature-search-arxiv` dan `literature-search-openalex` agar merujuk ke paket `scienceskillscommon`.
+- **arXiv API Endpoints**: Mengubah protocol endpoint arXiv API dari `http` ke `https` untuk keamanan dan reliabilitas.
+
 ## [v1.0.9] — 2026-05-28
 
 ### Added
@@ -10,7 +21,7 @@ Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 ### Changed
 - **Proactive Integration Rules**: Menambahkan pedoman proaktif pada konstitusi AI `gemini.md` dan `README.md` agar agen AI dapat mendeteksi, menawarkan, dan mengoperasikan perkakas `notebooklm-mcp` secara mandiri dalam melakukan deep literature research.
 - **Central File Indexing**: Mendaftarkan panduan `notebooklm_mcp_setup.md` ke dalam indeks repositori global `supportFiles/FILE_INDEX.md` di bawah sub-bagian **🔄 Sync & Infrastructure**.
-- **User Guide Alignment**: Memperbarui berkas panduan utama **[HOW_TO_USE_ANTIGRAVITY.md](file:///g:/Project/Template/HOW_TO_USE_ANTIGRAVITY.md)** untuk mendokumentasikan kedua metode integrasi NotebookLM (Hybrid Workflow & Direct MCP Server) secara lengkap bagi pengguna akhir.
+- **User Guide Alignment**: Memperbarui berkas panduan utama **[HOW_TO_USE_ANTIGRAVITY.md](HOW_TO_USE_ANTIGRAVITY.md)** untuk mendokumentasikan kedua metode integrasi NotebookLM (Hybrid Workflow & Direct MCP Server) secara lengkap bagi pengguna akhir.
 
 ## [v1.0.8] — 2026-05-26
 

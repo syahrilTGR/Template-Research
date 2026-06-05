@@ -21,11 +21,11 @@ pagination handling, rate limit backoffs, and error checking.
 # /// script
 # requires-python = ">=3.10"
 # dependencies = [
-#   "science-skills-common",
+#   "scienceskillscommon",
 #   "python-dotenv",
 # ]
 # [tool.uv.sources]
-# science-skills-common = { path = "../../science_skills_common" }
+# scienceskillscommon = { path = "../../scienceskillscommon" }
 # ///
 
 from __future__ import annotations
@@ -41,7 +41,7 @@ import urllib.error
 import urllib.parse
 
 import dotenv
-from science_skills.science_skills_common import http_client
+from science_skills.scienceskillscommon import http_client
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 

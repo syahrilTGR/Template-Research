@@ -21,10 +21,10 @@ and saving them to a specified output file path.
 # /// script
 # requires-python = ">=3.10"
 # dependencies = [
-#   "science-skills-common",
+#   "scienceskillscommon",
 # ]
 # [tool.uv.sources]
-# science-skills-common = { path = "../../science_skills_common" }
+# scienceskillscommon = { path = "../../scienceskillscommon" }
 # ///
 
 import argparse
@@ -32,7 +32,7 @@ import os
 import sys
 import urllib.error
 
-from science_skills.science_skills_common import http_client
+from science_skills.scienceskillscommon import http_client
 
 _CLIENT = http_client.HttpClient("https://export.arxiv.org/", qps=1.0 / 3.0)
 

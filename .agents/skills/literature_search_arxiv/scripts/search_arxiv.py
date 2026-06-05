@@ -22,10 +22,10 @@ containing the search results.
 # /// script
 # requires-python = ">=3.10"
 # dependencies = [
-#   "science-skills-common",
+#   "scienceskillscommon",
 # ]
 # [tool.uv.sources]
-# science-skills-common = { path = "../../science_skills_common" }
+# scienceskillscommon = { path = "../../scienceskillscommon" }
 # ///
 
 import argparse
@@ -34,9 +34,9 @@ import sys
 import urllib.parse
 import xml.etree.ElementTree as ET
 
-from science_skills.science_skills_common import http_client
+from science_skills.scienceskillscommon import http_client
 
-_BASE_URL = "http://export.arxiv.org/api/query?"
+_BASE_URL = "https://export.arxiv.org/api/query?"
 _CLIENT = http_client.HttpClient(_BASE_URL, qps=1.0 / 3.0)
 
 

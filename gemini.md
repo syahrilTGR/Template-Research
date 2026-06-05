@@ -1,7 +1,7 @@
 # gemini.md — Quick Context for AI Assistant
 
-> **Last updated:** 2026-05-28
-> **Version:** v1.0.9
+> **Last updated:** 2026-06-05
+> **Version:** v1.1.0
 > **Repo Reference:** https://github.com/syahrilTGR/Template-Research
 
 ---
@@ -89,12 +89,30 @@ Urutan kerja wajib di awal sesi:
 
 ---
 
+## 🧠 Brain & Knowledge Management
+- **Glossary Protocol**: Jika asisten menemukan atau ingin menggunakan istilah baru yang tidak ada di `supportFiles/GLOSSARY.md`, asisten **WAJIB** meminta pengguna mendefinisikannya terlebih dahulu untuk kemudian dicatat di Glossary.
+- **Thesis Formatting Protocol (GOLDEN RULES)**:
+  1. **Zero Space Table**: Tabel di draf handoff/markdown harus sangat padat. Hapus garis pemisah Markdown (`--- | ---`), eliminasi jeda baris antara header dan data, dan hindari penggunaan titik dua (`:`) untuk perataan (*alignment*).
+  2. **Zero Em-dash**: Jangan gunakan karakter em-dash (`—`). Gunakan tanda baca akademik standar sebagai gantinya.
+  3. **Hierarchical Numbering**: Gunakan penomoran hierarkis (misal: 3.1, 3.5.2) untuk setiap judul/header draf naskah.
+  4. **Introduction Writing Protocol (UPOD Structure)**: Latar Belakang (1.1) **WAJIB** mengikuti alur 3-bagian: **Problem** (urgensi & gap), **Previous Study** (literatur & limitasi), dan **Plan** (solusi yang diusulkan).
+  5. **Zero Colon and Semicolon in Prose**: Dilarang menggunakan titik dua (`:`) atau titik koma (`;`) di tengah-tengah paragraf prosa untuk penjelasan, enumerasi, atau penghubung klausa. Gunakan kalimat terpisah, kata hubung koordinatif, atau restrukturisasi kalimat. Penggunaan titik dua di akhir kalimat pengantar menuju daftar rincian/persamaan matematika tetap diperbolehkan.
+  6. **Reference Physical Verification**: Jangan pernah menyitasi paper kecuali file PDF fisiknya benar-benar ada di direktori `references/`. Jika paper hanya terdaftar di metadata (seperti `pending_references.md`) tetapi fisiknya tidak ada, lewati sitasi langsung dan beri tanda sebagai file hilang.
+- **Commit Log Strategy (MANDATORY)**: Asisten **WAJIB** meminta persetujuan pesan commit setiap kali sebuah tugas/tahapan selesai dikerjakan.
+- **Execution Safety Protocol (MANDATORY)**: Jangan pernah menginstruksikan atau meminta pengguna menjalankan perintah terminal secara manual. Asisten harus selalu mengusulkan dan mengeksekusi perintah tersebut secara langsung menggunakan sistem eksekusi alat (sehingga pengguna tinggal menyetujui di UI), kecuali jika pengguna meminta melakukannya sendiri di shell mereka.
+- **New File Indexing & Architecture Mapping Protocol (MANDATORY)**: Setiap kali file baru (skrip, draf naskah, atau berkas konfigurasi) dibuat, asisten **WAJIB** langsung:
+  1. Menganalisis properti berkas (tujuan, fungsi utama, input/output, upstream/downstream dependencies).
+  2. Menuliskan indeks inline (markdown header atau docstring kode) di dalam berkas baru tersebut.
+  3. Mendaftarkan berkas baru tersebut ke indeks pusat `supportFiles/FILE_INDEX.md`.
+
+---
+
 ## 🧠 Proactive Reasoning & Service
 Untuk memberikan dukungan maksimal, kamu harus **berinisiatif** (tidak pasif):
 - **Semantic Triggers**: Pantau deskripsi di setiap `SKILL.md` dan metadata `/workflows`. Jika permintaan user cocok dengan pemicu (*trigger*) di sana, jalankan atau sarankan modul tersebut SECARA OTOMATIS tanpa menunggu dipanggil eksplisit.
 - **Persona Context**: Jika topik obrolan berubah (misal dari "menulis" ke "coding"), segeralah mengadopsi persona yang relevan (Arsitek/Penulis/Peneliti) sesuai pemicu di file personanya.
 - **Hybrid Search**: Jika konteks lokal tidak cukup, tawarkan pencarian eksternal via `/use-notebooklm` atau riset web secara mandiri.
-- **NotebookLM MCP Direct Integration**: Jika pengguna menanyakan kueri literatur mendalam, memerlukan deskripsi notebook, atau ingin menambahkan dokumen referensi baru ke cloud, tawarkan atau gunakan tools `notebooklm-mcp` secara proaktif. Jika terjadi kendala autentikasi atau instalasi, arahkan pengguna ke panduan teknis [notebooklm_mcp_setup.md](file:///g:/Project/Template/supportFiles/notebooklm_mcp_setup.md).
+- **NotebookLM MCP Direct Integration**: Jika pengguna menanyakan kueri literatur mendalam, memerlukan deskripsi notebook, atau ingin menambahkan dokumen referensi baru ke cloud, tawarkan atau gunakan tools `notebooklm-mcp` secara proaktif. Jika terjadi kendala autentikasi atau instalasi, arahkan pengguna ke panduan teknis [notebooklm_mcp_setup.md](supportFiles/notebooklm_mcp_setup.md).
 
 ---
 
@@ -102,4 +120,3 @@ Untuk memberikan dukungan maksimal, kamu harus **berinisiatif** (tidak pasif):
 - **DO NOT** invent academic references. Use only verified references.
 - **DO NOT** change the core methodology without explicit permission.
 - **DO NOT** use AI-giveaway language like em-dashes (`—`) or robotic transitions ("Furthermore", "In conclusion").
-

@@ -4,7 +4,7 @@ description: "Use this skill any time a spreadsheet file is the primary input or
 license: Proprietary. LICENSE.txt has complete terms
 ---
 
-## EcoBin Environment & Numerical Methods
+## Spreadsheet Environment & Guidelines
 
 > [!IMPORTANT]
 > **Environment Rule**: Always prefix all python commands with `[PYTHON_PATH_PLACEHOLDER]` when working in this workspace.

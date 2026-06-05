@@ -52,9 +52,9 @@ Metode ini digunakan untuk merumuskan prompt pencarian mendalam eksternal dan me
 4. **Import Lokal**: Pindahkan PDF ke folder `references/`, dan paste sintesis naratifnya di `intelligence/catat_notebooklm/`. Antigravity kemudian akan mengekstrak metrik dari PDF-PDF tersebut secara masal untuk memperkuat draf laporan Anda.
 
 ### ⚡ Metode 2: Integrasi Langsung Programatis (Direct MCP Integration)
-Pada versi **v1.0.9**, asisten AI Anda dapat berinteraksi secara langsung dengan akun Google NotebookLM Anda di cloud menggunakan protokol Model Context Protocol (MCP) tanpa perlu membuka browser secara manual.
+Pada versi **v1.1.0**, asisten AI Anda dapat berinteraksi secara langsung dengan akun Google NotebookLM Anda di cloud menggunakan protokol Model Context Protocol (MCP) tanpa perlu membuka browser secara manual.
 * **Kemampuan:** Asisten dapat secara otomatis menampilkan daftar notebook (`notebook_list`), meringkas dokumen (`notebook_describe`), melakukan query langsung lintas referensi di cloud (`notebook_query`), dan menambahkan berkas atau URL referensi baru secara instan (`source_add`).
-* **Memulai Setup:** Baca langkah instalasi otomatis menggunakan AI maupun manual, beserta instruksi konfigurasi dan autentikasi lengkapnya di berkas panduan **[notebooklm_mcp_setup.md](file:///g:/Project/Template/supportFiles/notebooklm_mcp_setup.md)**.
+* **Memulai Setup:** Baca langkah instalasi otomatis menggunakan AI maupun manual, beserta instruksi konfigurasi dan autentikasi lengkapnya di berkas panduan **[notebooklm_mcp_setup.md](supportFiles/notebooklm_mcp_setup.md)**.
 
 ---
 

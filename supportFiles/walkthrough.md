@@ -3,6 +3,27 @@
 
 ---
 
+## 📅 [2026-06-05 22:00] Session: Peningkatan Kompatibilitas Windows & Rilis Infrastruktur v1.1.0
+
+### **Objective**
+Meningkatkan kompatibilitas platform Windows pada skill riset sains (`literature-search-arxiv`, `literature-search-openalex`, `scienceskillscommon`), memecahkan ketergantungan `fcntl` Unix, serta memperbarui versi repositori secara terstruktur.
+
+### **Detailed Actions**
+- **Windows OS Patching & Refactoring**:
+  - Mengimplementasikan pustaka bawaan `msvcrt` dan penanganan *in-process lock* via `threading.Lock` di dalam `scienceskillscommon/http_client.py` sebagai fallback dari modul `fcntl` (Unix-only) ketika dijalankan pada platform `win32`.
+  - Mengubah struktur folder dependensi dari `science-skills-common` (mengandung tanda hubung) menjadi `scienceskillscommon` untuk menghindari kendala impor modul Python/uv.
+  - Memperbarui dependensi inline, tool sources, dan import pada skrip `search_arxiv.py`, `download_paper.py`, `download_paper_source.py`, dan `openalex_cli.py`.
+- **Version Release v1.1.0**:
+  - Menaikkan versi repositori dasar dari `v1.0.9` ke `v1.1.0` di dalam `gemini.md`.
+  - Memperbarui nomor versi di berkas panduan `HOW_TO_USE_ANTIGRAVITY.md`.
+  - Mencatat rilis `v1.1.0` secara formal pada berkas `CHANGELOG.md` dan `supportFiles/walkthrough.md` (cumulative log).
+
+### **System Insights**
+* **Cross-Platform Readiness**: Dengan penanganan `win32` fallback ini, pengguna Windows kini dapat menjalankan perkakas riset arXiv dan OpenAlex tanpa hambatan error pustaka `fcntl`.
+* **Zero-Configuration Dependency**: Dependensi inline `uv` memungkinkan pengguna baru langsung menggunakan skill riset secara out-of-the-box hanya dengan menginstal `uv` CLI.
+
+---
+
 ## 📅 [2026-05-28 07:00] Session: Dokumentasi & Setup Integrasi Google NotebookLM MCP
 
 ### **Objective**
