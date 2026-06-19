@@ -1,7 +1,7 @@
 # gemini.md — Quick Context for AI Assistant
 
-> **Last updated:** 2026-06-05
-> **Version:** v1.1.1
+> **Last updated:** 2026-06-19
+> **Version:** v1.1.2
 > **Repo Reference:** https://github.com/syahrilTGR/Template-Research
 
 ---

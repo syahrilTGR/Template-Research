@@ -10,6 +10,22 @@ Agar tidak tersesat, bayangkan folder di sini seperti sebuah kantor riset:
 
 ---
 
+## ⚙️ Langkah 0: Konfigurasi IDE Marketplace
+
+To switch the Google Antigravity IDE extension marketplace from Open VSX to the official VS Code Marketplace, you must configure two specific URLs in your settings:
+
+- **Marketplace Item URL**: `https://marketplace.visualstudio.com/items`
+- **Marketplace Gallery URL**: `https://marketplace.visualstudio.com/_apis/public/gallery`
+
+### Setup Instructions:
+1. Open your Antigravity IDE.
+2. Open Settings using `Ctrl + ,` (or `Cmd + ,` on Mac).
+3. Navigate to **Editor settings**.
+4. Locate the marketplace fields and input the URLs provided above.
+5. Restart the IDE completely for the changes to take effect.
+
+---
+
 ## 🛠️ Langkah 1: Persiapan Environment
 Pilih salah satu cara untuk menyiapkan "nyawa" pendukung asisten AI di komputer Anda:
 
@@ -26,6 +42,15 @@ powershell -ExecutionPolicy Bypass -File .\scripts\setup_env.ps1
 | **Error: Permission Denied** | Jalankan `Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process` di PowerShell-mu, lalu coba lagi. |
 | **Python not found** | Pastikan Python sudah terinstal (download di python.org) dan centang **"Add Python to PATH"** saat instalasi. |
 | **Scripts cannot be loaded** | Ini biasanya karena Windows memblokir skrip. Gunakan perintah **Opsi A** di atas (pakai Bypass). |
+
+### 🔗 Mendaftarkan Venv ke Ekstensi Python
+Setelah setup selesai, pastikan ekstensi Python di IDE Anda bisa mendeteksi *virtual environment* tersebut secara otomatis:
+1. Buka Settings IDE menggunakan `Ctrl + ,` (atau `Cmd + ,` di Mac).
+2. Cari pengaturan: **`Python: Venv Path`** di kolom pencarian.
+3. Masukkan folder **Home** Anda ke dalam isian tersebut, contoh:
+   - **Windows**: `C:\Users\NamaUserAnda`
+   - **Mac/Linux**: `/Users/NamaUserAnda` (atau `~`)
+4. Setelah itu, tekan `Ctrl + Shift + P` (atau `Cmd + Shift + P`), ketik **Python: Select Interpreter**, dan pilih environment riset Anda (misalnya `thesis_venv`).
 
 ---
 

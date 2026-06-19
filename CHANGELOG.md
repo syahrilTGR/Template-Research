@@ -2,6 +2,15 @@
 
 Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 
+## [v1.1.2] — 2026-06-19
+
+### Added
+- **IDE Marketplace Configuration**: Menambahkan panduan awal (Langkah 0) untuk migrasi dari Open VSX ke official VS Code Marketplace di `GETTING_STARTED.md`.
+- **Python Venv Registration Guide**: Menambahkan instruksi eksplisit untuk mendaftarkan path *virtual environment* ke ekstensi Python di `GETTING_STARTED.md` agar terdeteksi secara otomatis oleh IDE.
+
+### Changed
+- **NotebookLM MCP Version Bump**: Memperbarui instruksi instalasi versi `notebooklm-mcp-cli` dari `0.6.13` menjadi `0.7.1` pada panduan `supportFiles/notebooklm_mcp_setup.md`.
+
 ## [v1.1.1] — 2026-06-05
 
 ### Added
