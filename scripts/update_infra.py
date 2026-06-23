@@ -37,6 +37,35 @@ def get_remote_version():
         print(f"[-] Gagal mengecek versi online: {e}")
     return None
 
+def smart_merge_gemini(local_path, remote_path):
+    local_content = Path(local_path).read_text(encoding="utf-8")
+    remote_content = Path(remote_path).read_text(encoding="utf-8")
+
+    pattern = r"(## 🎯 Project Identity.*?)(?=## 📁 Repository Ecosystem Map)"
+    local_match = re.search(pattern, local_content, re.DOTALL)
+    remote_match = re.search(pattern, remote_content, re.DOTALL)
+
+    if local_match and remote_match:
+        merged_content = remote_content[:remote_match.start()] + local_match.group(1) + remote_content[remote_match.end():]
+        Path(local_path).write_text(merged_content, encoding="utf-8")
+        print("[+] Smart Merge berhasil: Konteks pembaruan gemini.md diaplikasikan tanpa merusak identitas Anda.")
+        return True
+    else:
+        print("[-] Smart Merge gagal: Format identitas tidak sesuai standar. gemini.md tidak akan diubah.")
+        return False
+
+def display_latest_changelog(bridge_dir):
+    changelog_path = Path(bridge_dir) / "CHANGELOG.md"
+    if changelog_path.exists():
+        content = changelog_path.read_text(encoding="utf-8")
+        matches = list(re.finditer(r"^## \[v[0-9]+\.[0-9]+\.[0-9]+\].*?(?=\n## \[v|\Z)", content, re.MULTILINE | re.DOTALL))
+        if matches:
+            print("\n" + "="*50)
+            print(" 🚀 APA YANG BARU DI PEMBARUAN INI?")
+            print("="*50)
+            print(matches[0].group(0).strip())
+            print("="*50 + "\n")
+
 def run_command(command, shell=True):
     try:
         result = subprocess.run(command, shell=shell, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -116,7 +145,56 @@ def run_smoke_test():
     else:
         print("[!] Beberapa uji kelayakan gagal. Silakan periksa log setup di atas.")
 
-def perform_update(dry_run=False):
+def execute_phase_2(dry_run=False):
+    if dry_run:
+        print("[*] [PHASE 2] Mode Dry-Run Aktif: Melewati penyalinan berkas.")
+        return
+
+    bridge_dir = Path(".agents/_bridge_update_")
+    if not bridge_dir.exists():
+        print("[-] [PHASE 2] Gagal: Direktori bridge tidak ditemukan.")
+        return
+
+    print("[*] [PHASE 2] Menerapkan pembaruan berkas secara selektif...")
+    
+    # Engine and skill files to copy directly
+    for src_path in bridge_dir.rglob("*"):
+        if src_path.is_file():
+            rel_path = src_path.relative_to(bridge_dir)
+            
+            # Exclude identity files from direct overwrite
+            if rel_path.name == "gemini.md":
+                if Path(rel_path).exists():
+                    smart_merge_gemini(rel_path, src_path)
+                else:
+                    Path(rel_path).parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(src_path, rel_path)
+                continue
+
+            if rel_path.name in ["ACTION_PLAN.md", "word_sync_config.json"]:
+                if not Path(rel_path).exists():
+                    Path(rel_path).parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(src_path, rel_path)
+                continue
+            
+            # Skip backups
+            if "backups" in src_path.parts:
+                continue
+                
+            # Copy engine, skills, and configuration files
+            Path(rel_path).parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src_path, rel_path)
+            
+    display_latest_changelog(bridge_dir)
+    print("[+] [PHASE 2] Semua berkas berhasil diperbarui.")
+
+    # Post update routines
+    run_post_update_setups()
+    run_smoke_test()
+    print("[+] [PHASE 2] Pembaruan infrastruktur selesai dengan sukses!")
+
+
+def perform_update(dry_run=False, force=False):
     local_ver = get_local_version()
     remote_ver = get_remote_version()
     
@@ -127,7 +205,7 @@ def perform_update(dry_run=False):
         print("[-] Gagal memproses update karena versi online tidak dapat dijangkau.")
         return
         
-    if local_ver == remote_ver and not dry_run:
+    if local_ver == remote_ver and not dry_run and not force:
         print("[+] Versi lokal Anda sudah sama dengan versi online terbaru.")
         confirm = input("[?] Apakah Anda ingin memaksa pembaruan ulang? (y/N): ").strip().lower()
         if confirm != 'y':
@@ -152,10 +230,10 @@ def perform_update(dry_run=False):
         shutil.rmtree(bridge_dir)
         
     try:
-        print("[*] Mengunduh paket pembaruan dari GitHub...")
+        print("[*] [PHASE 1] Mengunduh paket pembaruan dari GitHub...")
         urllib.request.urlretrieve(ZIP_URL, temp_zip)
         
-        print("[*] Mengekstrak paket pembaruan...")
+        print("[*] [PHASE 1] Mengekstrak paket pembaruan...")
         with zipfile.ZipFile(temp_zip, 'r') as zip_ref:
             zip_ref.extractall(temp_dir)
             
@@ -163,32 +241,23 @@ def perform_update(dry_run=False):
         extracted_folder = next(temp_dir.glob("Template-Research-*"))
         shutil.move(str(extracted_folder), str(bridge_dir))
         
-        # Incremental Grafting & Copying
-        print("[*] Menerapkan pembaruan berkas secara selektif...")
+        print("[*] [PHASE 1] Menyerahkan kendali ke skrip pembaruan (Phase 2)...")
+        new_script_path = bridge_dir / "scripts" / "update_infra.py"
         
-        # Engine and skill files to copy directly
-        for src_path in bridge_dir.rglob("*"):
-            if src_path.is_file():
-                rel_path = src_path.relative_to(bridge_dir)
-                
-                # Exclude identity files from direct overwrite (prevent resetting user's info)
-                if rel_path.name in ["gemini.md", "ACTION_PLAN.md", "word_sync_config.json"]:
-                    # Merge logic or skip
-                    if not Path(rel_path).exists():
-                        # If not exists locally, copy it
-                        Path(rel_path).parent.mkdir(parents=True, exist_ok=True)
-                        shutil.copy2(src_path, rel_path)
-                    continue
-                
-                # Skip backups
-                if "backups" in src_path.parts:
-                    continue
-                    
-                # Copy engine, skills, and configuration files
-                Path(rel_path).parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(src_path, rel_path)
-                
-        print("[+] Semua berkas berhasil diperbarui.")
+        if not new_script_path.exists():
+            print("[-] [PHASE 1] Gagal: Skrip Phase 2 tidak ditemukan di paket unduhan.")
+            return
+
+        cmd = [sys.executable, str(new_script_path), "--execute-phase-2"]
+        if dry_run:
+            cmd.append("--dry-run")
+            
+        result = subprocess.run(cmd)
+
+        if result.returncode != 0:
+            print("[-] [PHASE 1] Skrip Phase 2 gagal dieksekusi atau mengembalikan error.")
+        else:
+            print("[+] [PHASE 1] Proses *hand-off* berhasil diselesaikan.")
         
     finally:
         # Cleanup temporary zip files
@@ -199,16 +268,15 @@ def perform_update(dry_run=False):
         if bridge_dir.exists():
             shutil.rmtree(bridge_dir)
 
-    # Post update routines
-    run_post_update_setups()
-    run_smoke_test()
-    print("[+] Pembaruan infrastruktur selesai dengan sukses!")
-
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Template-Research Auto-Update Engine")
     parser.add_argument("--dry-run", action="store_true", help="Cek versi dan jalankan simulasi tanpa menulis berkas")
     parser.add_argument("--force", action="store_true", help="Paksa update tanpa konfirmasi")
+    parser.add_argument("--execute-phase-2", action="store_true", help=argparse.SUPPRESS)
     args = parser.parse_args()
     
-    perform_update(dry_run=args.dry_run)
+    if args.execute_phase_2:
+        execute_phase_2(dry_run=args.dry_run)
+    else:
+        perform_update(dry_run=args.dry_run, force=args.force)

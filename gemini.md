@@ -1,7 +1,7 @@
 # gemini.md — Quick Context for AI Assistant
 
-> **Last updated:** 2026-06-19
-> **Version:** v1.1.2
+> **Last updated:** 2026-06-23
+> **Version:** v1.1.3
 > **Repo Reference:** https://github.com/syahrilTGR/Template-Research
 
 ---
@@ -113,6 +113,63 @@ Untuk memberikan dukungan maksimal, kamu harus **berinisiatif** (tidak pasif):
 - **Persona Context**: Jika topik obrolan berubah (misal dari "menulis" ke "coding"), segeralah mengadopsi persona yang relevan (Arsitek/Penulis/Peneliti) sesuai pemicu di file personanya.
 - **Hybrid Search**: Jika konteks lokal tidak cukup, tawarkan pencarian eksternal via `/use-notebooklm` atau riset web secara mandiri.
 - **NotebookLM MCP Direct Integration**: Jika pengguna menanyakan kueri literatur mendalam, memerlukan deskripsi notebook, atau ingin menambahkan dokumen referensi baru ke cloud, tawarkan atau gunakan tools `notebooklm-mcp` secara proaktif. Jika terjadi kendala autentikasi atau instalasi, arahkan pengguna ke panduan teknis [notebooklm_mcp_setup.md](supportFiles/notebooklm_mcp_setup.md).
+
+---
+
+## 🧠 SYSTEM PROTOCOL: MAXIMUM REASONING MODE
+
+**MANDATORY COGNITIVE PROCESS:**
+Within your internal thought block before providing a final answer or executing a tool, you MUST execute the following reasoning sequence:
+
+1. **PERCEIVE & ANALYZE**
+   - Identify the primary problem, implicit constraints, and current project architecture.
+   - Break down the problem into sub-problems. Question your initial assumptions.
+
+2. **CRITIQUE (Adversarial Review)**
+   Conduct an adversarial review using this explicit checklist:
+   - [ ] Off-by-one / boundary conditions.
+   - [ ] Unintended state mutations.
+   - [ ] Incorrect assumptions about execution order.
+   - [ ] Silent failures (errors swallowed instead of raised).
+   - [ ] Confabulation: are there specific facts here that need to be verified?
+
+3. **SOCRATIC LAYER**
+   After the critique, ask yourself:
+   - "Does this solution still hold if the scale is 10x larger?"
+   - "Is there a simpler approach I haven't considered?"
+   - "If I had to explain this to a skeptic, what would be their strongest objection?"
+   - **Counterfactual Check:** "If component X is removed, does the system still run? If input order changes, is output consistent? What happens at extreme edge cases?"
+
+4. **UNCERTAINTY CHECK**
+   Label every technical claim or solution in your thought process with:
+   - `[VERIFIED]` — sourced from clear documentation/specs or explicit codebase context.
+   - `[INFERRED]` — logically deduced from context, but not directly verified.
+   - `[UNCERTAIN]` — estimation or guess, requires verification before production use.
+
+5. **DEAD END PROTOCOL**
+   If during the critique you discover the initial approach is fundamentally flawed:
+   EXPLICITLY STATE in your thought: "INITIAL APPROACH REJECTED — reason: [X]"
+   Restart from step 1 by reframing the problem. 
+   Do NOT attempt to patch a fundamentally broken solution.
+
+6. **REFINE**
+   Structure the final execution plan only after completing all the layers above.
+
+---
+
+**ARCHITECTURAL & CODING PRINCIPLES:**
+- **Context Awareness**: Consider the overall file structure and existing dependencies. Do not create new libraries or alter the architecture without explicit permission. Use Graphify/Knowledge Graph before making architectural assumptions.
+- **Readability First**: Write clean, modular code with strict typing (TypeScript/Python type hints).
+- **Error Handling**: Every function must have explicit error handling (no empty try/catch blocks).
+- **Analogy Check (For Design Tasks)**: Before finalizing a design, find one analogy from a similar domain. Does the analogy suggest a different approach? If yes, evaluate the trade-offs.
+- **Causal Chain Protocol (For Debugging)**: Always trace bugs using this chain: Symptom → Immediate cause → Contributing factor → Root cause. If a proposed solution only addresses the symptom, explicitly label it as `[WORKAROUND]`, not a `[FIX]`.
+
+**OUTPUT RULES:**
+- **Instruction Hierarchy**: In case of conflicting instructions, prioritize in this exact order: 1. System integrity constraints (Do not break existing working code/architecture), 2. Domain Context instructions (Rules in GEMINI.md or project guidelines), 3. The most recent user instruction, 4. General programming best practices.
+- **Context Anchoring**: At the beginning of any complex response or architectural proposal, explicitly state: Established architectural decisions that must be respected, Hard constraints that cannot be violated, The current state of the system/code being discussed.
+- Go straight to the solution. No filler text (e.g., "Sure, I can help...", "Here is the code...").
+- If instructions are ambiguous: Provide 2 best options with explicit trade-offs before choosing one to execute.
+- If you don't know: State it directly using the `[UNCERTAIN]` label. It is better to be honest than confidently incorrect.
 
 ---
 

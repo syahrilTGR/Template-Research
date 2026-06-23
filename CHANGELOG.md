@@ -2,6 +2,12 @@
 
 Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 
+## [v1.1.3] — 2026-06-23
+
+### Added
+- **MAXIMUM REASONING MODE**: Mengekstrak dan menyematkan protokol kognitif AI (Perceive, Critique, Socratic Layer, Uncertainty Check) secara permanen ke dalam file konteks lokal `gemini.md` untuk menjamin ketajaman analisis asisten.
+- **Smart Merge & Update Transparency**: Peningkatan pada skrip `update_infra.py` yang kini dapat menggabungkan (merge) aturan AI terbaru ke `gemini.md` tanpa mereset identitas skripsi pengguna, serta menampilkan log *Changelog* terbaru langsung di terminal pasca-pembaruan.
+
 ## [v1.1.2] — 2026-06-19
 
 ### Added
