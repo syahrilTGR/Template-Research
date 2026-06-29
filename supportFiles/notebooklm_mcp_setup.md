@@ -24,9 +24,9 @@ Untuk memastikan kelancaran operasional, pastikan detail arsitektur lingkungan p
 | Parameter Lingkungan | Deskripsi / Lokasi Sistem |
 | :--- | :--- |
 | **Sistem Operasi** | Windows (PowerShell 5.1 atau PowerShell 7+) |
-| **Virtual Environment Utama** | `$HOME\thesis_venv` (Python 3.12.x) |
-| **Versi Paket CLI** | `notebooklm-mcp-cli` versi `0.6.13` (terinstall di dalam venv aktif) |
-| **Executable CLI Utama (`nlm`)** | `$HOME\thesis_venv\Scripts\nlm.exe` |
+| **Virtual Environment Utama** | `$HOME\thesis_venv` (Python 3.12.x, opsional untuk kebutuhan lain) |
+| **Versi Paket CLI** | `notebooklm-mcp-cli` versi `0.7.7` atau terbaru (via `uv tool`) |
+| **Executable CLI Utama (`nlm`)** | `%USERPROFILE%\.local\bin\nlm.exe` |
 | **Konfigurasi MCP IDE** | `%USERPROFILE%\.gemini\config\mcp_config.json` |
 
 > [!NOTE]
@@ -44,8 +44,8 @@ Metode ini adalah cara tercepat dan termudah. Anda cukup menyalin perintah/promp
 > **Salin Prompt Ini ke Chat Asisten:**
 > ```text
 > Hai Antigravity! Tolong bantu saya menyiapkan integrasi Google NotebookLM MCP secara otomatis. Silakan lakukan:
-> 1. Verifikasi dan instal paket CLI 'notebooklm-mcp-cli==0.6.13' ke dalam virtual environment utama saya di '$HOME\thesis_venv'.
-> 2. Bantu tambahkan konfigurasi server 'notebooklm' secara otomatis pada berkas '%USERPROFILE%\.gemini\config\mcp_config.json' dengan path nlm.exe yang benar.
+> 1. Verifikasi dan instal paket CLI 'notebooklm-mcp-cli' secara global menggunakan perintah `uv tool install notebooklm-mcp-cli`.
+> 2. Bantu tambahkan konfigurasi server 'notebooklm-mcp' secara otomatis pada berkas '%USERPROFILE%\.gemini\config\mcp_config.json' menggunakan command `uvx` dengan args `["--from", "notebooklm-mcp-cli", "notebooklm-mcp"]`.
 > ```
 
 ---
@@ -53,19 +53,16 @@ Metode ini adalah cara tercepat dan termudah. Anda cukup menyalin perintah/promp
 ### 💻 Opsi B: Instalasi Manual (Manual Setup)
 Jika Anda memilih untuk mengelolanya sendiri via terminal PowerShell, ikuti langkah berikut:
 
-1. Buka terminal PowerShell dan aktifkan virtual environment `thesis_venv`:
+1. Buka terminal PowerShell (tidak perlu mengaktifkan virtual environment karena kita menggunakan `uv`).
+2. Jalankan perintah instalasi paket CLI secara global menggunakan `uv`:
    ```powershell
-   & "$env:USERPROFILE\thesis_venv\Scripts\Activate.ps1"
-   ```
-2. Jalankan perintah instalasi paket CLI menggunakan pip:
-   ```powershell
-   pip install notebooklm-mcp-cli==0.6.13
+   uv tool install notebooklm-mcp-cli
    ```
 3. Verifikasi instalasi dengan mengecek versi CLI yang terpasang:
    ```powershell
    nlm --version
    ```
-   *(Output yang diharapkan: `0.6.13`)*
+   *(Output yang diharapkan: `0.7.7` atau yang lebih baru)*
 
 ---
 
@@ -75,27 +72,23 @@ Proses autentikasi awal membutuhkan login interaktif menggunakan akun Google And
 
 Terdapat dua metode eksekusi untuk menjalankan perintah login:
 
-### ⚡ Metode A: Aktivasi Virtual Environment Terlebih Dahulu
-Metode ini direkomendasikan jika Anda bekerja secara interaktif langsung dari dalam terminal PowerShell untuk memastikan semua variabel lingkungan mengarah ke virtual environment yang tepat.
+### ⚡ Metode A: Eksekusi via Command Line (Global)
+Karena kita menggunakan `uv tool`, perintah `nlm` sudah tersedia secara global di PowerShell Anda.
 
 1. Buka terminal PowerShell.
-2. Jalankan skrip aktivasi virtual environment:
-   ```powershell
-   & "$env:USERPROFILE\thesis_venv\Scripts\Activate.ps1"
-   ```
-3. Eksekusi perintah login:
+2. Eksekusi perintah login:
    ```powershell
    nlm login
    ```
-4. Jendela Chrome akan otomatis terbuka. Lakukan login menggunakan akun Google Anda, kemudian tunggu hingga proses di terminal menyatakan autentikasi selesai.
+3. Jendela Chrome akan otomatis terbuka. Lakukan login menggunakan akun Google Anda, kemudian tunggu hingga proses di terminal menyatakan autentikasi selesai.
 
 ### 🎯 Metode B: Eksekusi Jalur Langsung (Direct Path)
-Metode ini sangat berguna jika Anda ingin menjalankan login secara instan tanpa harus mengubah status shell atau sesi terminal aktif Anda saat ini.
+Jika terminal Anda belum mendeteksi `nlm` di *Path*, Anda bisa memanggil *executable*-nya secara langsung dari direktori instalasi `uv`:
 
 1. Buka terminal PowerShell.
-2. Panggil executable `nlm` secara langsung dari virtual environment menggunakan operator call (`&`):
+2. Panggil executable `nlm` secara langsung menggunakan operator call (`&`):
    ```powershell
-   & "$env:USERPROFILE\thesis_venv\Scripts\nlm.exe" login
+   & "$env:USERPROFILE\.local\bin\nlm.exe" login
    ```
 3. Selesaikan proses login interaktif pada jendela browser yang terbuka.
 
@@ -109,26 +102,23 @@ Agar asisten AI di IDE Anda (seperti VS Code, Cursor, atau editor berkemampuan M
 
 1. Buka berkas konfigurasi MCP IDE Anda yang berlokasi di:
    `%USERPROFILE%\.gemini\config\mcp_config.json`
-2. Tambahkan entri baru `"notebooklm"` di dalam objek `"mcpServers"`. 
+2. Tambahkan entri baru `"notebooklm-mcp"` di dalam objek `"mcpServers"`. 
 3. Berikut adalah contoh isi konfigurasi JSON yang benar:
 
 ```json
 {
   "mcpServers": {
-    "notebooklm": {
-      "command": "C:\\Users\\<nama_pengguna>\\thesis_venv\\Scripts\\nlm.exe",
+    "notebooklm-mcp": {
+      "command": "uvx",
       "args": [
-        "mcp"
-      ],
-      "env": {}
+        "--from",
+        "notebooklm-mcp-cli",
+        "notebooklm-mcp"
+      ]
     }
   }
 }
 ```
-
-> [!IMPORTANT]
-> - Pastikan Anda mengganti bagian `<username>` di dalam kolom `"command"` dengan nama pengguna Windows aktif Anda yang sebenarnya (misalnya `C:\\Users\\nama_pengguna\\...`).
-> - Gunakan tanda double backslash (`\\`) untuk setiap pembatas folder di Windows agar file JSON valid.
 > - Setelah menyimpan berkas `mcp_config.json`, lakukan **Restart** or **Reload Window** pada IDE Anda untuk memuat ulang server MCP.
 
 ---

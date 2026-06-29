@@ -8,6 +8,9 @@
 - [x] 0.5 Global Docx Infrastructure Setup (`scripts/setup_docx_infra.ps1`)
 - [x] 0.6 Configure OneDrive Paths in `scripts/sync_word.ps1` (Template Ready)
 - [x] 0.7 Define Initial Citation Map in `supportFiles/ANTI_HALLUCINATION.md` (Template Ready)
+- [ ] 0.8 NotebookLM MCP Setup & Authentication
+- [ ] 0.9 Auto-Creation of Primary Notebook via MCP
+- [ ] 0.10 Initial Bi-directional Reference Sync
 
 ## Chapter 1: Introduction
 - [ ] 1.1 Background of the Study

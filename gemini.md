@@ -1,7 +1,7 @@
 # gemini.md — Quick Context for AI Assistant
 
-> **Last updated:** 2026-06-23
-> **Version:** v1.1.3
+> **Last updated:** 2026-06-29
+> **Version:** v1.2.0
 > **Repo Reference:** https://github.com/syahrilTGR/Template-Research
 
 ---
@@ -42,8 +42,10 @@ Jika terdeteksi placeholder identitas default, jalankan prosedur interview inter
    * **Pertanyaan 7**: *"Apa **algoritma inti, rumus/persamaan utama, protokol, atau metode** yang Anda gunakan? (Contoh: 'YOLOv8/MQTT/OSPF' (IT), 'Finite Element Method (FEM) / CFD' (Sipil/Mesin), 'Regresi Linier / AHP' (Sosial/Statistik))"* ➔ (Tulis ke `Core Algorithm:`)
    * **Pertanyaan 8**: *"Bisa tolong jelaskan singkat **fokus utama penelitian** Anda dalam 1-2 kalimat?"* ➔ (Ganti `[IDENTITY:research_focus]` di `SKILL.md`)
    * **Pertanyaan 9**: *"Apa **metode ilmiah/pendekatan** utama yang Anda gunakan untuk menjawab rumusan masalah?"* ➔ (Ganti `[IDENTITY:primary_methodology]` di `SKILL.md`)
+   * **Langkah 10 (Mandatory)**: Verifikasi status setup MCP NotebookLM. Jika pengguna belum melakukannya, berikan panduan instalasi `notebooklm-mcp` (referensi `notebooklm_mcp_setup.md`).
+   * **Langkah 11 (Auto-Create Notebook)**: Setelah integrasi berjalan, secara otomatis panggil tool `notebook_create` untuk membuat notebook dengan nama sesuai "Judul Tesis", lalu catat UUID-nya.
 
-3. **Konfirmasi Data**: Setelah semua pertanyaan dijawab, tampilkan ringkasan data tersebut dalam bentuk tabel markdown dan minta konfirmasi user.
+3. **Konfirmasi Data**: Setelah semua pertanyaan dijawab dan Notebook utama dibuat, tampilkan ringkasan data tersebut dalam bentuk tabel markdown dan minta konfirmasi user.
 4. **Pembaruan Atomik**: Setelah disetujui, lakukan penulisan programmatik langsung ke:
    - `gemini.md` (bagian `Project Identity` dan `Environment & Technical Context`)
    - `.agents/skills/custom_project_skill/SKILL.md` (bagian `Core Research Logic`)
@@ -58,6 +60,7 @@ Jika terdeteksi placeholder identitas default, jalankan prosedur interview inter
 **Thesis Title:** [Your Title Here]
 **Student:** [Your Name]
 **University/Program:** [Your University]
+**Primary Notebook ID:** [ID_HERE]
 
 ## 💻 Environment & Technical Context
 - **OS Focus:** [e.g., Windows/macOS/Linux]
@@ -75,6 +78,7 @@ Jika terdeteksi placeholder identitas default, jalankan prosedur interview inter
 | **Academic Sources**| `references/` | Folder tunggal untuk PDF jurnal & BibTeX. |
 | **Smart Extractor**| `scripts/extract_pdfs.py`| Tool wajib untuk ekstraksi teks/tabel ke `supportFiles/extracted_*/`. |
 | **Intelligence** | `intelligence/` | Wiki konseptual & Glosarium (Obsidian Vault). |
+| **Technical FAQ** | `supportFiles/faq/` | Folder untuk menyimpan Tanya-Jawab teknis modular yang akan diserap oleh sistem GraphRAG. |
 
 ---
 
@@ -85,7 +89,8 @@ Urutan kerja wajib di awal sesi:
 3. **Load Context:** Jika lolos audit, baca **`supportFiles/handoff/00_metadata.md`** untuk memahami status riset terbaru.
 4. **Data Integrity:** Gunakan data dari `supportFiles/extracted_tables/` untuk klaim metrik numerik.
 5. **Citation Guard:** Saat akan menulis kutipan, WAJIB validasi melalui daftar di `supportFiles/handoff/09_bibliography.md` atau `ANTI_HALLUCINATION.md`.
-6. **Walkthrough Merge Protocol (MANDATORY):** Setiap kali draf `walkthrough.md` dibuat di direktori brain (session storage) setelah menyelesaikan suatu tugas, asisten **WAJIB** menawarkan kepada pengguna untuk menggabungkan (*merge*) isinya ke dalam [`supportFiles/walkthrough.md`](supportFiles/walkthrough.md) (Cumulative Log). Dilarang memindahkan atau menimpa berkas tanpa konfirmasi penggabungan eksplisit.
+6. **Reference Sync Guard (MANDATORY):** Setiap kali ada file PDF baru ditambahkan ke direktori `references/`, asisten WAJIB menawarkan eksekusi `/sync-notebooklm` agar referensi lokal tersinkronisasi ke Primary Notebook di Google NotebookLM.
+7. **Walkthrough Merge Protocol (MANDATORY):** Setiap kali draf `walkthrough.md` dibuat di direktori brain (session storage) setelah menyelesaikan suatu tugas, asisten **WAJIB** menawarkan kepada pengguna untuk menggabungkan (*merge*) isinya ke dalam [`supportFiles/walkthrough.md`](supportFiles/walkthrough.md) (Cumulative Log). Dilarang memindahkan atau menimpa berkas tanpa konfirmasi penggabungan eksplisit.
 
 ---
 

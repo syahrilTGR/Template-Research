@@ -2,6 +2,18 @@
 
 Semua perubahan penting pada infrastruktur riset ini akan dicatat di file ini.
 
+## [v1.2.0] — 2026-06-29
+
+### Added
+- **V2 Update Engine (Robust Architecture)**: Perombakan total skrip `update_infra.py` menjadi arsitektur 4-Fase Transaksional. Mengadopsi mekanisme *Three-Way Merge* (`difflib`) dan sistem *Manifest* (`infra_manifest.json`) berbasis *SHA-256 hash* untuk melindungi kustomisasi pengguna secara mutlak (mencegah *overwrite* membabi-buta) saat melakukan sinkronisasi dengan hulu (*upstream*).
+- **NotebookLM Deep Integration (Mandatory)**: Kini **mewajibkan** seluruh pengguna untuk menginstal dan melakukan setup `notebooklm-mcp` di awal. Sistem juga mengotomatiskan pembuatan notebook utama via MCP `notebook_create` saat *onboarding* serta mendirikan alur kerja `/sync-notebooklm` untuk sinkronisasi referensi lokal-cloud dua arah (*bi-directional*).
+- **Revision Tracker**: *Workflow* `/revision-tracker` untuk membedah, melacak, dan membuat skala prioritas manajemen catatan revisi dari penguji sidang secara instan.
+- **Modular FAQ Foundation**: Struktur basis pengetahuan terpisah di `supportFiles/faq/` dengan *template* generik (algoritma, arsitektur, hardware) guna memaksimalkan akurasi *GraphRAG* dan efisiensi penarikan konteks.
+
+### Changed
+- Pembaruan `gemini.md` (Penyertaan Primary Notebook ID dan pemicu wajib *Reference Sync Guard* pada siklus hidup *agent*).
+- Peningkatan visibilitas `README.md` (Menyoroti integrasi NBLM sebagai *Killer Feature* di puncak fitur andalan).
+
 ## [v1.1.3] — 2026-06-23
 
 ### Added

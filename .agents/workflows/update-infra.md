@@ -10,7 +10,11 @@ Workflow ini akan menarik update terbaru dari repository pusat tanpa merusak dra
 
 ## Step 1: Eksekusi Update Engine (Python-Native)
 
-Asisten wajib menjalankan skrip pembaruan infrastruktur berbasis Python. Skrip ini secara otomatis memverifikasi versi online, membuat cadangan pengaman (*safety backup*), melakukan penggabungan cerdas (*smart grafting*), menyelaraskan konfigurasi environment, dan menjalankan rangkaian Smoke Test kelayakan.
+Asisten wajib menjalankan skrip pembaruan infrastruktur berbasis Python. Skrip ini secara otomatis memverifikasi versi online dan mengeksekusi arsitektur pembaruan **4 Fase Transaksional**:
+1. **Atomic Download & Staging**: Mengunduh repositori ke folder `_staging_` sementara.
+2. **Conflict Analysis (Three-Way Merge)**: Menganalisis modifikasi lokal (berbasis hash SHA-256 dan `infra_manifest.json`) dan menyelesaikan konflik secara otomatis tanpa menghilangkan kustomisasi *user*.
+3. **Transactional Backup + Apply**: Membuat snapshot cadangan dan menerapkan pembaruan. Jika gagal, akan *rollback* otomatis ke state awal.
+4. **Post-Update Handshake**: Regenerasi manifest dan eksekusi skrip sinkronisasi lingkungan.
 
 // turbo
 ```powershell

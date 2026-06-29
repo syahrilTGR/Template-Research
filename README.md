@@ -18,11 +18,14 @@ powershell -ExecutionPolicy Bypass -File .\scripts\setup_env.ps1
 **Penting:** Setelah setup selesai, silakan ikuti panduan **[GETTING_STARTED.md](./GETTING_STARTED.md)** untuk mulai melakukan riset dengan bantuan AI.
 
 ## ✨ Fitur Unggulan
+
+> 🌟 **[KILLER FEATURE] Google NotebookLM Deep Integration**  
+> Repositori ini mewajibkan dan mengotomatiskan interaksi **dua arah (bi-directional)** antara *local folder* Anda dengan Google NotebookLM! Asisten mampu melakukan sinkronisasi referensi (`/sync-notebooklm`), membaca puluhan PDF di cloud sekaligus untuk analisis makro tingkat dewa, serta menuliskannya secara presisi ke dalam draf lokal Anda. Baca panduan setup instannya di **[notebooklm_mcp_setup.md](supportFiles/notebooklm_mcp_setup.md)**.
+
 - **📝 Handoff-Centric Drafting**: Seluruh draf terkonsentrasi di satu titik (`supportFiles/handoff/00_metadata.md`) untuk meminimalkan halusinasi AI.
 - **👥 Research Bureau**: Sistem multi-agent (Dr. Aulia, Baskoro, Citra, Deni) dengan persona spesialis untuk setiap tahap riset.
 - **📄 Smart Academic Extractor**: Mesin otomatis (`scripts/extract_pdfs.py`) untuk ekstraksi teks & tabel (Excel) dari puluhan jurnal secara cerdas dengan sistem caching.
 - **🧠 Intelligence Vault (Obsidian)**: Pusat pengetahuan interaktif dengan grafik hubungan antar konsep (`intelligence/`).
-- **☁️ Automated Literature Ingestion**: Integrasi asisten langsung dengan Google NotebookLM menggunakan `notebooklm-mcp` untuk query instan, deskripsi notebook, dan sinkronisasi referensi. Panduan instalasi aman dapat dilihat pada berkas **[notebooklm_mcp_setup.md](supportFiles/notebooklm_mcp_setup.md)**.
 - **🗺️ Optional Graphify**: Knowledge Graph visual untuk memetakan arsitektur riset (Via Node.js).
 - **⚖️ Prose Auditor**: Skrip detektif (`scripts/prose_auditor.py`) untuk membasmi karakter "robot" AI dan memverifikasi integritas sitasi.
 - **🔄 Global Brain Sync**: Sinkronisasi draf cerdas antara Markdown, Word, dan Obsidian via OneDrive.
@@ -57,7 +60,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\setup_env.ps1
 Proyek ini dilengkapi dengan asisten AI yang bisa membantu menulis subbab laporan, menjelaskan kode, hingga melakukan riset otomatis.
 
 - **Panduan Cepat**: Lihat file [HOW_TO_USE_ANTIGRAVITY.md](./HOW_TO_USE_ANTIGRAVITY.md) untuk mempelajari cara memanggil workflow asisten.
-- **NotebookLM MCP**: Anda dapat berinteraksi langsung dengan data di cloud Google NotebookLM dari chat obrolan. Baca panduan mulainya di **[notebooklm_mcp_setup.md](supportFiles/notebooklm_mcp_setup.md)**.
+- **NotebookLM Hybrid Workflow**: Gunakan command `/sync-notebooklm` atau pelajari pedoman alur hibrida di [use-notebooklm.md](.agents/workflows/use-notebooklm.md) untuk merajut kekuatan NotebookLM dengan Antigravity.
 - **Support**: Asisten ini memahami konteks proyek melalui file-file di directory `.agents`.
 - **Pembaruan & Rilis**: Kapan saja ada versi baru, jalankan perintah `/update-infra` di obrolan AI untuk menyelaraskan infrastruktur repositori Anda secara otomatis.
 
